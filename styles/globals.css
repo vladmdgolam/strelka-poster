@@ -2,8 +2,8 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "Lazurski", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
@@ -13,4 +13,45 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+canvas {
+  height: 100%;
+}
+#__next {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+nav a + a {
+  margin-left: 10px;
+}
+
+.container {
+  min-height: 100vh;
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@font-face {
+  font-family: "Lazurski";
+  src: url("/lazurski-cyrillic.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.html {
+  /* text-align: center; */
+  /* font-size: 12px; */
+  pointer-events: none;
+}
+
+.html *,
+.html > * {
+  pointer-events: none !important;
 }
