@@ -47,8 +47,13 @@ nav a + a {
 
 .html {
   /* text-align: center; */
-  /* font-size: 12px; */
+  font-size: 12px;
   pointer-events: none;
+  padding: 5px;
+}
+
+p {
+  margin: 0;
 }
 
 .html *,

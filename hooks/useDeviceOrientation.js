@@ -4,7 +4,6 @@ import { useState } from "react"
 const useDeviceOrientation = () => {
   const [position, setPosition] = useState([0, 0, 0])
   useControls({
-    gravity: { value: -10, min: -100, max: 100 },
     request: button(() => requestDeviceOrientation()),
   })
 

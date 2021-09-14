@@ -1,12 +1,31 @@
 import { usePlane } from "@react-three/cannon"
+import { useEffect } from "react"
 import { DoubleSide } from "three"
 
-const Plane = ({ color = "lightblue", args = [200, 200], ...rest }) => {
-  const [ref] = usePlane(() => ({ ...rest }))
+const Plane = ({
+  color = "lightblue",
+  args = [10, 10],
+  position = [0, 0, 0],
+  rotation = [0, 0, 0],
+  ...rest
+}) => {
+  const [ref, api] = usePlane(() => ({ position, rotation, args, ...rest }))
+
+  useEffect(() => {
+    api.position.set(...position)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [position])
+
+  useEffect(() => {
+    api.rotation.set(...rotation)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [rotation])
+
   return (
-    <mesh ref={ref}>
+    <mesh ref={ref} {...rest}>
       <planeBufferGeometry args={args} />
-      <meshBasicMaterial side={DoubleSide} color={color} />
+      <meshNormalMaterial side={DoubleSide} />
+      {/* <meshBasicMaterial side={DoubleSide} color={color} /> */}
     </mesh>
   )
 }

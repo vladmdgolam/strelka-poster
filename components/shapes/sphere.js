@@ -1,11 +1,15 @@
+import { randomStrelkaColor } from "@/helpers"
 import { useSphere } from "@react-three/cannon"
+import { useState } from "react"
+import { DoubleSide } from "three"
 
-const Sphere = () => {
-  const [ref] = useSphere(() => ({ args: 3, mass: 1 }))
+const Sphere = ({ args = [1, 20, 20], position = [0, 10, 0], ...rest }) => {
+  const [ref, api] = useSphere(() => ({ args: args[0], mass: 1, position }))
+  const [color] = useState(() => randomStrelkaColor())
   return (
     <mesh ref={ref}>
-      <sphereBufferGeometry args={[3, 20, 20]} />
-      <meshNormalMaterial />
+      <sphereBufferGeometry args={args} />
+      <meshLambertMaterial color={color} side={DoubleSide} />
     </mesh>
   )
 }

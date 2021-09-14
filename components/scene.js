@@ -1,62 +1,62 @@
 import Sphere from "@/components/shapes/sphere"
-import requestDeviceOrientation from "@/helpers/requestDeviceOrientation"
-import useDeviceOrientation from "@/hooks/useDeviceOrientation"
-import { Physics } from "@react-three/cannon"
-import { Html, PerspectiveCamera } from "@react-three/drei"
-import { button, useControls } from "leva"
-import { useEffect, useState } from "react"
+import { usePlane } from "@react-three/cannon"
+import { Box, PerspectiveCamera } from "@react-three/drei"
+import { useThree } from "@react-three/fiber"
+import { useEffect } from "react"
+import ControlledPhysics from "./controlled-physics"
 import Plane from "./plane"
 
-const Scene = () => {
-  const { position, gravConstant } = useControls({
-    x: { value: 0, min: -100, max: 100 },
-    y: { value: -10, min: -100, max: 100 },
-    z: { value: 0, min: -100, max: 100 },
-    gravConstant: { value: 1, min: 0, max: 10, step: 0.1 },
-    gravity: { value: [0, -10, 0], step: 1, max: 180, min: -180 },
-    position: { value: [0, 0, 0], step: 1, max: 180, min: -180 },
-  })
-  const [gravity, setGravity] = useState([0, -10, 0])
+function Borders() {
+  const { width, height } = useThree(({ viewport }) => viewport)
 
-  const devicePosition = useDeviceOrientation()
-
-  useEffect(() => {
-    // var pitch = (Math.PI * position[1]) / 180
-    // var roll = (Math.PI * position[2]) / 180
-    // var pitch = (Math.PI * position[1]) / 180
-    // var roll = (Math.PI * position[2]) / 180
-
-    // var acc = {
-    //   x: Math.cos(pitch) * Math.sin(roll) * gravConstant,
-    //   y: Math.sin(pitch) * gravConstant,
-    // }
-
-    // setGravity([acc.x, -10, acc.y])
-    console.log([devicePosition[2], -10, devicePosition[1]])
-    setGravity([devicePosition[2], -10, devicePosition[1]])
-  }, [devicePosition])
-
+  // useEffect(() => {
+  //   console.log(viewport)
+  // }, [viewport])
+  // const planeDimensions = { width: 10, height: 10 }
+  const blockHeight = 5
   return (
     <>
-      <Html
-        className="html"
-        fullscreen
-        calculatePosition={(_, __, { width, height }) => [
-          width / 2,
-          height / 2,
-        ]}
-      >
-        <p>alpha {devicePosition[0]}</p>
-        <p>beta {devicePosition[1]}</p>
-        <p>gamma {devicePosition[2]}</p>
-        <p>{gravity}</p>
-      </Html>
+      <Plane
+        args={[width, height]}
+        position={[0, 0, 0]}
+        rotation={[Math.PI / 2, -Math.PI, 0]}
+      />
+      <Plane
+        position={[-width / 2, blockHeight / 2, 0]}
+        args={[blockHeight, height]}
+        rotation={[Math.PI / 2, Math.PI / 2, 0]}
+      />
+      <Plane
+        position={[width / 2, blockHeight / 2, 0]}
+        args={[blockHeight, height]}
+        rotation={[Math.PI / 2, -Math.PI / 2, 0]}
+      />
+      <Plane
+        position={[0, blockHeight / 2, -height / 2]}
+        args={[width, blockHeight]}
+        rotation={[0, 0, 0]}
+      />
+      <Plane
+        position={[0, blockHeight / 2, height / 2]}
+        args={[width, blockHeight]}
+        rotation={[0, Math.PI, 0]}
+      />
+    </>
+  )
+}
+
+const Scene = () => {
+  return (
+    <>
+      <ambientLight />
       <axesHelper />
-      <PerspectiveCamera makeDefault position={[0, 50, 0]} />
-      <Physics gravity={gravity}>
+      <PerspectiveCamera makeDefault position={[0, 13, 0]} />
+      {/* camera={{ position: [0, 0, 20], fov: 50, near: 17, far: 40 }}> */}
+      <ControlledPhysics>
+        <Borders />
         <Sphere />
-        <Plane position={[0, -10, 0]} rotation={[-Math.PI / 2, 0, 0]} />
-      </Physics>
+        {/* <Plane position={[0, -10, 0]} rotation={[-Math.PI / 2, 0, 0]} /> */}
+      </ControlledPhysics>
     </>
   )
 }
