@@ -1,11 +1,11 @@
-import { button, useControls } from "leva"
+// import { button, useControls } from "leva"
 import { useState } from "react"
 
 const useDeviceOrientation = () => {
   const [position, setPosition] = useState([0, 0, 0])
-  useControls({
-    request: button(() => requestDeviceOrientation()),
-  })
+  // useControls({
+  //   request: button(() => requestDeviceOrientation()),
+  // })
 
   const handleOrientation = (e) => {
     setPosition([e.alpha.toFixed(2), e.beta.toFixed(2), e.gamma.toFixed(2)])
@@ -23,7 +23,7 @@ const useDeviceOrientation = () => {
     }
   }
 
-  return position
+  return { position, requestDeviceOrientation }
 }
 
 export default useDeviceOrientation

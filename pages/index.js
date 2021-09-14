@@ -2,7 +2,7 @@ import Canvas from "@/components/canvas"
 import Scene from "@/components/scene"
 import { OrbitControls } from "@react-three/drei"
 
-export default function Home() {
+const Home = () => {
   return (
     <Canvas>
       <OrbitControls />
@@ -10,3 +10,5 @@ export default function Home() {
     </Canvas>
   )
 }
+
+export default Home

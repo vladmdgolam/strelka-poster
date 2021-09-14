@@ -15,7 +15,8 @@ const ControlledPhysics = ({ children }) => {
   //   })
   const [gravity, setGravity] = useState([0, -10, 0])
 
-  const devicePosition = useDeviceOrientation()
+  const { position: devicePosition, requestDeviceOrientation } =
+    useDeviceOrientation()
 
   useEffect(() => {
     // var pitch = (Math.PI * position[1]) / 180
@@ -41,14 +42,14 @@ const ControlledPhysics = ({ children }) => {
           height / 2,
         ]}
       >
-        <p>alpha {devicePosition[0]}</p>
-        <p>beta {devicePosition[1]}</p>
-        <p>gamma {devicePosition[2]}</p>
-        {/* <p>{gravity}</p> */}
+        <div onClick={() => requestDeviceOrientation()}>
+          <p>alpha {devicePosition[0]}</p>
+          <p>beta {devicePosition[1]}</p>
+          <p>gamma {devicePosition[2]}</p>
+          {/* <p>{gravity}</p> */}
+        </div>
       </Html>
-      <Physics gravity={gravity}>
-        <Debug>{children}</Debug>
-      </Physics>
+      <Physics gravity={gravity}>{children}</Physics>
     </>
   )
 }

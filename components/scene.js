@@ -48,7 +48,8 @@ function Borders() {
 const Scene = () => {
   return (
     <>
-      <ambientLight />
+      <ambientLight intensity={0.3} />
+      <directionalLight castShadow position={[0, 10, 0]} />
       <axesHelper />
       <PerspectiveCamera makeDefault position={[0, 13, 0]} />
       {/* camera={{ position: [0, 0, 20], fov: 50, near: 17, far: 40 }}> */}

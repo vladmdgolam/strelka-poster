@@ -9,6 +9,7 @@ const Canvas = ({ children, size, color, ...rest }) => {
   }, [])
   return (
     <ThreeCanvas
+      onClick={() => console.log("canvas click")}
       gl={{
         stencil: false,
         alpha: false,
@@ -16,6 +17,7 @@ const Canvas = ({ children, size, color, ...rest }) => {
         preserveDrawingBuffer: true,
         // powerPreference: "high-performance",
       }}
+      shadows
       onCreated={({ gl }) => {
         gl.toneMapping = LinearToneMapping
         gl.setClearColor(color ? color : "pink")

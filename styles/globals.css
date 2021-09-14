@@ -58,5 +58,5 @@ p {
 
 .html *,
 .html > * {
-  pointer-events: none !important;
+  pointer-events: all;
 }

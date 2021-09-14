@@ -22,9 +22,9 @@ const Plane = ({
   }, [rotation])
 
   return (
-    <mesh ref={ref} {...rest}>
+    <mesh ref={ref} {...rest} receiveShadow>
       <planeBufferGeometry args={args} />
-      <meshNormalMaterial side={DoubleSide} />
+      <meshLambertMaterial color={color} side={DoubleSide} />
       {/* <meshBasicMaterial side={DoubleSide} color={color} /> */}
     </mesh>
   )
