@@ -1,27 +1,25 @@
-import { Cylinder } from "@react-three/drei"
+import { Cylinder as DreiCylinder } from "@react-three/drei"
 import { useCylinder } from "@react-three/cannon"
-import { randomNumber, randomStrelkaColor } from "@/helpers"
-import { massMultiplier } from "@/helpers/constants"
 
-const Cyl = ({ max, maxPos }) => {
-  const radius = randomNumber(0, max)
-  const args = [radius, radius, randomNumber(1, max), 40]
-  const position = [
-    randomNumber(1, maxPos),
-    randomNumber(args[2], maxPos),
-    randomNumber(1, maxPos),
-  ]
+const Cylinder = ({
+  position = [0, 0, 0],
+  radius = 1,
+  height = 1,
+  color = "white",
+}) => {
+  const args = [radius, radius, height, 40]
 
   const [ref] = useCylinder(() => ({
-    mass: Math.max(radius * args[2], 1) * massMultiplier,
+    mass: Math.max(radius * height, 1),
     args,
     position,
   }))
+
   return (
-    <Cylinder ref={ref} args={args} position={position}>
-      <meshBasicMaterial color={randomStrelkaColor()} />
-    </Cylinder>
+    <DreiCylinder ref={ref} args={args} position={position}>
+      <meshBasicMaterial color={color} />
+    </DreiCylinder>
   )
 }
 
-export default Cyl
+export default Cylinder

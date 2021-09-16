@@ -6,7 +6,7 @@ const Plane = ({
   color = "lightblue",
   args = [10, 10],
   position = [0, 0, 0],
-  rotation = [0, 0, 0],
+  rotation = [-Math.PI / 2, 0, 0],
   ...rest
 }) => {
   const [ref, api] = usePlane(() => ({ position, rotation, args, ...rest }))
@@ -24,8 +24,9 @@ const Plane = ({
   return (
     <mesh ref={ref} {...rest} receiveShadow>
       <planeBufferGeometry args={args} />
-      <meshLambertMaterial color={color} side={DoubleSide} />
-      {/* <meshBasicMaterial side={DoubleSide} color={color} /> */}
+      {/* <meshLambertMaterial color={color} side={DoubleSide} /> */}
+      {/* <meshNormalMaterial /> */}
+      <meshBasicMaterial side={DoubleSide} color={color} />
     </mesh>
   )
 }

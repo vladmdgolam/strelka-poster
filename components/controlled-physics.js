@@ -1,8 +1,9 @@
 import useDeviceOrientation from "@/hooks/useDeviceOrientation"
 import { Debug, Physics } from "@react-three/cannon"
-import { Html } from "@react-three/drei"
+
 // import { useControls } from "leva"
 import { useEffect, useState } from "react"
+import IntroScreen from "./intro-screen"
 
 const ControlledPhysics = ({ children }) => {
   //   const { position, gravConstant } = useControls({
@@ -14,16 +15,15 @@ const ControlledPhysics = ({ children }) => {
   //     position: { value: [0, 0, 0], step: 1, max: 180, min: -180 },
   //   })
   const [gravity, setGravity] = useState([0, -10, 0])
+  const [init, setInit] = useState(false)
 
-  const { position: devicePosition, requestDeviceOrientation } =
-    useDeviceOrientation()
+  const {
+    position: devicePosition,
+    requestDeviceOrientation,
+    working,
+  } = useDeviceOrientation()
 
   useEffect(() => {
-    // var pitch = (Math.PI * position[1]) / 180
-    // var roll = (Math.PI * position[2]) / 180
-    // var pitch = (Math.PI * position[1]) / 180
-    // var roll = (Math.PI * position[2]) / 180
-
     // var acc = {
     //   x: Math.cos(pitch) * Math.sin(roll) * gravConstant,
     //   y: Math.sin(pitch) * gravConstant,
@@ -32,23 +32,20 @@ const ControlledPhysics = ({ children }) => {
     // setGravity([acc.x, -10, acc.y])
     setGravity([devicePosition[2], -10, devicePosition[1]])
   }, [devicePosition])
+
+  useEffect(() => {}, [])
+
+  const start = () => {
+    if (window.DeviceOrientationEvent && "ontouchstart" in window) {
+      requestDeviceOrientation()
+    } else {
+      setInit(true)
+    }
+  }
+
   return (
     <>
-      <Html
-        className="html"
-        fullscreen
-        calculatePosition={(_, __, { width, height }) => [
-          width / 2,
-          height / 2,
-        ]}
-      >
-        <div onClick={() => requestDeviceOrientation()}>
-          <p>alpha {devicePosition[0]}</p>
-          <p>beta {devicePosition[1]}</p>
-          <p>gamma {devicePosition[2]}</p>
-          {/* <p>{gravity}</p> */}
-        </div>
-      </Html>
+      {!(init || working) && <IntroScreen start={start} />}
       <Physics gravity={gravity}>{children}</Physics>
     </>
   )

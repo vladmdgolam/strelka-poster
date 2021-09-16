@@ -1,6 +1,5 @@
 import { Canvas as ThreeCanvas } from "@react-three/fiber"
 import { useEffect, useState } from "react"
-import { LinearToneMapping } from "three"
 
 const Canvas = ({ children, size, color, ...rest }) => {
   const [dpr, setDpr] = useState(2)
@@ -9,20 +8,18 @@ const Canvas = ({ children, size, color, ...rest }) => {
   }, [])
   return (
     <ThreeCanvas
-      onClick={() => console.log("canvas click")}
       gl={{
         stencil: false,
         alpha: false,
         antialias: true,
         preserveDrawingBuffer: true,
-        // powerPreference: "high-performance",
       }}
-      shadows
+      camera={{ position: [0, 13, 0], near: 0.01, far: 1000 }}
+      // shadows
+      linear
       onCreated={({ gl }) => {
-        gl.toneMapping = LinearToneMapping
         gl.setClearColor(color ? color : "pink")
       }}
-      // camera={{ near: 0.01, far: 1000}}
       dpr={dpr}
       {...rest}
     >

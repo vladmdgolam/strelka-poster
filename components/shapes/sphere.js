@@ -3,8 +3,14 @@ import { useSphere } from "@react-three/cannon"
 import { useState } from "react"
 import { DoubleSide } from "three"
 
-const Sphere = ({ args = [1, 40, 40], position = [0, 10, 0], ...rest }) => {
-  const [ref, api] = useSphere(() => ({ args: args[0], mass: 1, position }))
+const Sphere = ({ radius = 1, position = [0, 10, 0], ...rest }) => {
+  const args = [radius, 40, 40]
+  const [ref, api] = useSphere(() => ({
+    args: args[0],
+    mass: 1,
+    position,
+    ...rest,
+  }))
   const [color] = useState(() => randomStrelkaColor())
   return (
     <mesh ref={ref} castShadow>
