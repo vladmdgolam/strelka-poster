@@ -34,6 +34,7 @@ const InstancedSpheres = ({ number = 100, radius = 0.5 }) => {
       api.at(x).position.set(...generatePosition(x))
     }
   }
+  
   const explode = () => {
     for (let x = 0; x < number; x++) {
       api.at(x).position.set(...generatePosition())

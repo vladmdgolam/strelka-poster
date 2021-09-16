@@ -3,7 +3,7 @@ import { useSphere } from "@react-three/cannon"
 import { useState } from "react"
 import { DoubleSide } from "three"
 
-const Sphere = ({ radius = 1, position = [0, 10, 0], ...rest }) => {
+const Sphere = ({ radius = 0.5, position = [0, 10, 0], ...rest }) => {
   const args = [radius, 40, 40]
   const [ref, api] = useSphere(() => ({
     args: args[0],
@@ -15,7 +15,8 @@ const Sphere = ({ radius = 1, position = [0, 10, 0], ...rest }) => {
   return (
     <mesh ref={ref} castShadow>
       <sphereBufferGeometry args={args} />
-      <meshLambertMaterial color={color} side={DoubleSide} />
+      <meshBasicMaterial color={color} side={DoubleSide} />
+      {/* <meshLambertMaterial color={color} side={DoubleSide} /> */}
     </mesh>
   )
 }

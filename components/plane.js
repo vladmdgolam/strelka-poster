@@ -1,5 +1,7 @@
+import { randomStrelkaColor } from "@/helpers"
 import { usePlane } from "@react-three/cannon"
-import { useEffect } from "react"
+import { GradientTexture } from "@react-three/drei"
+import { useEffect, useState } from "react"
 import { DoubleSide } from "three"
 
 const Plane = ({
@@ -10,6 +12,7 @@ const Plane = ({
   ...rest
 }) => {
   const [ref, api] = usePlane(() => ({ position, rotation, args, ...rest }))
+  const [secondColor] = useState(randomStrelkaColor())
 
   useEffect(() => {
     api.position.set(...position)
@@ -26,7 +29,14 @@ const Plane = ({
       <planeBufferGeometry args={args} />
       {/* <meshLambertMaterial color={color} side={DoubleSide} /> */}
       {/* <meshNormalMaterial /> */}
-      <meshBasicMaterial side={DoubleSide} color={color} />
+      {/* <meshBasicMaterial side={DoubleSide} color={color} /> */}
+      <meshBasicMaterial side={DoubleSide}>
+        <GradientTexture
+          stops={[0, 1]} // As many stops as you want
+          colors={[color, secondColor]} // Colors need to match the number of stops
+          size={1024} // Size is optional, default = 1024
+        />
+      </meshBasicMaterial>
     </mesh>
   )
 }

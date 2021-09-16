@@ -14,7 +14,6 @@ const Canvas = ({ children, size, color, ...rest }) => {
         antialias: true,
         preserveDrawingBuffer: true,
       }}
-      camera={{ position: [0, 13, 0], near: 0.01, far: 1000 }}
       // shadows
       linear
       onCreated={({ gl }) => {
