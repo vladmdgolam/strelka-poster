@@ -1,15 +1,17 @@
+import useTakeScreenshot from "@/hooks/useTakeScreenshot"
 import { PerspectiveCamera } from "@react-three/drei"
-import { Perf } from "r3f-perf"
+import { useControls, button } from "leva"
 import Borders from "./borders"
 import ControlledPhysics from "./controlled-physics"
 import Lights from "./lights"
 import InstancedSpheres from "./shapes/instanced-spheres"
 import InstancedText from "./text/instanced-text"
-import TextGeneral from "./text/text-general"
-import BoxText from "./text/text-physics"
 
 const Scene = () => {
-  // const { number } = useControls({ number: { value: 100, min: 0, max: 300 } })
+  const takeScreenshot = useTakeScreenshot()
+  useControls({
+    screenshot: button(() => takeScreenshot()),
+  })
   return (
     <>
       <PerspectiveCamera

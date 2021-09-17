@@ -5,13 +5,20 @@ import { Box } from "@react-three/drei"
 import { useState } from "react"
 import TextGeneral from "./text-general"
 
-const BoxText = ({ position = [0, 0, 0], text, ...rest }) => {
+const BoxText = ({
+  position = [0, 0, 0],
+  rotation = [-Math.PI / 2, 0, 0],
+  text,
+  ...rest
+}) => {
   const [color] = useState(randomStrelkaColor())
   const size = [3, 1, 0.1]
   const [ref] = useBox(() => ({
     mass: 1,
     args: size,
     position,
+    rotation,
+    fixedRotation: true,
     ...rest,
   }))
 
