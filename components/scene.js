@@ -1,11 +1,13 @@
 import useTakeScreenshot from "@/hooks/useTakeScreenshot"
 import { PerspectiveCamera } from "@react-three/drei"
 import { useControls, button } from "leva"
+import { Suspense } from "react"
 import Borders from "./borders"
 import ControlledPhysics from "./controlled-physics"
 import Lights from "./lights"
 import InstancedSpheres from "./shapes/instanced-spheres"
 import InstancedText from "./text/instanced-text"
+// import Vehicle from "./vehicle"
 
 const Scene = () => {
   const takeScreenshot = useTakeScreenshot()
@@ -23,9 +25,12 @@ const Scene = () => {
       {/* <Perf /> */}
       <Lights />
       <ControlledPhysics>
+        <Suspense fallback={null}>
+          {/* <Vehicle /> */}
+        </Suspense>
         <Borders />
         <InstancedSpheres />
-        <InstancedText />
+        {/* <InstancedText /> */}
         {/* <BoxText /> */}
         {/* <TextGeneral rotation={[-Math.PI / 2, 0, 0]} /> */}
       </ControlledPhysics>

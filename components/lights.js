@@ -1,9 +1,9 @@
-import { OrbitControls, TransformControls } from "@react-three/drei"
-import { useEffect, useRef } from "react"
+import { GizmoHelper, GizmoViewcube, OrbitControls } from "@react-three/drei"
+import { useRef } from "react"
 
 const Lights = () => {
   //   const transformControls = useRef()
-  const orbitControls = useRef()
+  // const orbitControls = useRef()
   //   useEffect(() => {
   //     if (transformControls.current) {
   //       const { current: controls } = transformControls
@@ -15,7 +15,7 @@ const Lights = () => {
   return (
     <>
       <ambientLight intensity={0.3} />
-      <OrbitControls ref={orbitControls} />
+      <OrbitControls />
       {/* <TransformControls ref={transformControls} mode="rotate"> */}
       <directionalLight intensity={1.2} castShadow position={[0, 40, 0]} />
       {/* </TransformControls> */}

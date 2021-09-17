@@ -1,6 +1,18 @@
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { Text } from "@react-three/drei"
 import { useFrame, useThree } from "@react-three/fiber"
+
+const texts = [
+  // "ALL SUMMER\n(MM, MM)",
+  // ".45 GUNNERS\n(MMH, MMH)",
+  // "IN PAJAMAS\n(MMH, MMH)",
+  "JUNYA WATANABE\nON MY WRI'",
+  // "DONDA",
+]
+
+const getRandomText = () => {
+  return texts[Math.floor(Math.random() * texts.length)]
+}
 
 const TextGeneral = ({ look, color, text, children, ...rest }) => {
   const ref = useRef(null)
@@ -9,6 +21,7 @@ const TextGeneral = ({ look, color, text, children, ...rest }) => {
   useFrame(() => {
     look && ref.current && ref.current.lookAt(camera.position)
   })
+  const [initText] = useState(getRandomText())
   return (
     <Text
       font="/lazurski-cyrillic.woff"
@@ -20,7 +33,7 @@ const TextGeneral = ({ look, color, text, children, ...rest }) => {
       textAlign="center"
       {...rest}
     >
-      {text || text === "" ? text : `STRELKA\nOPEN CODE`}
+      {text || text === "" ? text : initText}
       <meshBasicMaterial />
       {children}
     </Text>

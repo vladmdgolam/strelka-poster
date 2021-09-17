@@ -1,10 +1,10 @@
 import { useState } from "react"
-import BoxText from "./text-physics"
+import BoxText from "./text-physical"
 import { nanoid } from "nanoid"
 
 const create = (count) => Array.from({ length: count }, () => nanoid())
 
-const InstancedText = ({ count = 100 }) => {
+const InstancedText = ({ count = 70 }) => {
   const [arr] = useState(create(count))
   return (
     <>

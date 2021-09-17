@@ -1,7 +1,5 @@
-import { randomNumber, randomStrelkaColor } from "@/helpers"
-import { massMultiplier } from "@/helpers/constants"
+import { randomStrelkaColor } from "@/helpers"
 import { useBox } from "@react-three/cannon"
-import { Box } from "@react-three/drei"
 import { useState } from "react"
 import TextGeneral from "./text-general"
 
@@ -18,7 +16,7 @@ const BoxText = ({
     args: size,
     position,
     rotation,
-    fixedRotation: true,
+    // fixedRotation: true,
     ...rest,
   }))
 

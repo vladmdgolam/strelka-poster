@@ -1,9 +1,13 @@
 import useDeviceOrientation from "@/hooks/useDeviceOrientation"
 import { Physics } from "@react-three/cannon"
+import { useControls } from "leva"
 import { useEffect, useState } from "react"
 import IntroScreen from "./html/intro-screen"
 
 const ControlledPhysics = ({ children }) => {
+  const { inverted } = useControls({
+    inverted: false,
+  })
   //   const { position, gravConstant } = useControls({
   //     x: { value: 0, min: -100, max: 100 },
   //     y: { value: -10, min: -100, max: 100 },
@@ -28,8 +32,12 @@ const ControlledPhysics = ({ children }) => {
     // }
 
     // setGravity([acc.x, -10, acc.y])
-    setGravity([devicePosition[2], -10, devicePosition[1]])
-  }, [devicePosition])
+    let futureGravity = [devicePosition[2], -10, devicePosition[1]].map(
+      (x) => x * (inverted ? -1 : 1)
+    )
+
+    setGravity(futureGravity)
+  }, [devicePosition, inverted])
 
   const start = () => {
     if (window.DeviceOrientationEvent && "ontouchstart" in window) {
