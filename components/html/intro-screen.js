@@ -1,12 +1,9 @@
 import { Html } from "@react-three/drei"
+import HtmlWrapper from "./html"
 
 const IntroScreen = ({ start }) => {
   return (
-    <Html
-      className="html"
-      fullscreen
-      calculatePosition={(_, __, { width, height }) => [width / 2, height / 2]}
-    >
+    <HtmlWrapper className="html_intro">
       <div className="intro">
         <h1>Тут будет Легенда</h1>
         <p>обозначения цветов</p>
@@ -15,7 +12,7 @@ const IntroScreen = ({ start }) => {
           начать
         </button>
       </div>
-    </Html>
+    </HtmlWrapper>
   )
 }
 

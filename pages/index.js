@@ -1,11 +1,15 @@
 import Canvas from "@/components/canvas"
 import Scene from "@/components/scene"
+import { Leva } from "leva"
 
 const Home = () => {
   return (
-    <Canvas>
-      <Scene />
-    </Canvas>
+    <>
+      <Leva collapsed />
+      <Canvas>
+        <Scene />
+      </Canvas>
+    </>
   )
 }
 

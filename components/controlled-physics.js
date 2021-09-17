@@ -1,9 +1,7 @@
 import useDeviceOrientation from "@/hooks/useDeviceOrientation"
-import { Debug, Physics } from "@react-three/cannon"
-
-// import { useControls } from "leva"
+import { Physics } from "@react-three/cannon"
 import { useEffect, useState } from "react"
-import IntroScreen from "./intro-screen"
+import IntroScreen from "./html/intro-screen"
 
 const ControlledPhysics = ({ children }) => {
   //   const { position, gravConstant } = useControls({
@@ -32,8 +30,6 @@ const ControlledPhysics = ({ children }) => {
     // setGravity([acc.x, -10, acc.y])
     setGravity([devicePosition[2], -10, devicePosition[1]])
   }, [devicePosition])
-
-  useEffect(() => {}, [])
 
   const start = () => {
     if (window.DeviceOrientationEvent && "ontouchstart" in window) {
