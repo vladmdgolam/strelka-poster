@@ -17,8 +17,8 @@ const Scene = ({ color: initialColor }) => {
     screenshot: button(() => takeScreenshot()),
     color: {
       value: initialColor,
-      onChange: () => {
-        gl.setClearColor(color)
+      onChange: (futureColor) => {
+        gl.setClearColor(futureColor)
       },
     },
   })
