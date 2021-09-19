@@ -1,3 +1,4 @@
+import { randomStrelkaColor } from "@/helpers"
 import { Canvas as ThreeCanvas } from "@react-three/fiber"
 import { useEffect, useState } from "react"
 
@@ -17,7 +18,7 @@ const Canvas = ({ children, size, color, ...rest }) => {
       // shadows
       linear
       onCreated={({ gl }) => {
-        gl.setClearColor(color ? color : "pink")
+        gl.setClearColor(color ? color : "white")
       }}
       dpr={dpr}
       {...rest}
