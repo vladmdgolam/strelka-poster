@@ -6,6 +6,7 @@ html,
 body {
   padding: 0;
   margin: 0;
+  user-select: none;
   overscroll-behavior: contain;
   font-family: "Lazurski", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
@@ -62,6 +63,8 @@ canvas {
 
 .html {
   pointer-events: none;
+  display: grid;
+  align-items: flex-end;
 
   & * {
     pointer-events: all;

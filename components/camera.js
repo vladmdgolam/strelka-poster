@@ -39,10 +39,10 @@ const Camera = () => {
   return (
     <>
       <ControlsBtn position={6} onClick={upCamera}>
-        📷⤴️⤴️
+        📷2
       </ControlsBtn>
       <ControlsBtn position={5} onClick={resetCamera}>
-        📷⤴️
+        📷1
       </ControlsBtn>
       <OrbitControls onUpdate={(self) => self.update()} ref={controls} />
       <PerspectiveCamera

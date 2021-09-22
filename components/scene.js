@@ -40,7 +40,7 @@ const Scene = ({ color: initialColor, random }) => {
       <Lights />
       <ControlledPhysics>
         <Suspense fallback={null}>{/* <Vehicle /> */}</Suspense>
-        <Borders />
+        <Borders random={random} />
         {/* <Vehicle /> */}
         <InstancedFigures random={random} />
         {showText && <InstancedText />}

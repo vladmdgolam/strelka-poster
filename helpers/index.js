@@ -1,10 +1,13 @@
-import { colors, palettes } from "./constants"
+import { colors, palettes, colorsExtended } from "./constants"
 
 export const randomNumber = (min, max) =>
   Math.floor(Math.random() * (max - min + 1) + min)
 
 export const randomStrelkaColor = () =>
   colors[randomNumber(0, colors.length - 1)]
+
+export const randomExtendedColor = () =>
+  colorsExtended[randomNumber(0, colorsExtended.length - 1)]
 
 export const randomPalette = () =>
   palettes[randomNumber(0, palettes.length - 1)]
