@@ -1,3 +1,7 @@
+:root {
+  --px: 100vw / 1440;
+}
+
 html,
 body {
   padding: 0;
@@ -90,7 +94,7 @@ canvas {
   &_round {
     border: none;
     color: white;
-    padding: 20px;
+    /* padding: 10px; */
     cursor: pointer;
     text-align: center;
     border-radius: 100%;
