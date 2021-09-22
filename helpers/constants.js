@@ -8,3 +8,8 @@ export const colors = [
   "#4260A0",
   "#ED7039",
 ]
+
+export const white = ["#FFF"]
+export const black = ["#000"]
+
+export const palettes = [colors, white, black]

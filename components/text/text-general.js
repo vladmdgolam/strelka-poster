@@ -8,7 +8,9 @@ const texts = [
   // "IN PAJAMAS\n(MMH, MMH)",
   // "JUNYA WATANABE\nON MY WRI'",
   // "DONDA",
-  "STRELKA"
+  "STRELKA",
+  "SUMMER",
+  "OPEN CODE"
 ]
 
 const getRandomText = () => {

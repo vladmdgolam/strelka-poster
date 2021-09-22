@@ -1,6 +1,5 @@
 import { randomStrelkaColor } from "@/helpers"
 import { useBox } from "@react-three/cannon"
-import { Box } from "@react-three/drei"
 import { useState } from "react"
 import TextGeneral from "./text-general"
 
@@ -23,9 +22,9 @@ const BoxText = ({
 
   return (
     <group ref={ref}>
-      <Box args={size} {...rest}>
+      {/* <Box args={size} {...rest}>
         <meshBasicMaterial color={color} />
-      </Box>
+      </Box> */}
       <TextGeneral text={text} position={[0, 0, size[2] / 2 + 0.01]} />
     </group>
   )

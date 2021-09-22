@@ -5,13 +5,14 @@ import { useEffect, useState } from "react"
 import { DoubleSide, FrontSide } from "three"
 
 const Plane = ({
-  color = "lightblue",
+  // color = "lightblue",
   args = [10, 10],
   position = [0, 0, 0],
   rotation = [-Math.PI / 2, 0, 0],
   ...rest
 }) => {
   const [ref, api] = usePlane(() => ({ position, rotation, args, ...rest }))
+  const [color] = useState(randomStrelkaColor())
   const [secondColor] = useState(randomStrelkaColor())
 
   useEffect(() => {
@@ -29,7 +30,7 @@ const Plane = ({
       <planeBufferGeometry args={args} />
       {/* <meshLambertMaterial color={color} side={DoubleSide} /> */}
       {/* <meshNormalMaterial /> */}
-      {/* <meshBasicMaterial side={DoubleSide} color={color} /> */}
+        <meshBasicMaterial side={DoubleSide} color={color} />
       <meshBasicMaterial side={FrontSide}>
         <GradientTexture
           stops={[0, 1]} // As many stops as you want

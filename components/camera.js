@@ -3,6 +3,7 @@ import { useThree } from "@react-three/fiber"
 import { button, useControls } from "leva"
 import { useMemo, useRef } from "react"
 import { MathUtils } from "three"
+import ControlsBtn from "./controls/controlsBtn"
 
 const fov = 50
 
@@ -27,9 +28,22 @@ const Camera = () => {
       cam.current.rotation.set(-Math.PI / 2, 0, 0)
     }
   }
+  const upCamera = () => {
+    if (cam.current) {
+      controls.current.target.set(0, 0, 0)
+      cam.current.position.set(0, dist + height / 4, 0)
+      cam.current.rotation.set(-Math.PI / 2, 0, 0)
+    }
+  }
 
   return (
     <>
+      <ControlsBtn position={6} onClick={upCamera}>
+        📷⤴️⤴️
+      </ControlsBtn>
+      <ControlsBtn position={5} onClick={resetCamera}>
+        📷⤴️
+      </ControlsBtn>
       <OrbitControls onUpdate={(self) => self.update()} ref={controls} />
       <PerspectiveCamera
         makeDefault

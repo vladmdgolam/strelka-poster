@@ -1,9 +1,9 @@
+import { randomStrelkaColor } from "@/helpers"
 import { useSphere } from "@react-three/cannon"
 import { useControls, button } from "leva"
 import { useMemo } from "react"
-import { Color } from "three"
+import { Color, Object3D } from "three"
 import ControlsBtn from "@/components/controls/controlsBtn"
-import { randomPaletteColor } from "@/helpers"
 
 const generatePosition = (index = 0) => [
   Math.random() - 0.5,
@@ -11,7 +11,7 @@ const generatePosition = (index = 0) => [
   Math.random() - 0.5,
 ]
 
-const InstancedSpheres = ({ number = 100, radius = 0.5, palette }) => {
+const InstancedCylinders = ({ number = 100, radius = 0.5 }) => {
   const { colorsOn } = useControls({ colorsOn: true })
 
   const [ref, api] = useSphere((index) => ({
@@ -24,9 +24,7 @@ const InstancedSpheres = ({ number = 100, radius = 0.5, palette }) => {
     const array = new Float32Array(number * 3)
     const color = new Color()
     for (let i = 0; i < number; i++)
-      color
-        .set(colorsOn ? randomPaletteColor(palette) : "white")
-        .toArray(array, i * 3)
+      color.set(colorsOn ? randomStrelkaColor() : "white").toArray(array, i * 3)
     return array
   }, [number, colorsOn])
 
@@ -73,4 +71,4 @@ const InstancedSpheres = ({ number = 100, radius = 0.5, palette }) => {
   )
 }
 
-export default InstancedSpheres
+export default InstancedCylinders
