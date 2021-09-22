@@ -30,13 +30,13 @@ const Plane = ({
       <planeBufferGeometry args={args} />
       {/* <meshLambertMaterial color={color} side={DoubleSide} /> */}
       {/* <meshNormalMaterial /> */}
-        <meshBasicMaterial side={DoubleSide} color={color} />
+      <meshBasicMaterial side={DoubleSide} color={color} />
       <meshBasicMaterial side={FrontSide}>
-        <GradientTexture
+        {/* <GradientTexture
           stops={[0, 1]} // As many stops as you want
           colors={[color, secondColor]} // Colors need to match the number of stops
           size={1024} // Size is optional, default = 1024
-        />
+        /> */}
       </meshBasicMaterial>
     </mesh>
   )

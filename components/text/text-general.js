@@ -37,7 +37,7 @@ const TextGeneral = ({ look, color, text, children, ...rest }) => {
       {...rest}
     >
       {text || text === "" ? text : initText}
-      <meshBasicMaterial depthTest={false} />
+      <meshBasicMaterial />
       {children}
     </Text>
   )

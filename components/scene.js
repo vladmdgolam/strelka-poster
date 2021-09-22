@@ -26,7 +26,7 @@ const Scene = ({ color: initialColor, random }) => {
     },
   })
 
-  const [showText, setShowText] = useState(true)
+  const [showText, setShowText] = useState(false)
 
   return (
     <>
