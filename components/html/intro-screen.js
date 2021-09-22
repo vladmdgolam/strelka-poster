@@ -8,7 +8,7 @@ const IntroScreen = ({ start }) => {
         <h1>Тут будет Легенда</h1>
         <p>обозначения цветов</p>
         <p>общие принципы работы</p>
-        <button className="intro__btn btn" onClick={start}>
+        <button className="btn btn__intro" onClick={start}>
           начать
         </button>
       </div>

@@ -6,8 +6,9 @@ const texts = [
   // "ALL SUMMER\n(MM, MM)",
   // ".45 GUNNERS\n(MMH, MMH)",
   // "IN PAJAMAS\n(MMH, MMH)",
-  "JUNYA WATANABE\nON MY WRI'",
+  // "JUNYA WATANABE\nON MY WRI'",
   // "DONDA",
+  "STRELKA"
 ]
 
 const getRandomText = () => {
@@ -34,7 +35,7 @@ const TextGeneral = ({ look, color, text, children, ...rest }) => {
       {...rest}
     >
       {text || text === "" ? text : initText}
-      <meshBasicMaterial />
+      <meshBasicMaterial depthTest={false} />
       {children}
     </Text>
   )

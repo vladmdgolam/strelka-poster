@@ -1,7 +1,8 @@
-import { forwardRef } from "react"
+import { forwardRef, useEffect } from "react"
 import { useGLTF } from "@react-three/drei"
 import { useBox } from "@react-three/cannon"
 import { PerspectiveCamera, useHelper } from "@react-three/drei"
+import { useThree } from "@react-three/fiber"
 // import { CameraHelper } from "three"
 
 useGLTF.preload("/Beetle.glb")
@@ -18,11 +19,18 @@ const Beetle = forwardRef(
         mass,
         args,
         allowSleep: false,
-        onCollide: (e) => console.log("bonk", e.body.userData),
+        // onCollide: (e) => console.log("bonk", e.body.userData),
         ...props,
       }),
       ref
     )
+
+    const gl = useThree(({ gl }) => gl)
+
+    useEffect(() => {
+      console.log(gl)
+    }, [])
+
     return (
       <mesh ref={ref} api={api}>
         <PerspectiveCamera

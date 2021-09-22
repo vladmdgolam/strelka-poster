@@ -16,7 +16,7 @@ const BoxText = ({
     args: size,
     position,
     rotation,
-    // fixedRotation: true,
+    fixedRotation: true,
     ...rest,
   }))
 

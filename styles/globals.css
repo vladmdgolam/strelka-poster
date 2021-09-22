@@ -20,9 +20,9 @@ h1 {
   box-sizing: border-box;
 }
 
-.html button {
+/* .html button {
   all: unset;
-}
+} */
 
 /* General */
 
@@ -46,59 +46,73 @@ canvas {
   font-display: swap;
 }
 
+/* Utilities */
+
+.flex {
+  display: flex;
+}
+
 /* Blocks */
 
 .html {
   pointer-events: none;
+
+  & * {
+    pointer-events: all;
+  }
+  &_intro {
+    color: white;
+    background: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+  }
 }
 
-.html.html_intro {
-  color: white;
-  background: rgba(0, 0, 0, 0.3);
-  pointer-events: none;
-  padding: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(10px);
-}
-
-.html.controls {
-  display: flex;
+.controls {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
   align-items: end;
   justify-content: space-between;
-  margin: 10px;
+  grid-gap: 10px;
+  padding: 10px;
+  & > * {
+    aspect-ratio: 1;
+  }
 }
 
-.btn-round {
-  color: white;
-  padding: 20px;
-  cursor: default;
-  border-radius: 100%;
-  background: rgba(0, 0, 0, 0.3);
-}
-
-.btn-round:active {
-  background: rgba(0, 0, 0, 1);
-}
-
-.html *,
-.html > * {
-  pointer-events: all;
+.btn {
+  font-size: 20px;
+  &_round {
+    border: none;
+    color: white;
+    padding: 20px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:active {
+      background: rgba(0, 0, 0, 1);
+    }
+  }
+  &__intro {
+    all: unset;
+    color: #000;
+    margin-top: 20px;
+    background: white;
+    padding: 5px 15px;
+    border-radius: 10px;
+  }
 }
 
 .intro {
   text-align: center;
-}
-
-.html .btn {
-  color: #000;
-}
-
-.html .intro__btn {
-  margin-top: 20px;
-  font-size: 30px;
-  background: white;
-  padding: 5px 15px;
-  border-radius: 10px;
 }

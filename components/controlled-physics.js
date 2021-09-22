@@ -57,7 +57,7 @@ const ControlledPhysics = ({ children }) => {
           onPointerDown={() => setInverted(true)}
           onPointerUp={() => setInverted(false)}
         >
-          inverse
+          inv
         </div>
       </HtmlWrapper>
       {!(init || working) && <IntroScreen start={start} />}

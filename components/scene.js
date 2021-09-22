@@ -27,11 +27,11 @@ const Scene = ({ color: initialColor }) => {
   return (
     <>
       <Camera />
-      {/* <Perf /> */}
       <Lights />
       <ControlledPhysics>
         <Suspense fallback={null}>{/* <Vehicle /> */}</Suspense>
         <Borders />
+        {/* <Vehicle /> */}
         <InstancedSpheres />
         {/* <InstancedText /> */}
         {/* <BoxText /> */}

@@ -37,7 +37,7 @@ const Borders = () => {
         />
       )}
       <Plane
-        // visible={borders}
+        visible={borders && visible}
         args={[width, height]}
         position={[0, 0, 0]}
         rotation={[Math.PI / 2, -Math.PI, 0]}

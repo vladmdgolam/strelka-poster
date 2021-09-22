@@ -4,7 +4,7 @@ import { nanoid } from "nanoid"
 
 const create = (count) => Array.from({ length: count }, () => nanoid())
 
-const InstancedText = ({ count = 70 }) => {
+const InstancedText = ({ count = 10 }) => {
   const [arr] = useState(create(count))
   return (
     <>
