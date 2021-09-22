@@ -9,10 +9,10 @@ const Borders = () => {
   //   console.log(width, height)
   // }, [width, height])
 
-  const blockHeight = 10
+  const blockHeight = height
   const { borders, topHeight, top, visible, topVisible } = useControls({
     topHeight: {
-      value: 50,
+      value: height,
       min: 0.1,
       max: 100,
     },
@@ -23,7 +23,7 @@ const Borders = () => {
     // },
     visible: true,
     topVisible: true,
-    top: true,
+    top: false,
     borders: true,
   })
   return (
