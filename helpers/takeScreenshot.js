@@ -9,10 +9,10 @@ const takeScreenshot = (gl, size, scene, camera) => {
       var a = document.createElement("a")
       var url = URL.createObjectURL(blob)
       a.href = url
-      a.download = "strelka.jpg"
+      a.download = "strelka.png"
       a.click()
     },
-    "image/jpg",
+    "image/png",
     1.0
   )
   gl.domElement.getContext("webgl", { preserveDrawingBuffer: false })
