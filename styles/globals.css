@@ -76,6 +76,7 @@ canvas {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   align-items: end;
+  pointer-events: none;
   justify-content: space-between;
   grid-gap: 10px;
   padding: 10px;
@@ -99,7 +100,8 @@ canvas {
     display: flex;
     align-items: center;
     justify-content: center;
-    &:active {
+    &:active,
+    &:hover {
       background: rgba(0, 0, 0, 1);
     }
   }

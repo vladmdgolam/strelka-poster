@@ -3,8 +3,7 @@ import { useSphere } from "@react-three/cannon"
 import { useControls, button } from "leva"
 import { useMemo } from "react"
 import { Color, Object3D } from "three"
-
-const tempObject = new Object3D()
+import ControlsBtn from "@/components/controls/controlsBtn"
 
 const generatePosition = (index = 0) => [
   Math.random() - 0.5,
@@ -34,7 +33,7 @@ const InstancedSpheres = ({ number = 100, radius = 0.5 }) => {
       api.at(x).position.set(...generatePosition(x))
     }
   }
-  
+
   const explode = () => {
     for (let x = 0; x < number; x++) {
       api.at(x).position.set(...generatePosition())
@@ -47,20 +46,28 @@ const InstancedSpheres = ({ number = 100, radius = 0.5 }) => {
   })
 
   return (
-    <instancedMesh
-      ref={ref}
-      castShadow
-      receiveShadow
-      args={[undefined, undefined, number]}
-    >
-      <sphereBufferGeometry args={[radius, 40, 40]}>
-        <instancedBufferAttribute
-          attachObject={["attributes", "color"]}
-          args={[colors, 3]}
-        />
-      </sphereBufferGeometry>
-      <meshBasicMaterial vertexColors />
-    </instancedMesh>
+    <>
+      <ControlsBtn onClick={explode} position={2}>
+        💥
+      </ControlsBtn>
+      <ControlsBtn onClick={reset} position={3}>
+        🎬
+      </ControlsBtn>
+      <instancedMesh
+        ref={ref}
+        castShadow
+        receiveShadow
+        args={[undefined, undefined, number]}
+      >
+        <sphereBufferGeometry args={[radius, 40, 40]}>
+          <instancedBufferAttribute
+            attachObject={["attributes", "color"]}
+            args={[colors, 3]}
+          />
+        </sphereBufferGeometry>
+        <meshBasicMaterial vertexColors />
+      </instancedMesh>
+    </>
   )
 }
 

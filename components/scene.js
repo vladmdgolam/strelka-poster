@@ -6,6 +6,7 @@ import { Suspense, useMemo } from "react"
 import Borders from "./borders"
 import Camera from "./camera"
 import ControlledPhysics from "./controlled-physics"
+import ControlsBtn from "./controls/controlsBtn"
 import Lights from "./lights"
 import InstancedSpheres from "./shapes/instanced-spheres"
 import InstancedText from "./text/instanced-text"
@@ -26,6 +27,7 @@ const Scene = ({ color: initialColor }) => {
 
   return (
     <>
+      <ControlsBtn position={4} onClick={takeScreenshot}>📸</ControlsBtn>
       <Camera />
       <Lights />
       <ControlledPhysics>

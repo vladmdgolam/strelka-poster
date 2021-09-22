@@ -1,8 +1,8 @@
 import HtmlWrapper from "../html/html"
 
-const Btn = ({ position = 1, name = "click", children, ...props }) => {
+const ControlsBtn = ({ position = 1, name = "click", children, ...props }) => {
   return (
-    <HtmlWrapper>
+    <HtmlWrapper zIndexRange={[100, 0]}>
       <div className="controls">
         <button
           {...props}
@@ -16,4 +16,4 @@ const Btn = ({ position = 1, name = "click", children, ...props }) => {
   )
 }
 
-export default Btn
+export default ControlsBtn

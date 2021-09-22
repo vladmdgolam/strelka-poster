@@ -1,4 +1,4 @@
-import Btn from "@/components/controls/btn"
+import Btn from "@/components/controls/controlsBtn"
 
 const Page = () => {
   return <Btn>hi</Btn>

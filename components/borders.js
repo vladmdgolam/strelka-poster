@@ -28,14 +28,6 @@ const Borders = () => {
   })
   return (
     <>
-      {top && (
-        <Plane
-          visible={borders && visible && topVisible}
-          args={[width, height]}
-          position={[0, topHeight, 0]}
-          rotation={[-Math.PI / 2, -Math.PI, 0]}
-        />
-      )}
       <Plane
         visible={borders && visible}
         args={[width, height]}
@@ -44,6 +36,14 @@ const Borders = () => {
       />
       {borders && (
         <>
+          {top && (
+            <Plane
+              visible={borders && visible && topVisible}
+              args={[width, height]}
+              position={[0, topHeight, 0]}
+              rotation={[-Math.PI / 2, -Math.PI, 0]}
+            />
+          )}
           <Plane
             visible={visible}
             position={[-width / 2, blockHeight / 2, 0]}

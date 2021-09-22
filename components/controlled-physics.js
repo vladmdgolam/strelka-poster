@@ -2,13 +2,14 @@ import useDeviceOrientation from "@/hooks/useDeviceOrientation"
 import { Physics } from "@react-three/cannon"
 import { useControls } from "leva"
 import { useEffect, useState } from "react"
+import ControlsBtn from "./controls/controlsBtn"
 import HtmlWrapper from "./html/html"
 import IntroScreen from "./html/intro-screen"
 
 const ControlledPhysics = ({ children }) => {
   const [inverted, setInverted] = useState(false)
   useControls({
-    inv: {value: inverted, onChange:(inv) => setInverted(inv)},
+    inv: { value: inverted, onChange: (inv) => setInverted(inv) },
   })
   //   const { position, gravConstant } = useControls({
   //     x: { value: 0, min: -100, max: 100 },
@@ -51,15 +52,12 @@ const ControlledPhysics = ({ children }) => {
 
   return (
     <>
-      <HtmlWrapper className="controls">
-        <div
-          className="btn-round"
-          onPointerDown={() => setInverted(true)}
-          onPointerUp={() => setInverted(false)}
-        >
-          inv
-        </div>
-      </HtmlWrapper>
+      <ControlsBtn
+        onPointerDown={() => setInverted(true)}
+        onPointerUp={() => setInverted(false)}
+      >
+        ⬆️
+      </ControlsBtn>
       {!(init || working) && <IntroScreen start={start} />}
       <Physics gravity={gravity}>{children}</Physics>
     </>

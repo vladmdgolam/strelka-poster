@@ -2,7 +2,7 @@ import { randomStrelkaColor } from "@/helpers"
 import { usePlane } from "@react-three/cannon"
 import { GradientTexture } from "@react-three/drei"
 import { useEffect, useState } from "react"
-import { DoubleSide } from "three"
+import { DoubleSide, FrontSide } from "three"
 
 const Plane = ({
   color = "lightblue",
@@ -30,7 +30,7 @@ const Plane = ({
       {/* <meshLambertMaterial color={color} side={DoubleSide} /> */}
       {/* <meshNormalMaterial /> */}
       {/* <meshBasicMaterial side={DoubleSide} color={color} /> */}
-      <meshBasicMaterial side={DoubleSide}>
+      <meshBasicMaterial side={FrontSide}>
         <GradientTexture
           stops={[0, 1]} // As many stops as you want
           colors={[color, secondColor]} // Colors need to match the number of stops
