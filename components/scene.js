@@ -1,17 +1,14 @@
 import useTakeScreenshot from "@/hooks/useTakeScreenshot"
-import { PerspectiveCamera } from "@react-three/drei"
 import { useThree } from "@react-three/fiber"
 import { useControls, button } from "leva"
-import { Suspense, useMemo, useState } from "react"
+import { Suspense, useState } from "react"
 import Borders from "./borders"
 import Camera from "./camera"
 import ControlledPhysics from "./controlled-physics"
 import ControlsBtn from "./controls/controlsBtn"
 import Lights from "./lights"
-import InstancedSpheres from "./shapes/instanced-spheres"
 import InstancedFigures from "./shapes/instancedFigures"
 import InstancedText from "./text/instanced-text"
-// import Vehicle from "./vehicle"
 
 const Scene = ({ color: initialColor, random }) => {
   const takeScreenshot = useTakeScreenshot()
@@ -33,7 +30,7 @@ const Scene = ({ color: initialColor, random }) => {
       <ControlsBtn position={4} onClick={takeScreenshot}>
         📸
       </ControlsBtn>
-      <ControlsBtn position={9} onClick={() => setShowText(!showText)}>
+      <ControlsBtn position={7} onClick={() => setShowText(!showText)}>
         txt
       </ControlsBtn>
       <Camera />

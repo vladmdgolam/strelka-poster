@@ -16,7 +16,7 @@ const Home = () => {
     <>
       <Leva hidden />
       <Canvas color={color}>
-        <ControlsBtn onClick={randomize} position={10}>
+        <ControlsBtn onClick={randomize} position={8}>
           🔀
         </ControlsBtn>
         <Scene random={random} color={color} />
