@@ -1,6 +1,6 @@
 import Canvas from "@/components/canvas"
 import Plane from "@/components/plane"
-import InstancedSpheres from "@/components/shapes/instanced-spheres"
+import InstancedSpheres from "@/components/shapes/InstancedSpheres"
 import { Physics } from "@react-three/cannon"
 import { Box, OrbitControls, Text } from "@react-three/drei"
 import { useEffect, useRef } from "react"

@@ -6,6 +6,7 @@ import Borders from "./borders"
 import Camera from "./camera"
 import ControlledPhysics from "./controlled-physics"
 import ControlsBtn from "./controls/controlsBtn"
+import RandomFigures from "./figures/RandomFigures"
 import Lights from "./lights"
 import InstancedFigures from "./shapes/instancedFigures"
 import InstancedText from "./text/instanced-text"
@@ -39,7 +40,8 @@ const Scene = ({ color: initialColor, random }) => {
         <Suspense fallback={null}>{/* <Vehicle /> */}</Suspense>
         <Borders random={random} />
         {/* <Vehicle /> */}
-        <InstancedFigures random={random} />
+        {/* <InstancedFigures random={random} /> */}
+        <RandomFigures random={random} />
         {showText && <InstancedText />}
         {/* <BoxText /> */}
         {/* <TextGeneral rotation={[-Math.PI / 2, 0, 0]} /> */}

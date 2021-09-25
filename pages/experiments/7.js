@@ -1,17 +1,19 @@
 import Canvas from "@/components/canvas"
 import Plane from "@/components/plane"
-import InstancedSpheres from "@/components/shapes/InstancedSpheres"
 import { Physics } from "@react-three/cannon"
 import { OrbitControls } from "@react-three/drei"
+import { Perf } from "r3f-perf"
+import RandomFigures from "@/components/figures/RandomFigures"
 
 const Page = () => {
   return (
-    <Canvas>
+    <Canvas color="pink">
+      <Perf />
       <OrbitControls />
       <ambientLight />
       <Physics>
-        <InstancedSpheres />
-        <Plane position={[0, -10, 0]} />
+        <RandomFigures />
+        <Plane position={[0, -50, 0]} rotation={[-Math.PI / 2, 0, 0]} />
       </Physics>
     </Canvas>
   )
