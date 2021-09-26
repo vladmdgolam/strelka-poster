@@ -1,6 +1,6 @@
 import HtmlWrapper from "../html/html"
 
-const cols = 10
+const cols = 5
 const rows = 2
 
 const ControlsBtn = ({ position = 1, name = "click", children, ...props }) => {

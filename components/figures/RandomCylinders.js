@@ -22,7 +22,7 @@ const RandomCylinders = ({ number = 100 }) => {
   const data = useMemo(() => generateCylinderData(number), [])
   return (
     <Instances limit={number}>
-      <cylinderGeometry args={[1, 1, 1, 20]} />
+      <cylinderGeometry args={[1, 1, 1, 40]} />
       <meshBasicMaterial side={DoubleSide} />
       {data.map((props, i) => (
         <Cylinder key={i} {...props} />

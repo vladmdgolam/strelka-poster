@@ -22,7 +22,7 @@ const Borders = ({ random }) => {
     },
     visible: true,
     topVisible: true,
-    top: false,
+    top: true,
     borders: true,
   })
   return (

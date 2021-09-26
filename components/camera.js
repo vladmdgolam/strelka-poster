@@ -21,6 +21,12 @@ const Camera = () => {
     return dist
   }, [height])
 
+  const topDist = useMemo(() => {
+    const vFOV = MathUtils.degToRad(fov)
+    const dist = height / (2 * Math.tan(vFOV / 2))
+    return dist
+  }, [height])
+
   const resetCamera = () => {
     if (cam.current) {
       controls.current.target.set(0, 0, 0)
@@ -28,7 +34,7 @@ const Camera = () => {
       cam.current.rotation.set(-Math.PI / 2, 0, 0)
     }
   }
-  const upCamera = () => {
+  const middleCamera = () => {
     if (cam.current) {
       controls.current.target.set(0, 0, 0)
       cam.current.position.set(0, dist + height / 4, 0)
@@ -36,9 +42,20 @@ const Camera = () => {
     }
   }
 
+  const upCamera = () => {
+    if (cam.current) {
+      controls.current.target.set(0, 0, 0)
+      cam.current.position.set(0, dist + height, 0)
+      cam.current.rotation.set(-Math.PI / 2, 0, 0)
+    }
+  }
+
   return (
     <>
-      <ControlsBtn position={6} onClick={upCamera}>
+      <ControlsBtn position={7} onClick={upCamera}>
+        📷2
+      </ControlsBtn>
+      <ControlsBtn position={6} onClick={middleCamera}>
         📷2
       </ControlsBtn>
       <ControlsBtn position={5} onClick={resetCamera}>

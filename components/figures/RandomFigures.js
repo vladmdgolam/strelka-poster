@@ -22,9 +22,9 @@ const RandomFigures = ({ random }) => {
 
   return (
     <>
-      <RandomSpheres number={number} key={number} />
-      <RandomBoxes number={number} key={number} />
-      <RandomCylinders number={number} key={number} />
+      <RandomSpheres number={number} />
+      <RandomBoxes number={number} />
+      <RandomCylinders number={number} />
     </>
   )
 }

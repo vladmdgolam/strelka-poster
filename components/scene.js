@@ -31,17 +31,19 @@ const Scene = ({ color: initialColor, random }) => {
       <ControlsBtn position={4} onClick={takeScreenshot}>
         📸
       </ControlsBtn>
-      <ControlsBtn position={7} onClick={() => setShowText(!showText)}>
+      <ControlsBtn position={9} onClick={() => setShowText(!showText)}>
         txt
       </ControlsBtn>
       <Camera />
       <Lights />
       <ControlledPhysics>
-        <Suspense fallback={null}>{/* <Vehicle /> */}</Suspense>
         <Borders random={random} />
         {/* <Vehicle /> */}
         {/* <InstancedFigures random={random} /> */}
-        <RandomFigures random={random} />
+        <Suspense fallback={null}>
+          {/* <Vehicle /> */}
+          <RandomFigures random={random} />
+        </Suspense>
         {showText && <InstancedText />}
         {/* <BoxText /> */}
         {/* <TextGeneral rotation={[-Math.PI / 2, 0, 0]} /> */}
