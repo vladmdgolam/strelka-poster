@@ -26,12 +26,12 @@ const Plane = ({
 
   return (
     <mesh ref={ref} {...rest} receiveShadow>
-      {/* <planeBufferGeometry args={args} />
+      <planeBufferGeometry args={args} />
       <meshBasicMaterial
         side={FrontSide}
         color={color}
         onUpdate={(self) => (self.needsUpdate = true)}
-      /> */}
+      />
     </mesh>
   )
 }
