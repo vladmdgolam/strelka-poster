@@ -1,19 +1,16 @@
 import { PerspectiveCamera, OrbitControls } from "@react-three/drei"
 import { useThree } from "@react-three/fiber"
-import { button, useControls } from "leva"
-import { useMemo, useRef } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { MathUtils } from "three"
 import ControlsBtn from "./controls/ControlsBtn"
 
 const fov = 50
 
 const Camera = () => {
-  const { width, height } = useThree(({ viewport }) => viewport)
+  const { height } = useThree(({ viewport }) => viewport)
   const controls = useRef(null)
   const cam = useRef(null)
-  useControls({
-    resetCamera: button(() => resetCamera()),
-  })
+  const [cameraPosition, setCameraPosition] = useState(1)
 
   const dist = useMemo(() => {
     const vFOV = MathUtils.degToRad(fov)
@@ -50,18 +47,35 @@ const Camera = () => {
     }
   }
 
+  const changeCamera = () => {
+    switch (cameraPosition) {
+      case 0:
+        resetCamera()
+        break
+      case 1:
+        middleCamera()
+        break
+      case 2:
+        upCamera()
+        break
+      default:
+        resetCamera()
+        break
+    }
+
+    setCameraPosition(cameraPosition == 2 ? 0 : cameraPosition + 1)
+  }
+
   return (
     <>
-      <ControlsBtn position={7} onClick={upCamera}>
-        📷2
+      <ControlsBtn position={5} onClick={changeCamera}>
+        📷🔀
       </ControlsBtn>
-      <ControlsBtn position={6} onClick={middleCamera}>
-        📷2
-      </ControlsBtn>
-      <ControlsBtn position={5} onClick={resetCamera}>
-        📷1
-      </ControlsBtn>
-      <OrbitControls onUpdate={(self) => self.update()} ref={controls} />
+      <OrbitControls
+        onStart={() => console.log("end")}
+        onUpdate={(self) => self.update()}
+        ref={controls}
+      />
       <PerspectiveCamera
         makeDefault
         position={[0, dist, 0]}

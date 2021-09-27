@@ -9,6 +9,7 @@ import {
 } from "@/helpers"
 import { useBox, useSphere } from "@react-three/cannon"
 import { DoubleSide } from "three"
+import { nanoid } from "nanoid"
 
 const generatBoxData = (number, r = 10, s = 1) =>
   Array.from({ length: number }, () => ({
@@ -16,6 +17,7 @@ const generatBoxData = (number, r = 10, s = 1) =>
     scale: randomSize(s),
     rotation: randomEuler(),
     color: randomStrelkaColor(),
+    id: nanoid()
   }))
 
 const RandomBoxes = ({ number = 10 }) => {
