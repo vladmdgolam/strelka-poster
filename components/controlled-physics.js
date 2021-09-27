@@ -3,13 +3,15 @@ import { Physics } from "@react-three/cannon"
 import { useControls } from "leva"
 import { useEffect, useState } from "react"
 import ControlsBtn from "./controls/ControlsBtn"
-import HtmlWrapper from "./html/html"
 import IntroScreen from "./html/intro-screen"
 
 const ControlledPhysics = ({ children }) => {
   const [inverted, setInverted] = useState(false)
+  const [off, setOff] = useState(false)
   useControls({
     inv: { value: inverted, onChange: (inv) => setInverted(inv) },
+    off: { value: off, onChange: (inv) => setOff(inv) },
+    // coeff: 1,
   })
   //   const { position, gravConstant } = useControls({
   //     x: { value: 0, min: -100, max: 100 },
@@ -36,11 +38,11 @@ const ControlledPhysics = ({ children }) => {
 
     // setGravity([acc.x, -10, acc.y])
     let futureGravity = [devicePosition[2], -10, devicePosition[1]].map(
-      (x) => x * (inverted ? -1 : 1)
+      (x) => x * (inverted ? -1 : 1) * (!off ? 1 : 0)
     )
 
     setGravity(futureGravity)
-  }, [devicePosition, inverted])
+  }, [devicePosition, inverted, off])
 
   const start = () => {
     if (window.DeviceOrientationEvent && "ontouchstart" in window) {
@@ -57,6 +59,9 @@ const ControlledPhysics = ({ children }) => {
         onPointerUp={() => setInverted(false)}
       >
         ⬆️
+      </ControlsBtn>
+      <ControlsBtn onClick={() => setOff(!off)} position={2}>
+        👨‍🚀3
       </ControlsBtn>
       {!(init || working) && <IntroScreen start={start} />}
       <Physics gravity={gravity}>{children}</Physics>
