@@ -18,15 +18,15 @@ const generatBoxData = (number, r = 10, s = 1) =>
     color: randomStrelkaColor(),
   }))
 
-const RandomBoxes = ({ number = 100 }) => {
+const RandomBoxes = ({ number = 10 }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const data = useMemo(() => generatBoxData(number), [])
+  const data = useMemo(() => generatBoxData(number), [number])
   return (
     <Instances>
-      <boxBufferGeometry args={[1, 1]} />
+      <boxBufferGeometry args={[1, 1, 1]} />
       <meshBasicMaterial side={DoubleSide} />
-      {data.map((props, i) => (
-        <Box key={i} {...props} />
+      {data.map(({ id, ...props }) => (
+        <Box key={id} {...props} />
       ))}
     </Instances>
   )

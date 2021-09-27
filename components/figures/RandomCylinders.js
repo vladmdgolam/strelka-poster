@@ -8,6 +8,9 @@ import {
 } from "@/helpers"
 import { useCylinder } from "@react-three/cannon"
 import { DoubleSide } from "three"
+import { nanoid } from "nanoid"
+
+const r = 0.6827 // 1/π^(1/3);
 
 const generateCylinderData = (number, r = 10, s = 0.5) =>
   Array.from({ length: number }, () => ({
@@ -15,17 +18,18 @@ const generateCylinderData = (number, r = 10, s = 0.5) =>
     scale: random2D(s),
     rotation: randomEuler(),
     color: randomStrelkaColor(),
+    id: nanoid(),
   }))
 
 const RandomCylinders = ({ number = 100 }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const data = useMemo(() => generateCylinderData(number), [])
+  const data = useMemo(() => generateCylinderData(number), [number])
   return (
     <Instances>
-      <cylinderGeometry args={[1, 1, 1, 40]} />
+      <cylinderGeometry args={[r, r, r, 40]} />
       <meshBasicMaterial side={DoubleSide} />
-      {data.map((props, i) => (
-        <Cylinder key={i} {...props} />
+      {data.map(({ id, ...props }) => (
+        <Cylinder key={id} {...props} />
       ))}
     </Instances>
   )

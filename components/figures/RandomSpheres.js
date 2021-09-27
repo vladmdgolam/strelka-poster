@@ -9,6 +9,8 @@ import { useSphere } from "@react-three/cannon"
 import { nanoid } from "nanoid"
 import { useEffect, useMemo, useState } from "react"
 
+const r = 0.488; // sqrt(3/π)/2
+
 const generateRandomData = (number, r = 10, s = 0.1) =>
   Array.from({ length: number }, () => ({
     position: randomVector(r),
@@ -33,9 +35,11 @@ const RandomSpheres = ({number = 10}) => {
     //   setShow(true)
     // }, 6000)
   // }, [])
+
+  
   return (
     <Instances>
-      <sphereBufferGeometry args={[1, 32, 32]} />
+      <sphereBufferGeometry args={[r, 32, 32]} />
       <meshBasicMaterial />
       {data.map(({ id, ...props }) => (
         <Sphere key={id} {...props} />

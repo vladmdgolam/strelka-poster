@@ -4,8 +4,10 @@ import RandomSpheres from "../figures/RandomSpheres"
 import RandomBoxes from "./RandomBoxes"
 import RandomCylinders from "./RandomCylinders"
 
+const range = 20
+
 const RandomFigures = ({ random }) => {
-  const [number, setNumber] = useState(randomNumber(0, 20))
+  const [number, setNumber] = useState(randomNumber(0, range))
 
   useEffect(() => {
     if (random != 0) {
@@ -14,7 +16,7 @@ const RandomFigures = ({ random }) => {
   }, [random])
 
   const onRandomize = () => {
-    setNumber(randomNumber(50, 100))
+    setNumber(randomNumber(0, range))
   }
 
   const reset = () => {}
