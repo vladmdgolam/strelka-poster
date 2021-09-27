@@ -22,7 +22,7 @@ const RandomBoxes = ({ number = 100 }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const data = useMemo(() => generatBoxData(number), [])
   return (
-    <Instances limit={number}>
+    <Instances>
       <boxBufferGeometry args={[1, 1]} />
       <meshBasicMaterial side={DoubleSide} />
       {data.map((props, i) => (

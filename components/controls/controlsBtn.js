@@ -6,7 +6,7 @@ const rows = 2
 const ControlsBtn = ({ position = 1, name = "click", children, ...props }) => {
   const isMobile = useIsMobile()
 
-  const cols = isMobile ? 5 : 10
+  const cols = isMobile ? 5 : 12
 
   useEffect(() => {
     console.log(isMobile)

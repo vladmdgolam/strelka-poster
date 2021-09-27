@@ -21,7 +21,7 @@ const RandomCylinders = ({ number = 100 }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const data = useMemo(() => generateCylinderData(number), [])
   return (
-    <Instances limit={number}>
+    <Instances>
       <cylinderGeometry args={[1, 1, 1, 40]} />
       <meshBasicMaterial side={DoubleSide} />
       {data.map((props, i) => (

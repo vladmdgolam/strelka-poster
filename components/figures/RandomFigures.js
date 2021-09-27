@@ -5,7 +5,7 @@ import RandomBoxes from "./RandomBoxes"
 import RandomCylinders from "./RandomCylinders"
 
 const RandomFigures = ({ random }) => {
-  const [number, setNumber] = useState(randomNumber(20, 30))
+  const [number, setNumber] = useState(randomNumber(0, 20))
 
   useEffect(() => {
     if (random != 0) {
@@ -23,8 +23,8 @@ const RandomFigures = ({ random }) => {
   return (
     <>
       <RandomSpheres number={number} />
-      {/* <RandomBoxes number={number} />
-      <RandomCylinders number={number} /> */}
+      <RandomBoxes number={number} />
+      <RandomCylinders number={number} />
     </>
   )
 }
