@@ -18,11 +18,11 @@ const Camera = () => {
     return dist
   }, [height])
 
-  const topDist = useMemo(() => {
-    const vFOV = MathUtils.degToRad(fov)
-    const dist = height / (2 * Math.tan(vFOV / 2))
-    return dist
-  }, [height])
+  // const sideDist = useMemo(() => {
+  //   const vFOV = MathUtils.degToRad(fov)
+  //   const dist = height / (2 * Math.tan(vFOV / 2))
+  //   return dist
+  // }, [height])
 
   const resetCamera = () => {
     if (cam.current) {
@@ -47,6 +47,14 @@ const Camera = () => {
     }
   }
 
+  const sideCamera = () => {
+    if (cam.current) {
+      controls.current.target.set(0, height / 2, 0)
+      cam.current.position.set(0, height / 2, dist)
+      cam.current.rotation.set(0, 0, 0)
+    }
+  }
+
   const changeCamera = () => {
     switch (cameraPosition) {
       case 0:
@@ -68,11 +76,15 @@ const Camera = () => {
 
   return (
     <>
+      <axesHelper />
       <ControlsBtn position={5} onClick={changeCamera}>
         📷🔀
       </ControlsBtn>
+      <ControlsBtn position={6} onClick={() => sideCamera()}>
+        side
+      </ControlsBtn>
       <OrbitControls
-        onStart={() => console.log("end")}
+        onStart={() => setCameraPosition(0)}
         onUpdate={(self) => self.update()}
         ref={controls}
       />
