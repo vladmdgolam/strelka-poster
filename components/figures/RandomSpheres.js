@@ -7,7 +7,7 @@ import {
 } from "@/helpers"
 import { useSphere } from "@react-three/cannon"
 import { nanoid } from "nanoid"
-import { useMemo } from "react"
+import { useEffect, useMemo, useState } from "react"
 
 const generateRandomData = (number, r = 10, s = 0.1) =>
   Array.from({ length: number }, () => ({
@@ -18,21 +18,37 @@ const generateRandomData = (number, r = 10, s = 0.1) =>
     id: nanoid(),
   }))
 
-const RandomSpheres = ({ number = 100 }) => {
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+const RandomSpheres = ({number = 10}) => {
+  // const [number, setNumber] = useState(10)
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
   const data = useMemo(() => generateRandomData(number), [number])
+  // const additionalData = useMemo(() => generateRandomData(number), [number, show])
+  // const [show, setShow] = useState(false)
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setShow(true)
+  //     // setNumber(9)
+  //   }, 3000)
+    // setTimeout(() => {
+    //   setShow(true)
+    // }, 6000)
+  // }, [])
   return (
-    <Instances limit={number}>
+    <Instances>
       <sphereBufferGeometry args={[1, 32, 32]} />
       <meshBasicMaterial />
-      {data.map(({ id, ...props }, i) => (
+      {data.map(({ id, ...props }) => (
         <Sphere key={id} {...props} />
       ))}
+      {/* {show &&
+        additionalData.map(({ id, ...props }) => (
+          <Sphere key={id} {...props} />
+        ))} */}
     </Instances>
   )
 }
 
-const Sphere = ({ scale, color, ...rest }) => {
+const Sphere = ({ scale = [1, 1, 1], color = "white", ...rest }) => {
   const [ref] = useSphere(() => ({
     mass: 1,
     args: scale[0],
