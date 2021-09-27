@@ -1,42 +1,17 @@
 import { Instance, Instances } from "@react-three/drei"
-import {
-  randomEuler,
-  randomScale,
-  randomStrelkaColor,
-  randomVector,
-} from "@/helpers"
 import { useSphere } from "@react-three/cannon"
-import { nanoid } from "nanoid"
-import { useEffect, useMemo, useState } from "react"
+import { useMemo } from "react"
+import { generateFigureData } from "@/helpers"
 
-const r = 0.488; // sqrt(3/π)/2
+const r = 0.488 // sqrt(3/π)/2
 
-const generateRandomData = (number, r = 10, s = 0.1) =>
-  Array.from({ length: number }, () => ({
-    position: randomVector(r),
-    scale: randomScale(s),
-    rotation: randomEuler(),
-    color: randomStrelkaColor(),
-    id: nanoid(),
-  }))
-
-const RandomSpheres = ({number = 10}) => {
-  // const [number, setNumber] = useState(10)
+const RandomSpheres = ({ number = 10, sizeScale }) => {
   // // eslint-disable-next-line react-hooks/exhaustive-deps
-  const data = useMemo(() => generateRandomData(number), [number])
-  // const additionalData = useMemo(() => generateRandomData(number), [number, show])
-  // const [show, setShow] = useState(false)
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setShow(true)
-  //     // setNumber(9)
-  //   }, 3000)
-    // setTimeout(() => {
-    //   setShow(true)
-    // }, 6000)
-  // }, [])
+  const data = useMemo(
+    () => generateFigureData({ number, figure: "sphere", sizeScale }),
+    [number, sizeScale]
+  )
 
-  
   return (
     <Instances>
       <sphereBufferGeometry args={[r, 32, 32]} />
@@ -44,10 +19,6 @@ const RandomSpheres = ({number = 10}) => {
       {data.map(({ id, ...props }) => (
         <Sphere key={id} {...props} />
       ))}
-      {/* {show &&
-        additionalData.map(({ id, ...props }) => (
-          <Sphere key={id} {...props} />
-        ))} */}
     </Instances>
   )
 }

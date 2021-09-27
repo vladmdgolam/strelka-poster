@@ -4,11 +4,11 @@ import { generateFigureData } from "@/helpers"
 import { useBox } from "@react-three/cannon"
 import { DoubleSide } from "three"
 
-const RandomBoxes = ({ number = 10, sizeScale }) => {
+const RandomFigures = ({ figure = "sphere", number = 10, sizeScale }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const data = useMemo(
-    () => generateFigureData({ figure: "box", number, sizeScale }),
-    [number, sizeScale]
+    () => generateFigureData({ figure, number, sizeScale }),
+    [number, sizeScale, figure]
   )
   return (
     <Instances>

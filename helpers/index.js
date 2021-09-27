@@ -1,3 +1,4 @@
+import { nanoid } from "nanoid"
 import { colors, palettes, colorsExtended } from "./constants"
 
 export const randomFloat = (min, max) => {
@@ -32,16 +33,38 @@ export const randomVector = (r) => [
   r / 2 - Math.random() * r,
 ]
 
-export const random2D = (r) => [Math.random() * r, Math.random() * r]
-
-export const randomSize = (r) => [
+export const randomAbsVector = (r) => [
   Math.random() * r,
   Math.random() * r,
   Math.random() * r,
 ]
 
-export const randomScale = (r) =>
-  Array.from({ length: 3 }).fill(randomFloat(0.1, r))
+export const figureScale = (figure = "sphere", r = 1) => {
+  switch (figure) {
+    case "sphere":
+      return Array.from({ length: 3 }).fill(Math.random() * r)
+    case "box":
+      return [Math.random() * r, Math.random() * r, Math.random() * r]
+    case "cylinder":
+      return Array.from({ length: 2 }).fill(() => Math.random() * r)
+    default:
+      break
+  }
+}
+
+export const generateFigureData = ({
+  figure = "sphere",
+  number = 10,
+  sizeScale = 0.1,
+  posR = 10,
+}) =>
+  Array.from({ length: number }, () => ({
+    position: randomVector(posR),
+    scale: figureScale(figure, sizeScale),
+    rotation: randomEuler(),
+    color: randomStrelkaColor(),
+    id: nanoid(),
+  }))
 
 export const randomEuler = () => [
   Math.random() * Math.PI,

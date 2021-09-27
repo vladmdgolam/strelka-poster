@@ -1,32 +1,34 @@
 import { randomNumber } from "@/helpers"
+import { sizeScale as initSizeScale } from "@/helpers/constants"
 import { useEffect, useState } from "react"
 import RandomSpheres from "../figures/RandomSpheres"
 import RandomBoxes from "./RandomBoxes"
 import RandomCylinders from "./RandomCylinders"
 
-const range = 20
+const range = [10, 20]
 
 const RandomFigures = ({ random }) => {
-  const [number, setNumber] = useState(randomNumber(0, range))
+  const [number, setNumber] = useState(randomNumber(...range))
+  const [sizeScale, setSizeScale] = useState(initSizeScale)
 
+  // handle randomize
   useEffect(() => {
     if (random != 0) {
-      onRandomize()
+      setNumber(randomNumber(...range))
+      setSizeScale(1, 5)
     }
   }, [random])
-
-  const onRandomize = () => {
-    setNumber(randomNumber(0, range))
-  }
 
   const reset = () => {}
   const explode = () => {}
 
+  const childProps = { sizeScale, number }
+
   return (
     <>
-      <RandomSpheres number={number} />
-      <RandomBoxes number={number} />
-      <RandomCylinders number={number} />
+      <RandomSpheres {...childProps} />
+      <RandomBoxes {...childProps} />
+      <RandomCylinders {...childProps} />
     </>
   )
 }

@@ -1,29 +1,17 @@
 import { Instance, Instances } from "@react-three/drei"
 import { useMemo } from "react"
-import {
-  random2D,
-  randomEuler,
-  randomStrelkaColor,
-  randomVector,
-} from "@/helpers"
 import { useCylinder } from "@react-three/cannon"
 import { DoubleSide } from "three"
-import { nanoid } from "nanoid"
+import { generateFigureData } from "@/helpers"
 
 const r = 0.6827 // 1/π^(1/3);
 
-const generateCylinderData = (number, r = 10, s = 0.5) =>
-  Array.from({ length: number }, () => ({
-    position: randomVector(r),
-    scale: random2D(s),
-    rotation: randomEuler(),
-    color: randomStrelkaColor(),
-    id: nanoid(),
-  }))
-
-const RandomCylinders = ({ number = 100 }) => {
+const RandomCylinders = ({ number = 100, sizeScale }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const data = useMemo(() => generateCylinderData(number), [number])
+  const data = useMemo(
+    () => generateFigureData({ number, shape: "cylinder", sizeScale }),
+    [number, sizeScale]
+  )
   return (
     <Instances>
       <cylinderGeometry args={[r, r, r, 40]} />

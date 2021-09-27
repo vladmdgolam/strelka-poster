@@ -21,3 +21,5 @@ export const colorsExtended = [
 ]
 
 export const palettes = [colors, ["#000"], ["#fff"]]
+
+export const sizeScale = 1
