@@ -1,19 +1,20 @@
 import useIsMobile from "@/hooks/useIsMobile"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import HtmlWrapper from "../html/html"
+
 const rows = 2
 
 const ControlsBtn = ({ position = 1, name = "click", children, ...props }) => {
   const isMobile = useIsMobile()
-
-  const cols = isMobile ? 5 : 12
+  const [cols, setCols] = useState(isMobile ? 5 : 12)
 
   useEffect(() => {
-    console.log(isMobile)
+    setCols(isMobile ? 5 : 12)
   }, [isMobile])
 
   const gridColumn = position % cols
   const gridRow = rows - Math.floor(position / (cols + 1))
+  
   return (
     <HtmlWrapper zIndexRange={[100, 0]}>
       <div
