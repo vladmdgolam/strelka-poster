@@ -71,3 +71,8 @@ export const randomEuler = () => [
   Math.random() * Math.PI,
   Math.random() * Math.PI,
 ]
+
+
+// const getRandomText = () => {
+//   return texts[Math.floor(Math.random() * texts.length)]
+// }

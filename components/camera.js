@@ -83,7 +83,6 @@ const Camera = () => {
         📷🔀
       </ControlsBtn>
       <OrbitControls
-        onStart={() => setCameraPosition(0)}
         onUpdate={(self) => self.update()}
         ref={controls}
       />

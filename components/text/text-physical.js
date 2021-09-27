@@ -17,16 +17,16 @@ const BoxText = ({
     args: size,
     position,
     rotation,
-    fixedRotation: true,
-    ...rest,
+    // fixedRotation: true,
+    // ...rest,
   }))
 
   return (
     <group ref={ref}>
-      <Box args={size} {...rest}>
+      {/* <Box args={size} {...rest}>
         <meshBasicMaterial color={color} />
-      </Box>
-      <TextGeneral text={text} position={[0, 0, size[2] / 2 + 0.01]} />
+      </Box> */}
+      <TextGeneral look text={text} position={[0, 0, size[2] / 2 + 0.01]} />
     </group>
   )
 }
