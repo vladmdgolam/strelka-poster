@@ -5,20 +5,11 @@ export const colors = [
   "#FFFF54",
   "#DA77A2",
   "#42914E",
-  "#4260A0",
+  "#102FF4",
   "#ED7039",
 ]
 
-export const colorsExtended = [
-  "#EA3323",
-  "#FFFF54",
-  "#DA77A2",
-  "#42914E",
-  "#4260A0",
-  "#ED7039",
-  "#FFF",
-  "#000",
-]
+export const colorsExtended = [...colors, "#FFF", "#000"]
 
 export const palettes = [colors, ["#000"], ["#fff"]]
 
