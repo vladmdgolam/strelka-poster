@@ -1,6 +1,5 @@
 import Canvas from "@/components/canvas"
 import Plane from "@/components/plane"
-import InstancedSpheres from "@/components/shapes/InstancedSpheres"
 import WebcamTexture from "@/components/WebcamTexture"
 import useWebCamMaterial from "@/hooks/useWebcamMaterial"
 import { Physics } from "@react-three/cannon"

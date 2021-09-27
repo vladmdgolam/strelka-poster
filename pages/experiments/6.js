@@ -1,6 +1,5 @@
 import Canvas from "@/components/canvas"
 import Plane from "@/components/plane"
-import InstancedSpheres from "@/components/shapes/InstancedSpheres"
 import InstancedFigures from "@/components/shapes/instancedFigures"
 import { randomEuler, randomVector } from "@/helpers"
 import { Physics } from "@react-three/cannon"
