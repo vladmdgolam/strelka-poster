@@ -2,7 +2,7 @@ import { useSphere } from "@react-three/cannon"
 import { useControls, button } from "leva"
 import { useEffect, useMemo, useRef } from "react"
 import { Color, InstancedBufferAttribute, Vector3 } from "three"
-import ControlsBtn from "@/components/controls/controlsBtn"
+import ControlsBtn from "@/components/controls/ControlsBtn"
 import { randomPaletteColor, randomScale, randomVector } from "@/helpers"
 
 // const generatePosition = (index = 0) => [

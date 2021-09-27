@@ -93,6 +93,7 @@ canvas {
   position: fixed;
   bottom: 0;
   z-index: 10;
+  width: 100%;
   & > * {
     aspect-ratio: 1;
   }
@@ -125,6 +126,11 @@ canvas {
     background: white;
     padding: 5px 15px;
     border-radius: 10px;
+    transition: all 0.25s ease;
+    &:active,
+    &:hover {
+      background: #ccc;
+    }
   }
 }
 

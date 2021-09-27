@@ -1,9 +1,17 @@
+import useIsMobile from "@/hooks/useIsMobile"
+import { useEffect } from "react"
 import HtmlWrapper from "../html/html"
-
-const cols = 5
 const rows = 2
 
 const ControlsBtn = ({ position = 1, name = "click", children, ...props }) => {
+  const isMobile = useIsMobile()
+
+  const cols = isMobile ? 5 : 10
+
+  useEffect(() => {
+    console.log(isMobile)
+  }, [isMobile])
+
   const gridColumn = position % cols
   const gridRow = rows - Math.floor(position / (cols + 1))
   return (

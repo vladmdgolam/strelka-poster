@@ -1,7 +1,7 @@
 import { randomNumber, randomPalette } from "@/helpers"
 import { button, useControls } from "leva"
 import { useEffect, useState } from "react"
-import ControlsBtn from "../controls/controlsBtn"
+import ControlsBtn from "../controls/ControlsBtn"
 import InstancedSpheres from "./InstancedSpheres"
 
 const InstancedFigures = ({ random }) => {

@@ -2,7 +2,7 @@ import useDeviceOrientation from "@/hooks/useDeviceOrientation"
 import { Physics } from "@react-three/cannon"
 import { useControls } from "leva"
 import { useEffect, useState } from "react"
-import ControlsBtn from "./controls/controlsBtn"
+import ControlsBtn from "./controls/ControlsBtn"
 import HtmlWrapper from "./html/html"
 import IntroScreen from "./html/intro-screen"
 

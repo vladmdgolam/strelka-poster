@@ -3,7 +3,7 @@ import { useThree } from "@react-three/fiber"
 import { button, useControls } from "leva"
 import { useMemo, useRef } from "react"
 import { MathUtils } from "three"
-import ControlsBtn from "./controls/controlsBtn"
+import ControlsBtn from "./controls/ControlsBtn"
 
 const fov = 50
 
