@@ -1,15 +1,14 @@
 import useTakeScreenshot from "@/hooks/useTakeScreenshot"
 import { useThree } from "@react-three/fiber"
 import { useControls, button } from "leva"
-import { Suspense, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 import Borders from "./borders"
 import Camera from "./camera"
 import ControlledPhysics from "./controlled-physics"
 import ControlsBtn from "./controls/ControlsBtn"
 import RandomFigures from "./figures/RandomFigures"
 import Lights from "./lights"
-import InstancedFigures from "./shapes/instancedFigures"
-import InstancedText from "./text/instanced-text"
+import InstancedText from "./text/InstancedText"
 
 const Scene = ({ color: initialColor, random }) => {
   const takeScreenshot = useTakeScreenshot()
@@ -23,6 +22,11 @@ const Scene = ({ color: initialColor, random }) => {
       },
     },
   })
+
+  useEffect(() => {
+    gl.setClearColor(initialColor)
+    console.log("hi")
+  }, [initialColor])
 
   const [showText, setShowText] = useState(false)
 
@@ -38,15 +42,11 @@ const Scene = ({ color: initialColor, random }) => {
       <Lights />
       <ControlledPhysics>
         <Borders random={random} />
-        {/* <Vehicle /> */}
-        {/* <InstancedFigures random={random} /> */}
         <Suspense fallback={null}>
           {/* <Vehicle /> */}
           <RandomFigures random={random} />
         </Suspense>
         {showText && <InstancedText />}
-        {/* <BoxText /> */}
-        {/* <TextGeneral rotation={[-Math.PI / 2, 0, 0]} /> */}
       </ControlledPhysics>
     </>
   )
