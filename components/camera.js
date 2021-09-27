@@ -66,17 +66,19 @@ const Camera = () => {
       case 2:
         upCamera()
         break
+      case 3:
+        sideCamera()
+        break
       default:
         resetCamera()
         break
     }
 
-    setCameraPosition(cameraPosition == 2 ? 0 : cameraPosition + 1)
+    setCameraPosition(cameraPosition == 3 ? 0 : cameraPosition + 1)
   }
 
   return (
     <>
-      <axesHelper />
       <ControlsBtn position={5} onClick={changeCamera}>
         📷🔀
       </ControlsBtn>
