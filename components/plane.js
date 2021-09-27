@@ -1,8 +1,7 @@
 import { randomStrelkaColor } from "@/helpers"
 import { usePlane } from "@react-three/cannon"
-import { GradientTexture } from "@react-three/drei"
 import { useEffect, useState } from "react"
-import { DoubleSide, FrontSide } from "three"
+import { BackSide, DoubleSide, FrontSide } from "three"
 
 const Plane = ({
   color = "lightblue",
@@ -27,12 +26,12 @@ const Plane = ({
 
   return (
     <mesh ref={ref} {...rest} receiveShadow>
-      <planeBufferGeometry args={args} />
+      {/* <planeBufferGeometry args={args} />
       <meshBasicMaterial
         side={FrontSide}
         color={color}
         onUpdate={(self) => (self.needsUpdate = true)}
-      />
+      /> */}
     </mesh>
   )
 }
