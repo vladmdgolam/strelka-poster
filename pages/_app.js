@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }) {
   }, [])
 
   const handleWindowSizeChange = () => {
-    return setIsMobile(window.innerWidth < 900)
+    return setIsMobile(window.innerWidth < 700)
   }
 
   return (
