@@ -50,7 +50,7 @@ const Camera = () => {
   const sideCamera = () => {
     if (cam.current) {
       controls.current.target.set(0, height / 2, 0)
-      cam.current.position.set(0, height / 2, (3 * dist) / 2)
+      cam.current.position.set(0, height / 2, dist / 2 + height)
       cam.current.rotation.set(0, 0, 0)
     }
   }
@@ -82,10 +82,7 @@ const Camera = () => {
       <ControlsBtn position={5} onClick={changeCamera}>
         📷🔀
       </ControlsBtn>
-      <OrbitControls
-        onUpdate={(self) => self.update()}
-        ref={controls}
-      />
+      <OrbitControls onUpdate={(self) => self.update()} ref={controls} />
       <PerspectiveCamera
         makeDefault
         position={[0, dist, 0]}
