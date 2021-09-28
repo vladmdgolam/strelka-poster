@@ -1,6 +1,5 @@
-import { randomStrelkaColor } from "@/helpers"
 import { usePlane } from "@react-three/cannon"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { BackSide, DoubleSide, FrontSide } from "three"
 
 const Plane = ({

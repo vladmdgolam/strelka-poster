@@ -17,23 +17,29 @@ const getRandomText = () => {
 
 // eslint-disable-next-line react/display-name
 const TextGeneral = forwardRef(
-  ({ look, color, text, children, ...rest }, ref) => {
+  (
+    {
+      look,
+      text = "STRELKA",
+      children,
+      depthTest = true,
+      textProps = {
+        color: "black",
+        fontSize: 0.4,
+        textAlign: "center",
+        anchorX: "center",
+        anchorY: "middle",
+      },
+      ...rest
+    },
+    ref
+  ) => {
     const { camera } = useThree()
-
-    const [initText] = useState(getRandomText())
+    console.log(<Text />)
     return (
-      <Text
-        font="/lazurski-cyrillic.woff"
-        color={color ? color : "black"}
-        anchorX="center"
-        anchorY="middle"
-        ref={ref}
-        fontSize={0.4}
-        textAlign="center"
-        {...rest}
-      >
-        {text || text === "" ? text : initText}
-        <meshBasicMaterial depthTest={false} />
+      <Text font="/lazurski-cyrillic.woff" ref={ref} {...textProps} {...rest}>
+        {text}
+        <meshBasicMaterial depthTest={depthTest} />
         {children}
       </Text>
     )

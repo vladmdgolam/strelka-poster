@@ -2,7 +2,14 @@ import { useRef, useState } from "react"
 import { Text } from "@react-three/drei"
 import { useFrame, useThree } from "@react-three/fiber"
 
-const TextGeneral = ({ look, color, text, children, ...rest }) => {
+const TextGeneral = ({
+  look,
+  color,
+  text = "STRELKA",
+  children,
+  fontSize = 0.4,
+  ...rest
+}) => {
   const ref = useRef(null)
   const { camera } = useThree()
 
@@ -10,7 +17,6 @@ const TextGeneral = ({ look, color, text, children, ...rest }) => {
     look && ref.current && ref.current.lookAt(camera.position)
   })
 
-  const [initText] = useState(text ? text : "STRELKA")
   return (
     <Text
       font="/lazurski-cyrillic.woff"
@@ -18,12 +24,12 @@ const TextGeneral = ({ look, color, text, children, ...rest }) => {
       anchorX="center"
       anchorY="middle"
       ref={ref}
-      fontSize={0.4}
+      fontSize={fontSize}
       textAlign="center"
       {...rest}
     >
-      {initText}
-      <meshBasicMaterial  depthTest={false} />
+      {text}
+      <meshBasicMaterial depthTest={false} />
       {children}
     </Text>
   )

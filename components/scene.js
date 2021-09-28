@@ -1,3 +1,4 @@
+import { randomExtendedColor } from "@/helpers"
 import useTakeScreenshot from "@/hooks/useTakeScreenshot"
 import { useThree } from "@react-three/fiber"
 import { useControls, button } from "leva"
@@ -9,6 +10,7 @@ import ControlsBtn from "./controls/ControlsBtn"
 import RandomFigures from "./figures/RandomFigures"
 import Lights from "./lights"
 import InstancedText from "./text/InstancedText"
+import Typography from "./typography"
 
 const Scene = ({ color: initialColor, random }) => {
   const takeScreenshot = useTakeScreenshot()
@@ -23,9 +25,13 @@ const Scene = ({ color: initialColor, random }) => {
     },
   })
 
+  const [bordersColor, setBordersColor] = useState(randomExtendedColor())
+  useEffect(() => {
+    setBordersColor(randomExtendedColor())
+  }, [random])
+
   useEffect(() => {
     gl.setClearColor(initialColor)
-    console.log("hi")
   }, [initialColor])
 
   const [showText, setShowText] = useState(false)
@@ -41,9 +47,15 @@ const Scene = ({ color: initialColor, random }) => {
       <Camera />
       <Lights />
       <ControlledPhysics>
-        <Borders random={random} />
+        <Borders color={bordersColor} random={random} />
         <Suspense fallback={null}>
-          {/* <Vehicle /> */}
+          <Typography
+            color={
+              bordersColor === "#FFF" || bordersColor === "#FFFF54"
+                ? "black"
+                : "white"
+            }
+          />
           <RandomFigures random={random} />
           {showText && <InstancedText />}
         </Suspense>
