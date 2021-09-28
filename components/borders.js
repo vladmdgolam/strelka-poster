@@ -1,17 +1,9 @@
-import { randomExtendedColor, randomNumber } from "@/helpers"
 import { useThree } from "@react-three/fiber"
 import { useControls } from "leva"
-import { useEffect, useState } from "react"
 import Plane from "./plane"
 
-const Borders = ({ random }) => {
+const Borders = ({ random, color }) => {
   const { width, height } = useThree(({ viewport }) => viewport)
-
-  const [color, setColor] = useState(randomExtendedColor())
-
-  useEffect(() => {
-    setColor(randomExtendedColor())
-  }, [random])
 
   const blockHeight = height
   const { borders, topHeight, top, visible, topVisible } = useControls({
@@ -20,7 +12,7 @@ const Borders = ({ random }) => {
       min: 0.1,
       max: 100,
     },
-    visible: false,
+    visible: true,
     topVisible: true,
     top: true,
     borders: true,
