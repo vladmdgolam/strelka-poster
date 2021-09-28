@@ -1,6 +1,5 @@
 import Canvas from "@/components/canvas"
 import Plane from "@/components/plane"
-import InstancedFigures from "@/components/shapes/instancedFigures"
 import { randomEuler, randomVector } from "@/helpers"
 import { Physics } from "@react-three/cannon"
 import { Instance, Instances, OrbitControls, Sphere } from "@react-three/drei"
@@ -14,11 +13,7 @@ const randomData = Array.from({ length: 1000 }, (r = 10) => ({
 }))
 
 const Els = () => {
-  return (
-    <>
-      <InstancedFigures />
-    </>
-  )
+  return <></>
 }
 
 const Page = () => {
