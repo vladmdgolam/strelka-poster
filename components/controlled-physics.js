@@ -61,7 +61,7 @@ const ControlledPhysics = ({ children }) => {
         ⬆️
       </ControlsBtn>
       <ControlsBtn onClick={() => setOff(!off)} position={2}>
-        👨‍🚀3
+        👨‍🚀
       </ControlsBtn>
       {!(init || working) && <IntroScreen start={start} />}
       <Physics gravity={gravity}>{children}</Physics>

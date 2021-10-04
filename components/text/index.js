@@ -35,7 +35,7 @@ const TextGeneral = forwardRef(
     ref
   ) => {
     const { camera } = useThree()
-    console.log(<Text />)
+    // console.log(<Text />)
     return (
       <Text font="/lazurski-cyrillic.woff" ref={ref} {...textProps} {...rest}>
         {text}

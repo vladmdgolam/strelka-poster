@@ -1,4 +1,4 @@
-import { randomExtendedColor } from "@/helpers"
+import { randomExtendedColor, randomPaletteColor } from "@/helpers"
 import useTakeScreenshot from "@/hooks/useTakeScreenshot"
 import { useThree } from "@react-three/fiber"
 import { useControls, button } from "leva"
@@ -25,13 +25,16 @@ const Scene = ({ color: initialColor, random }) => {
     },
   })
 
-  const [bordersColor, setBordersColor] = useState(randomExtendedColor())
+  const [bordersColor, setBordersColor] = useState(
+    randomPaletteColor(["#FFF", "#000"])
+  )
   useEffect(() => {
-    setBordersColor(randomExtendedColor())
+    random && setBordersColor(randomExtendedColor())
   }, [random])
 
   useEffect(() => {
     gl.setClearColor(initialColor)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialColor])
 
   const [showText, setShowText] = useState(false)

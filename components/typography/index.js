@@ -14,7 +14,7 @@ import TextGeneral from "../text"
 // }
 
 const presets = [
-  { text: "STRELKA", scale: 3, repeat: 1 },
+  { text: "STRELKA", scale: 2.5, repeat: 1 },
   { text: `STRELKA \nSUMMER\nOPEN CODE`, scale: 1, repeat: 1 },
   { text: `STRELKA \nSUMMER\nOPEN CODE`, scale: 1, repeat: 10, fontSize: 0.4, },
 ]
