@@ -12,7 +12,7 @@ const Borders = ({ random, color }) => {
       min: 0.1,
       max: 100,
     },
-    visible: true,
+    visible: false,
     topVisible: true,
     top: true,
     borders: true,
@@ -21,7 +21,7 @@ const Borders = ({ random, color }) => {
   return (
     <>
       <Plane
-        visible={visible && borders}
+        visible={true}
         args={[width, height]}
         position={[0, 0, 0]}
         rotation={[Math.PI / 2, -Math.PI, 0]}
