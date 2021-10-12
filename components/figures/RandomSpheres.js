@@ -26,7 +26,7 @@ const RandomSpheres = ({ number = 10, sizeScale }) => {
 const Sphere = ({ scale = [1, 1, 1], color = "white", ...rest }) => {
   const [ref] = useSphere(() => ({
     mass: 1,
-    args: scale[0],
+    args: scale[0] * r,
     linearDamping: 0.7,
     angularDamping: 0.7,
     ...rest,

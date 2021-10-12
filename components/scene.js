@@ -44,9 +44,9 @@ const Scene = ({ color: initialColor, random }) => {
       <ControlsBtn position={4} onClick={takeScreenshot}>
         📸
       </ControlsBtn>
-      <ControlsBtn position={9} onClick={() => setShowText(!showText)}>
+      {/* <ControlsBtn position={9} onClick={() => setShowText(!showText)}>
         txt
-      </ControlsBtn>
+      </ControlsBtn> */}
       <Camera />
       <Lights />
       <ControlledPhysics>

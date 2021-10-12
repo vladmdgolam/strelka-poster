@@ -7,24 +7,16 @@ import RandomSpheres from "../figures/RandomSpheres"
 import RandomBoxes from "./RandomBoxes"
 import RandomCylinders from "./RandomCylinders"
 
-const range = [10, 20]
+const range = [0, 6]
 
 const RandomFigures = ({ random }) => {
   const [number, setNumber] = useState(randomNumber(...range))
-  const [sizeScale, setSizeScale] = useState(initSizeScale)
-
-  // useControls({
-  //   number: { value: number, onChange: (inv) => setNumber(inv) },
-  //   sizeScale: {
-  //     value: sizeScale,
-  //     onChange: (sizeScale) => setSizeScale(sizeScale),
-  //   },
-  // })
+  const [sizeScale] = useState(initSizeScale)
 
   // handle randomize
   useEffect(() => {
     if (random != 0) {
-      setSizeScale(1, 5)
+      // setSizeScale(1, 5)
       setNumber(randomNumber(...range))
     }
   }, [random])

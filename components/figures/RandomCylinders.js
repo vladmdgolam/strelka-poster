@@ -26,7 +26,7 @@ const RandomCylinders = ({ number = 100, sizeScale }) => {
 const Cylinder = ({ scale, color, ...rest }) => {
   const [ref] = useCylinder(() => ({
     mass: 1,
-    args: [scale[0], scale[0], scale[1], 20],
+    args: [scale[0] * r, scale[0] * r, scale[1] * r, 20],
     ...rest,
   }))
   return (
