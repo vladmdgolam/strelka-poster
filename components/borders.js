@@ -2,7 +2,7 @@ import { useThree } from "@react-three/fiber"
 import { useControls } from "leva"
 import Plane from "./plane"
 
-const Borders = ({ random, color }) => {
+const Borders = ({ color }) => {
   const { width, height } = useThree(({ viewport }) => viewport)
 
   const blockHeight = height
@@ -12,7 +12,7 @@ const Borders = ({ random, color }) => {
       min: 0.1,
       max: 100,
     },
-    visible: false,
+    visible: true,
     topVisible: true,
     top: true,
     borders: true,
@@ -21,7 +21,7 @@ const Borders = ({ random, color }) => {
   return (
     <>
       <Plane
-        visible={true}
+        visible={visible}
         args={[width, height]}
         position={[0, 0, 0]}
         rotation={[Math.PI / 2, -Math.PI, 0]}

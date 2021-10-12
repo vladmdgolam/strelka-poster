@@ -74,7 +74,7 @@ const Camera = () => {
         break
     }
 
-    setCameraPosition(cameraPosition == 3 ? 0 : cameraPosition + 1)
+    setCameraPosition(cameraPosition == 2 ? 0 : cameraPosition + 1)
   }
 
   return (
@@ -82,7 +82,7 @@ const Camera = () => {
       <ControlsBtn position={5} onClick={changeCamera}>
         📷🔀
       </ControlsBtn>
-      <OrbitControls onUpdate={(self) => self.update()} ref={controls} />
+      <OrbitControls enabled={false} onUpdate={(self) => self.update()} ref={controls} />
       <PerspectiveCamera
         makeDefault
         position={[0, dist, 0]}

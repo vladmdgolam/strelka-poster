@@ -1,51 +1,48 @@
-import { randomNumber } from "@/helpers"
+import { presets } from "@/helpers/constants"
 import { useControls } from "leva"
 import { useEffect } from "react"
 
-var randomKey = function (obj) {
-  var keys = Object.keys(obj)
-  return keys[(keys.length * Math.random()) << 0]
-}
-
-const presets = {
-  //   1: { text: "STRELKA", scale: 2.5, repeat: 1 },
-  // { text: `STRELKA \nSUMMER\nOPEN CODE`, scale: 1, repeat: 1 },
-  3: {
-    text: `STRELKA SUMMER OPEN CODE `,
-    scale: 1,
-    repeat: 100,
-    fontSize: 0.4,
-    textAlign: "left",
+const positionsConstants = {
+  center: {
+    anchorX: "center",
+    anchorY: "middle",
+    textAlign: "center",
+  },
+  topLeft: {
     anchorX: "left",
     anchorY: "top",
-    topLeft: true,
+    textAlign: "left",
   },
 }
 
-const useTextProps = () => {
-  const { presetId } = useControls({
-    presetId: {
-      value: randomKey(presets),
-      options: Object.keys(presets),
-    },
-  })
+const derivePresetProperties = (presetId) => {
+  const presetProps = presets[presetId] || {}
 
+  const positionProps = presetProps.center
+    ? positionsConstants.center
+    : positionsConstants.topLeft
+
+  return { ...presetProps, ...positionProps }
+}
+
+const useTextProps = (presetId) => {
   const {
+    // пропы, используемые в UI
     fontSize,
-    topLeft,
-    text: initialText,
+    center,
+    text,
     repeat,
     textAlign,
     anchorX,
     anchorY,
-    ...presetProps
-  } = presets[presetId] || {}
+    ...presetProps // доп пропы
+  } = derivePresetProperties(presetId)
 
-  const [{ text, ...textProps }, set] = useControls(() => ({
+  const [{ ...textProps }, set] = useControls(() => ({
     fontSize: { value: fontSize || 1, min: 0.1, max: 3, step: 0.01 },
-    text: { value: initialText },
-    repeat: { value: repeat || 1, min: 1, max: 100 },
-    topLeft: { value: topLeft || false },
+    text: { value: text || "STRELKA" },
+    repeat: { value: repeat || 1, min: 1, max: 300 },
+    center: { value: center || false },
     textAlign: {
       value: textAlign || "center",
       options: ["center", "left", "right", "justify"],
@@ -58,19 +55,23 @@ const useTextProps = () => {
       value: anchorY || "middle",
       options: ["bottom", "top", "middle", "top-baseline", "bottom-baseline"],
     },
-    overflowWrap: { value: "break-word", options: ["normal" | "break-word"] },
   }))
 
-//   useEffect(() => {
-    // set({ ...presets[presetId] })
-    // const preset = presets[presetId]
-    // console.log({...preset})
-    // set({ ...preset })
-    // preset && set({ ...preset })
-    // console.log(set(...presets[presetId]))
-//   }, [presetId])
+  useEffect(() => {
+    set({
+      fontSize,
+      center,
+      text,
+      repeat,
+      textAlign,
+      anchorX,
+      anchorY,
+    })
+  }, [presetId])
 
-  return { textProps: { ...presetProps, ...textProps }, text }
+  return {
+    textProps: { ...presetProps, ...textProps },
+  }
 }
 
 export default useTextProps

@@ -1,4 +1,4 @@
-import { randomExtendedColor, randomPaletteColor } from "@/helpers"
+// import { randomExtendedColor, randomPaletteColor } from "@/helpers"
 import useTakeScreenshot from "@/hooks/useTakeScreenshot"
 import { useThree } from "@react-three/fiber"
 import { useControls, button } from "leva"
@@ -25,16 +25,16 @@ const Scene = ({ color: initialColor, random }) => {
     },
   })
 
-  const [bordersColor, setBordersColor] = useState(
-    randomPaletteColor(["#FFF", "#000"])
-  )
-  useEffect(() => {
-    random && setBordersColor(randomExtendedColor())
-  }, [random])
+  // const [bordersColor, setBordersColor] = useState(
+  //   randomPaletteColor(["#FFF", "#000"])
+  // )
+  // useEffect(() => {
+  //   random && setBordersColor(randomExtendedColor())
+  // }, [random])
 
   useEffect(() => {
     gl.setClearColor(initialColor)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialColor])
 
   const [showText, setShowText] = useState(false)
@@ -50,11 +50,11 @@ const Scene = ({ color: initialColor, random }) => {
       <Camera />
       <Lights />
       <ControlledPhysics>
-        <Borders color={bordersColor} random={random} />
+        <Borders color={initialColor} random={random} />
         <Suspense fallback={null}>
           <Typography
             color={
-              bordersColor === "#FFF" || bordersColor === "#FFFF54"
+              initialColor === "#FFF" || initialColor === "#FFFF54"
                 ? "black"
                 : "white"
             }

@@ -6,8 +6,8 @@ const IntroScreen = ({ start }) => {
     <HtmlWrapper className="html_intro">
       <div className="intro">
         <h1>Тут будет Легенда</h1>
-        <p>обозначения цветов</p>
-        <p>общие принципы работы</p>
+        <br />
+        <p>и общие принципы работы</p>
         <button className="btn btn__intro" onClick={start}>
           начать
         </button>

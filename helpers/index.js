@@ -76,3 +76,8 @@ export const randomEuler = () => [
 // const getRandomText = () => {
 //   return texts[Math.floor(Math.random() * texts.length)]
 // }
+
+export const randomKey = (obj) => {
+  var keys = Object.keys(obj)
+  return keys[(keys.length * Math.random()) << 0]
+}
