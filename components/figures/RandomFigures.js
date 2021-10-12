@@ -7,7 +7,7 @@ import RandomSpheres from "../figures/RandomSpheres"
 import RandomBoxes from "./RandomBoxes"
 import RandomCylinders from "./RandomCylinders"
 
-const range = [0, 6]
+const range = [0, 10]
 
 const RandomFigures = ({ random }) => {
   const [number, setNumber] = useState(randomNumber(...range))

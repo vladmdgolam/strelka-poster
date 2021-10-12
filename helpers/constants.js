@@ -13,7 +13,7 @@ export const colorsExtended = [...colors, "#FFF", "#000"]
 
 export const palettes = [colors, ["#000"], ["#fff"]]
 
-export const sizeScale = 4
+export const sizeScale = 3
 
 export const presets = [
   { text: "STRELKA", fontSize: 1, repeat: 1, center: true },
