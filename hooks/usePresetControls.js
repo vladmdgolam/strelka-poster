@@ -1,11 +1,12 @@
-import { randomNumber } from "@/helpers"
+// import { randomNumber } from "@/helpers"
 import { presets } from "@/helpers/constants"
 import { useControls } from "leva"
 
 const usePresetControls = () => {
   const [{ presetId }, set] = useControls(() => ({
     presetId: {
-      value: randomNumber(0, presets.length - 1),
+      // value: randomNumber(0, presets.length - 1),
+      value: 2,
       options: [...presets.keys()],
     },
   }))

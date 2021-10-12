@@ -16,12 +16,30 @@ export const palettes = [colors, ["#000"], ["#fff"]]
 export const sizeScale = 1
 
 export const presets = [
-  { text: "STRELKA", scale: 2.5, repeat: 1, center: true },
-  { text: `STRELKA \nSUMMER\nOPEN CODE`, scale: 1, repeat: 1, center: true },
+  { text: "STRELKA", fontSize: 1, repeat: 1, center: true },
+  {
+    text: `STRELKA \nSUMMER\nOPEN CODE`,
+    fontSize: 0.4,
+    repeat: 1,
+    center: true,
+  },
   {
     text: `STRELKA SUMMER OPEN CODE `,
-    scale: 1,
+    fontSize: 0.4,
     repeat: 100,
     center: false,
   },
 ]
+
+export const positionsConstants = {
+  center: {
+    anchorX: "center",
+    anchorY: "middle",
+    textAlign: "center",
+  },
+  topLeft: {
+    anchorX: "left",
+    anchorY: "top",
+    textAlign: "justify",
+  },
+}

@@ -1,19 +1,6 @@
-import { presets } from "@/helpers/constants"
+import { positionsConstants, presets } from "@/helpers/constants"
 import { useControls } from "leva"
 import { useEffect } from "react"
-
-const positionsConstants = {
-  center: {
-    anchorX: "center",
-    anchorY: "middle",
-    textAlign: "center",
-  },
-  topLeft: {
-    anchorX: "left",
-    anchorY: "top",
-    textAlign: "left",
-  },
-}
 
 const derivePresetProperties = (presetId) => {
   const presetProps = presets[presetId] || {}
@@ -67,6 +54,7 @@ const useTextProps = (presetId) => {
       anchorX,
       anchorY,
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [presetId])
 
   return {
