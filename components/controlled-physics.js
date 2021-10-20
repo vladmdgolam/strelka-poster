@@ -9,10 +9,13 @@ const ControlledPhysics = ({ children }) => {
   const [inverted, setInverted] = useState(false)
   const [off, setOff] = useState(false)
   useControls({
-    Gravity: folder({
-      inv: { value: inverted, onChange: (inv) => setInverted(inv) },
-      off: { value: off, onChange: (inv) => setOff(inv) },
-    }),
+    Gravity: folder(
+      {
+        inv: { value: inverted, onChange: (inv) => setInverted(inv) },
+        off: { value: off, onChange: (inv) => setOff(inv) },
+      },
+      { collapsed: true }
+    ),
   })
   const [gravity, setGravity] = useState([0, -10, 0])
   const [init, setInit] = useState(false)

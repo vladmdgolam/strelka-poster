@@ -1,6 +1,6 @@
 import { usePlane } from "@react-three/cannon"
 import { useEffect } from "react"
-import { BackSide, DoubleSide, FrontSide } from "three"
+import { FrontSide } from "three"
 
 const Plane = ({
   color = "lightblue",
@@ -10,8 +10,6 @@ const Plane = ({
   ...rest
 }) => {
   const [ref, api] = usePlane(() => ({ position, rotation, args, ...rest }))
-  // const [color] = useState(randomStrelkaColor())
-  // const [secondColor] = useState(randomStrelkaColor())
 
   useEffect(() => {
     api.position.set(...position)

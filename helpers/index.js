@@ -42,11 +42,15 @@ export const randomAbsVector = (r) => [
 export const figureScale = (figure = "sphere", r = 1) => {
   switch (figure) {
     case "sphere":
+      // три одинаковых значения
       return Array.from({ length: 3 }).fill(Math.random() * r)
     case "box":
+      // три разных значения
       return [Math.random() * r, Math.random() * r, Math.random() * r]
     case "cylinder":
-      return Array.from({ length: 2 }).fill(() => Math.random() * r)
+    case "cone":
+      // два разных значения
+      return [Math.random() * r, Math.random() * r]
     default:
       break
   }
@@ -71,11 +75,6 @@ export const randomEuler = () => [
   Math.random() * Math.PI,
   Math.random() * Math.PI,
 ]
-
-
-// const getRandomText = () => {
-//   return texts[Math.floor(Math.random() * texts.length)]
-// }
 
 export const randomKey = (obj) => {
   var keys = Object.keys(obj)
