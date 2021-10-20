@@ -3,11 +3,17 @@ import HtmlWrapper from "./html"
 
 const IntroScreen = ({ start }) => {
   return (
-    <HtmlWrapper className="html_intro">
+    <HtmlWrapper className="html_intro" zIndexRange={[100, 0]}>
       <div className="intro">
-        <h1>Тут будет Легенда</h1>
+        <h1>Генератор постеров открытого кода</h1>
         <br />
-        <p>и общие принципы работы</p>
+        <h2>
+          включи микрофон
+          <br />
+          напиши что-нибудь
+          <br />
+          используй камеру
+        </h2>
         <button className="btn btn__intro" onClick={start}>
           начать
         </button>

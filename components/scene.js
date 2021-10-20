@@ -2,14 +2,14 @@
 import useTakeScreenshot from "@/hooks/useTakeScreenshot"
 import { useThree } from "@react-three/fiber"
 import { useControls, button } from "leva"
-import { Suspense, useEffect, useState } from "react"
+import { Suspense, useEffect } from "react"
 import Borders from "./borders"
 import Camera from "./camera"
 import ControlledPhysics from "./controlled-physics"
 import ControlsBtn from "./controls/ControlsBtn"
 import RandomFigures from "./figures/RandomFigures"
 import Lights from "./lights"
-import InstancedText from "./text/InstancedText"
+// import InstancedText from "./text/InstancedText"
 import Typography from "./typography"
 
 const Scene = ({ color: initialColor, random }) => {
@@ -37,7 +37,7 @@ const Scene = ({ color: initialColor, random }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialColor])
 
-  const [showText, setShowText] = useState(false)
+  // const [showText, setShowText] = useState(false)
 
   return (
     <>
@@ -60,7 +60,7 @@ const Scene = ({ color: initialColor, random }) => {
             }
           />
           <RandomFigures random={random} />
-          {showText && <InstancedText />}
+          {/* {showText && <InstancedText />} */}
         </Suspense>
       </ControlledPhysics>
     </>

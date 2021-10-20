@@ -14,13 +14,10 @@ const Typography = ({ color }) => {
 
   return (
     <>
-      {/* <Box position={[-width / 2 + 0.5, 0, -height / 2 + 0.5]} />
-      <Box position={[width / 2 - 0.5, 0, height / 2 - 0.5]} /> */}
       <ControlsBtn position={10} onClick={randomizePreset}>
         💬🔀
       </ControlsBtn>
       <TextGeneral
-        // textProps={{ ...textProps, color }}
         text={text.repeat(repeat)}
         rotation={[-Math.PI / 2, 0, 0]}
         position={center ? [0, 0.01, 0] : [-width / 2, 0.01, -height / 2]}

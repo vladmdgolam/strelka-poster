@@ -6,7 +6,7 @@ const rows = 2
 
 const ControlsBtn = ({ position = 1, name = "click", children, ...props }) => {
   const isMobile = useIsMobile()
-  
+
   const getStyle = (cols) => ({
     gridRow: rows - Math.floor(position / (cols + 1)),
     gridColumn: ((position - 1) % cols) + 1,
@@ -16,12 +16,11 @@ const ControlsBtn = ({ position = 1, name = "click", children, ...props }) => {
     const cols = isMobile ? 5 : 12
     const style = getStyle(cols)
     return { cols, style }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMobile, position])
 
-
   return (
-    <HtmlWrapper zIndexRange={[100, 0]}>
+    <HtmlWrapper>
       <div
         className="controls"
         style={{

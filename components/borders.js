@@ -1,22 +1,24 @@
 import { useThree } from "@react-three/fiber"
-import { useControls } from "leva"
 import Plane from "./plane"
 
 const Borders = ({ color }) => {
   const { width, height } = useThree(({ viewport }) => viewport)
 
   const blockHeight = height
-  const { borders, topHeight, top, visible, topVisible } = useControls({
-    topHeight: {
-      value: blockHeight,
-      min: 0.1,
-      max: 100,
-    },
-    visible: true,
-    topVisible: true,
-    top: true,
-    borders: true,
-  })
+  const { borders, topHeight, top, visible, topVisible } =
+    // useControls(
+    {
+      topHeight: {
+        value: blockHeight,
+        min: 0.1,
+        max: 100,
+      },
+      visible: true,
+      topVisible: true,
+      top: true,
+      borders: true,
+    }
+  // )
 
   return (
     <>

@@ -1,6 +1,6 @@
 import useDeviceOrientation from "@/hooks/useDeviceOrientation"
 import { Physics } from "@react-three/cannon"
-import { useControls } from "leva"
+import { folder, useControls } from "leva"
 import { useEffect, useState } from "react"
 import ControlsBtn from "./controls/ControlsBtn"
 import IntroScreen from "./html/intro-screen"
@@ -9,8 +9,10 @@ const ControlledPhysics = ({ children }) => {
   const [inverted, setInverted] = useState(false)
   const [off, setOff] = useState(false)
   useControls({
-    inv: { value: inverted, onChange: (inv) => setInverted(inv) },
-    off: { value: off, onChange: (inv) => setOff(inv) },
+    Gravity: folder({
+      inv: { value: inverted, onChange: (inv) => setInverted(inv) },
+      off: { value: off, onChange: (inv) => setOff(inv) },
+    }),
   })
   const [gravity, setGravity] = useState([0, -10, 0])
   const [init, setInit] = useState(false)
