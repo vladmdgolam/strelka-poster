@@ -84,7 +84,7 @@ const Camera = () => {
       </ControlsBtn>
       <OrbitControls
         enablePan={false}
-        // enableRotate={false}
+        enableRotate={false}
         onUpdate={(self) => self.update()}
         ref={controls}
       />
