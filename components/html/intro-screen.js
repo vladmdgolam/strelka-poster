@@ -4,20 +4,30 @@ import HtmlWrapper from "./html"
 const IntroScreen = ({ start }) => {
   return (
     <HtmlWrapper className="html_intro" zIndexRange={[100, 0]}>
-      <div className="intro">
-        <h1>Генератор постеров открытого кода</h1>
-        <br />
+      <header>
+        <h1>
+          open code
+          <br />
+          poster generator
+        </h1>
+        <h3 className="credits">
+          by Vlad Md golam
+          <br />
+          and Strelka Institute
+        </h3>
+        <a href="https://github.com/">read more</a>
+      </header>
+      <div className="launch">
         <h2>
-          включи микрофон
+          let&apos;s create together!
           <br />
-          напиши что-нибудь
-          <br />
-          используй камеру
+          use your camera, text and voice!
         </h2>
         <button className="btn btn__intro" onClick={start}>
-          начать
+          start
         </button>
       </div>
+      <footer></footer>
     </HtmlWrapper>
   )
 }

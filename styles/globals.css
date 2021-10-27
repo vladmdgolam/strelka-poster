@@ -8,17 +8,19 @@ body {
   margin: 0;
   user-select: none;
   overscroll-behavior: contain;
-  font-family: "Lazurski", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+  font-family: "Fugue", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  overflow: hidden;
 }
 
 a {
   color: inherit;
-  text-decoration: none;
 }
 
 p,
-h1 {
+h1,
+h2,
+h3 {
   margin: 0;
 }
 
@@ -70,17 +72,43 @@ canvas {
     pointer-events: all;
   }
   &_intro {
-    color: white;
-    /* background: rgba(0, 0, 0, 0.3); */
+    color: black;
+    text-align: center;
     pointer-events: none;
-    padding: 5px;
+    padding: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     backdrop-filter: blur(20px);
     width: 100%;
     height: 100%;
+    & > * {
+      flex-basis: 100%;
+    }
+    h1 {
+      font-size: 40px;
+      margin-bottom: 25px;
+      line-height: 0.825;
+    }
+    h2 {
+      font-size: 24px;
+    }
+    h3 {
+      font-size: 18px;
+    }
   }
+}
+
+.launch {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.credits {
+  margin-bottom: 10px;
 }
 
 .controls {
@@ -107,10 +135,8 @@ canvas {
   &_round {
     border: none;
     color: white;
-    /* padding: 10px; */
     cursor: pointer;
     text-align: center;
-    border-radius: 100%;
     background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(4px);
     user-select: none;
@@ -124,19 +150,17 @@ canvas {
   }
   &__intro {
     all: unset;
+    cursor: pointer;
     color: #000;
     margin-top: 20px;
     background: white;
-    padding: 5px 15px;
-    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
     transition: all 0.25s ease;
     &:active,
     &:hover {
-      background: #ccc;
+      background: #000;
+      color: white;
     }
   }
-}
-
-.intro {
-  text-align: center;
 }
