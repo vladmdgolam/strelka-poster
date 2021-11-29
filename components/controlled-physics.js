@@ -27,12 +27,6 @@ const ControlledPhysics = ({ children }) => {
   } = useDeviceOrientation()
 
   useEffect(() => {
-    // var acc = {
-    //   x: Math.cos(pitch) * Math.sin(roll) * gravConstant,
-    //   y: Math.sin(pitch) * gravConstant,
-    // }
-
-    // setGravity([acc.x, -10, acc.y])
     let futureGravity = [devicePosition[2], -10, devicePosition[1]].map(
       (x) => x * (inverted ? -1 : 1) * (!off ? 1 : 0)
     )

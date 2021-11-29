@@ -1,26 +1,33 @@
 import "../styles/globals.css"
 import Head from "next/head"
 import { AppProvider } from "@/hooks/AppContext"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 
 function MyApp({ Component, pageProps }) {
   const [isMobile, setIsMobile] = useState(null)
+  const [menuItems, setMenuItems] = useState({})
+  const [menuIndex, setMenuIndex] = useState(0)
+
+  const requestSetMenuItems = (menuItems) => {
+    setMenuIndex(Math.random())
+    setMenuItems(menuItems)
+  }
+
   const dataProvider = {
     isMobile,
+    menuItems,
+    requestSetMenuItems,
+    menuIndex,
   }
 
   useEffect(() => {
-    handleWindowSizeChange()
-    window.addEventListener("resize", handleWindowSizeChange)
+    handleResize()
+    window.addEventListener("resize", handleResize)
 
-    return () => {
-      window.removeEventListener("resize", handleWindowSizeChange)
-    }
+    return () => window.removeEventListener("resize", handleResize)
   }, [])
 
-  const handleWindowSizeChange = () => {
-    return setIsMobile(window.innerWidth < 700)
-  }
+  const handleResize = () => setIsMobile(window.innerWidth < 700)
 
   return (
     <>

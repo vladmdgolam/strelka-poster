@@ -55,33 +55,37 @@ const Camera = () => {
     }
   }
 
-  const changeCamera = () => {
-    switch (cameraPosition) {
-      case 0:
-        resetCamera()
-        break
-      case 1:
-        middleCamera()
-        break
-      case 2:
-        upCamera()
-        break
-      case 3:
-        sideCamera()
-        break
-      default:
-        resetCamera()
-        break
-    }
+  const changeCamera = useMemo(
+    () => () => {
+      switch (cameraPosition) {
+        case 0:
+          resetCamera()
+          break
+        case 1:
+          middleCamera()
+          break
+        case 2:
+          upCamera()
+          break
+        case 3:
+          sideCamera()
+          break
+        default:
+          resetCamera()
+          break
+      }
 
-    setCameraPosition(cameraPosition == 2 ? 0 : cameraPosition + 1)
-  }
+      setCameraPosition(cameraPosition == 2 ? 0 : cameraPosition + 1)
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    },
+    [cameraPosition]
+  )
 
   return (
     <>
-      <ControlsBtn position={5} onClick={changeCamera}>
+      {/* <ControlsBtn position={5} onClick={changeCamera}>
         📷🔀
-      </ControlsBtn>
+      </ControlsBtn> */}
       <OrbitControls
         enablePan={false}
         enableRotate={false}
