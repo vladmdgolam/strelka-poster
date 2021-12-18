@@ -14,7 +14,7 @@ const RandomCylinders = ({ number = 100, sizeScale }) => {
   )
   return (
     <Instances>
-      <cylinderGeometry args={[r, r, r, 40]} />
+      <cylinderGeometry args={[r, r, r, 32]} />
       <meshBasicMaterial side={DoubleSide} />
       {data.map(({ id, ...props }) => (
         <Cylinder key={id} {...props} />

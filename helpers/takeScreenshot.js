@@ -1,9 +1,7 @@
 const takeScreenshot = (gl, size, scene, camera) => {
   // gl.setSize(size.width, size.height, false)
   // gl.render(scene, camera, null, false)
-  gl.domElement.getContext("webgl", {
-    preserveDrawingBuffer: true,
-  })
+
   gl.domElement.toBlob(
     function (blob) {
       var a = document.createElement("a")
@@ -15,7 +13,6 @@ const takeScreenshot = (gl, size, scene, camera) => {
     "image/png",
     1.0
   )
-  gl.domElement.getContext("webgl", { preserveDrawingBuffer: false })
 }
 
 export default takeScreenshot

@@ -1,66 +1,40 @@
-// import { randomExtendedColor, randomPaletteColor } from "@/helpers"
+import { randomExtendedColor } from "@/helpers"
 import useTakeScreenshot from "@/hooks/useTakeScreenshot"
+import useUpdateEffect from "@/hooks/useUpdateEffect"
 import { useThree } from "@react-three/fiber"
-import { useControls, button } from "leva"
-import { Suspense, useEffect } from "react"
+import { Suspense, useState } from "react"
 import Borders from "./borders"
 import Camera from "./camera"
 import ControlledPhysics from "./controlled-physics"
 import ControlsBtn from "./controls/ControlsBtn"
 import RandomFigures from "./figures/RandomFigures"
-import Lights from "./lights"
-// import InstancedText from "./text/InstancedText"
 import Typography from "./typography"
 
-const Scene = ({ color: initialColor, random }) => {
-  const takeScreenshot = useTakeScreenshot()
+const Scene = ({ random, initialColor }) => {
+  const [color, setColor] = useState(initialColor)
+
   const gl = useThree(({ gl }) => gl)
-  useControls({
-    screenshot: button(() => takeScreenshot()),
-    color: {
-      value: initialColor,
-      onChange: (futureColor) => {
-        gl.setClearColor(futureColor)
-      },
-    },
-  })
+  const takeScreenshot = useTakeScreenshot()
 
-  // const [bordersColor, setBordersColor] = useState(
-  //   randomPaletteColor(["#FFF", "#000"])
-  // )
-  // useEffect(() => {
-  //   random && setBordersColor(randomExtendedColor())
-  // }, [random])
+  useUpdateEffect(() => {
+    const nextColor = randomExtendedColor()
+    setColor(nextColor)
+    gl.setClearColor(nextColor)
+  }, [random])
 
-  useEffect(() => {
-    gl.setClearColor(initialColor)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [initialColor])
-
-  // const [showText, setShowText] = useState(false)
+  const textColor = color === "#FFF" || color === "#FFFF06" ? "black" : "white"
 
   return (
     <>
       <ControlsBtn position={4} group="right" onClick={takeScreenshot}>
         📸
       </ControlsBtn>
-      {/* <ControlsBtn position={9} onClick={() => setShowText(!showText)}>
-        txt
-      </ControlsBtn> */}
       <Camera />
-      <Lights />
       <ControlledPhysics>
-        <Borders color={initialColor} random={random} />
+        <Borders color={color} random={random} />
         <Suspense fallback={null}>
-          <Typography
-            color={
-              initialColor === "#FFF" || initialColor === "#FFFF54"
-                ? "black"
-                : "white"
-            }
-          />
+          <Typography random={random} color={textColor} />
           <RandomFigures random={random} />
-          {/* {showText && <InstancedText />} */}
         </Suspense>
       </ControlledPhysics>
     </>

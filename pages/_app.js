@@ -1,7 +1,7 @@
 import "../styles/globals.css"
 import Head from "next/head"
 import { AppProvider } from "@/hooks/AppContext"
-import { useCallback, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 
 function MyApp({ Component, pageProps }) {
   const [isMobile, setIsMobile] = useState(null)
@@ -23,7 +23,6 @@ function MyApp({ Component, pageProps }) {
   useEffect(() => {
     handleResize()
     window.addEventListener("resize", handleResize)
-
     return () => window.removeEventListener("resize", handleResize)
   }, [])
 

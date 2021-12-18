@@ -12,7 +12,7 @@ const RandomBoxes = ({ number = 10, sizeScale }) => {
   )
   return (
     <Instances>
-      <meshBasicMaterial side={DoubleSide} />
+      <meshBasicMaterial />
       <Boxes data={data} />
     </Instances>
   )

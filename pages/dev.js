@@ -5,6 +5,7 @@ import { randomStrelkaColor } from "@/helpers"
 import AppContext from "@/hooks/AppContext"
 import { useContextBridge } from "@react-three/drei"
 import { Leva } from "leva"
+import { Perf } from "r3f-perf"
 import { useState } from "react"
 
 const Home = () => {
@@ -18,8 +19,7 @@ const Home = () => {
 
   return (
     <>
-      <Leva />
-
+      <Leva/>
       <Canvas color={color}>
         <ContextBridge>
           <ControlsBtn onClick={randomize} position={8}>
@@ -27,6 +27,7 @@ const Home = () => {
           </ControlsBtn>
           <Scene random={random} color={color} />
         </ContextBridge>
+        <Perf position="bottom-left" />
       </Canvas>
     </>
   )

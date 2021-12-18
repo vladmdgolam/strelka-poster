@@ -1,33 +1,30 @@
 export const massMultiplier = 0.5
 
-export const colors = [
-  "#EA3323",
-  "#FFFF54",
-  "#DA77A2",
-  "#42914E",
-  "#102FF4",
-  "#ED7039",
-]
+export const colors = ["#FF0000", "#FFFF06", "#FF87CE", "#0DA041", "#0150E6"]
 
 export const colorsExtended = [...colors, "#FFF", "#000"]
 
 export const palettes = [colors, ["#000"], ["#fff"]]
 
-export const sizeScale = 3
+export const sizeScale = 2
 
 export const presets = [
   { text: "STRELKA", fontSize: 1, repeat: 1, center: true },
   {
-    text: `STRELKA \nSUMMER\nOPEN CODE`,
+    text: `STRELKA \nOPEN CODE`,
     fontSize: 0.4,
     repeat: 1,
     center: true,
   },
   {
-    text: `STRELKA SUMMER OPEN CODE `,
+    text: `STRELKA OPEN CODE `,
     fontSize: 0.4,
     repeat: 100,
     center: false,
+    clip: true,
+  },
+  {
+    visible: false,
   },
 ]
 

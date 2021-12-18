@@ -1,36 +1,23 @@
 import { usePlane } from "@react-three/cannon"
-import { useEffect } from "react"
-import { FrontSide } from "three"
+import useUpdateEffect from "@/hooks/useUpdateEffect"
 
 const Plane = ({
-  color = "lightblue",
-  args = [10, 10],
   position = [0, 0, 0],
   rotation = [-Math.PI / 2, 0, 0],
   ...rest
 }) => {
-  const [ref, api] = usePlane(() => ({ position, rotation, args, ...rest }))
+  const [, api] = usePlane(() => ({
+    position,
+    rotation,
+    args: [10, 10],
+    ...rest,
+  }))
 
-  useEffect(() => {
-    api.position.set(...position)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [position])
+  useUpdateEffect(() => api.position.set(...position), [position])
 
-  useEffect(() => {
-    api.rotation.set(...rotation)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [rotation])
+  useUpdateEffect(() => api.rotation.set(...rotation), [rotation])
 
-  return (
-    <mesh ref={ref} {...rest} receiveShadow>
-      <planeBufferGeometry args={args} />
-      <meshBasicMaterial
-        side={FrontSide}
-        color={color}
-        onUpdate={(self) => (self.needsUpdate = true)}
-      />
-    </mesh>
-  )
+  return <></>
 }
 
 export default Plane

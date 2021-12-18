@@ -1,5 +1,6 @@
 import { randomNumber } from "@/helpers"
 import { sizeScale as initSizeScale } from "@/helpers/constants"
+import useUpdateEffect from "@/hooks/useUpdateEffect"
 import { folder, useControls } from "leva"
 // import { useControls } from "leva"
 import { useEffect, useState } from "react"
@@ -56,15 +57,13 @@ const RandomFigures = ({ random }) => {
   )
 
   // handle randomize
-  useEffect(() => {
-    if (random != 0) {
-      set({
-        spheresCount: randomNumber(...range),
-        boxesCount: randomNumber(...range),
-        cylCount: randomNumber(...range),
-        conesCount: randomNumber(...range),
-      })
-    }
+  useUpdateEffect(() => {
+    set({
+      spheresCount: randomNumber(...range),
+      boxesCount: randomNumber(...range),
+      cylCount: randomNumber(...range),
+      conesCount: randomNumber(...range),
+    })
   }, [random])
 
   const childProps = { sizeScale }

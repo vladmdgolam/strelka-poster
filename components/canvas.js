@@ -1,25 +1,19 @@
-import { randomStrelkaColor } from "@/helpers"
 import { Canvas as ThreeCanvas } from "@react-three/fiber"
-import { useEffect, useState } from "react"
+import { useLayoutEffect, useState } from "react"
 
 const Canvas = ({ children, size, color, ...rest }) => {
-  const [dpr, setDpr] = useState(2)
-  useEffect(() => {
-    setDpr(window.devicePixelRatio)
-  }, [])
+  const [dpr, setDpr] = useState(1)
+  useLayoutEffect(() => setDpr(window.devicePixelRatio), [])
   return (
     <ThreeCanvas
+      flat
       gl={{
         stencil: false,
         alpha: false,
         antialias: true,
         preserveDrawingBuffer: true,
       }}
-      // shadows
-      linear
-      onCreated={({ gl }) => {
-        gl.setClearColor(color ? color : "white")
-      }}
+      onCreated={({ gl }) => gl.setClearColor(color ? color : "white")}
       dpr={dpr}
       {...rest}
     >

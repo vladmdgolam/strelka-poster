@@ -13,13 +13,13 @@ const Page = () => {
         <boxGeometry />
         <meshStandardMaterial />
         <Instance
-          color="red"
+          color="#FF0000"
           scale={2}
           position={[1, 2, 3]}
           rotation={[Math.PI / 3, 0, 0]}
         />
         <Instance
-          color="blue"
+          color="#0150E6"
           scale={1}
           position={[1, 0, 3]}
           rotation={[Math.PI / 3, 0, 0]}

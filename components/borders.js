@@ -1,13 +1,13 @@
 import { useThree } from "@react-three/fiber"
 import Plane from "./plane"
 
-const Borders = ({ color }) => {
+const Borders = () => {
   const { width, height } = useThree(({ viewport }) => viewport)
 
   const blockHeight = height
-  const { borders, topHeight, top, visible, topVisible } = {
+  const { borders, topHeight, top } = {
     topHeight: height,
-    visible: true,
+    visible: false,
     topVisible: true,
     top: true,
     borders: true,
@@ -16,50 +16,38 @@ const Borders = ({ color }) => {
   return (
     <>
       <Plane
-        visible={visible}
         args={[width, height]}
         position={[0, 0, 0]}
         rotation={[Math.PI / 2, -Math.PI, 0]}
-        color={color}
       />
       {borders && (
         <>
           {top && (
             <Plane
-              visible={borders && visible && topVisible}
               args={[width, height]}
               position={[0, topHeight, 0]}
               rotation={[-Math.PI / 2, -Math.PI, 0]}
-              color={color}
             />
           )}
           <Plane
-            visible={visible}
             position={[-width / 2, blockHeight / 2, 0]}
             args={[blockHeight, height]}
             rotation={[Math.PI / 2, Math.PI / 2, 0]}
-            color={color}
           />
           <Plane
-            visible={visible}
             position={[width / 2, blockHeight / 2, 0]}
             args={[blockHeight, height]}
             rotation={[Math.PI / 2, -Math.PI / 2, 0]}
-            color={color}
           />
           <Plane
-            visible={visible}
             position={[0, blockHeight / 2, -height / 2]}
             args={[width, blockHeight]}
             rotation={[0, 0, 0]}
-            color={color}
           />
           <Plane
-            visible={visible}
             position={[0, blockHeight / 2, height / 2]}
             args={[width, blockHeight]}
             rotation={[0, Math.PI, 0]}
-            color={color}
           />
         </>
       )}

@@ -1,7 +1,7 @@
 import { Instance, Instances } from "@react-three/drei"
 import { useMemo } from "react"
 import { generateFigureData } from "@/helpers"
-import { useConvexPolyhedron } from "@react-three/cannon"
+import { useConvexPolyhedron, useCylinder } from "@react-three/cannon"
 import { ConeGeometry, DoubleSide } from "three"
 import toConvexProps from "@/helpers/toConvexProps"
 
@@ -24,7 +24,8 @@ const RandomCones = ({ number = 100, sizeScale }) => {
 const Cones = ({ data }) => {
   return (
     <>
-      <coneBufferGeometry args={[r, r, 30, 1]} />
+      <cylinderGeometry args={[0, r, r * 2, 30]} />
+      <meshBasicMaterial side={DoubleSide} />
       {data.map(({ id, ...props }) => (
         <Cone key={id} {...props} />
       ))}
@@ -33,14 +34,20 @@ const Cones = ({ data }) => {
 }
 
 const Cone = ({ scale, color, ...rest }) => {
-  const geometry = useMemo(
-    () => new ConeGeometry(r * scale[0], r * scale[1], 5, 1),
-    [scale]
-  )
-  const args = useMemo(() => toConvexProps(geometry), [geometry])
-  const [ref] = useConvexPolyhedron(() => ({
-    args,
+  // const geometry = useMemo(
+  //   () => new ConeGeometry(r * scale[0], r * scale[1], 5, 1),
+  //   [scale]
+  // )
+  // const args = useMemo(() => toConvexProps(geometry), [geometry])
+  // const [ref] = useConvexPolyhedron(() => ({
+  //   args,
+  //   mass: 1,
+  //   ...rest,
+  // }))
+
+  const [ref] = useCylinder(() => ({
     mass: 1,
+    args: [0.01, scale[0] * r, scale[1] * r * 2, 20],
     ...rest,
   }))
 

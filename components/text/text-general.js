@@ -11,7 +11,7 @@ const TextGeneral = ({
   ...rest
 }) => {
   const ref = useRef(null)
-  const { camera } = useThree()
+  const { camera } = useThree(({ camera }) => camera)
 
   useFrame(() => {
     look && ref.current && ref.current.lookAt(camera.position)

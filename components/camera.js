@@ -14,15 +14,9 @@ const Camera = () => {
 
   const dist = useMemo(() => {
     const vFOV = MathUtils.degToRad(fov)
-    const dist = height / (2 * Math.tan(vFOV / 2))
+    const dist = (height * 1.025) / (2 * Math.tan(vFOV / 2))
     return dist
   }, [height])
-
-  // const sideDist = useMemo(() => {
-  //   const vFOV = MathUtils.degToRad(fov)
-  //   const dist = height / (2 * Math.tan(vFOV / 2))
-  //   return dist
-  // }, [height])
 
   const resetCamera = () => {
     if (cam.current) {
@@ -87,6 +81,7 @@ const Camera = () => {
         📷🔀
       </ControlsBtn> */}
       <OrbitControls
+        enabled={false}
         enablePan={false}
         enableRotate={false}
         onUpdate={(self) => self.update()}

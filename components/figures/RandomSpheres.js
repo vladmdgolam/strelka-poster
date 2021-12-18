@@ -6,7 +6,6 @@ import { generateFigureData } from "@/helpers"
 const r = 0.488 // sqrt(3/π)/2
 
 const RandomSpheres = ({ number = 10, sizeScale }) => {
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
   const data = useMemo(
     () => generateFigureData({ number, figure: "sphere", sizeScale }),
     [number, sizeScale]
