@@ -20,19 +20,15 @@ const ControlledPhysics = ({ children }) => {
   const [gravity, setGravity] = useState([0, -10, 0])
   const [init, setInit] = useState(false)
 
-  const {
-    position: devicePosition,
-    requestDeviceOrientation,
-    working,
-  } = useDeviceOrientation()
+  const { position, requestDeviceOrientation, working } = useDeviceOrientation()
 
   useEffect(() => {
-    let futureGravity = [devicePosition[2], -10, devicePosition[1]].map(
+    let futureGravity = [position[2], -10, position[1]].map(
       (x) => x * (inverted ? -1 : 1) * (!off ? 1 : 0)
     )
 
     setGravity(futureGravity)
-  }, [devicePosition, inverted, off])
+  }, [position, inverted, off])
 
   const start = () => {
     if (window.DeviceOrientationEvent && "ontouchstart" in window) {
@@ -50,9 +46,9 @@ const ControlledPhysics = ({ children }) => {
       >
         ⬆️
       </ControlsBtn>
-      <ControlsBtn onClick={() => setOff(!off)} position={2}>
+      {/* <ControlsBtn onClick={() => setOff(!off)} position={2}>
         👨‍🚀
-      </ControlsBtn>
+      </ControlsBtn> */}
       {!(init || working) && <IntroScreen start={start} />}
 
       <Physics gravity={gravity}>{children}</Physics>

@@ -166,7 +166,7 @@ canvas {
   }
 }
 
-.menu-items menu {
+menu {
   display: flex;
   align-items: flex-end;
   pointer-events: none;
@@ -176,11 +176,13 @@ canvas {
   position: fixed;
   bottom: 0;
   width: 100%;
+  z-index: 1;
 }
 
 .menu-items div {
   display: flex;
   align-items: flex-end;
+  pointer-events: all;
   justify-content: space-between;
   grid-gap: 10px;
   padding: 10px;

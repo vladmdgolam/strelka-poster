@@ -21,9 +21,9 @@ const Home = () => {
   return (
     <>
       <Leva hidden />
+      <ControlsMenu />
       <Canvas color={initialColor}>
         <ContextBridge>
-          <ControlsMenu />
           <ControlsBtn onClick={randomize} position={8}>
             🔀
           </ControlsBtn>
