@@ -13,7 +13,7 @@ const RandomCones = ({ number = 100, sizeScale }) => {
     [number, sizeScale]
   )
   return (
-    <Instances>
+    <Instances limit={10}>
       <meshBasicMaterial side={DoubleSide} />
       <Cones data={data} />
     </Instances>

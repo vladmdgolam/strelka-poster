@@ -12,7 +12,7 @@ const RandomSpheres = ({ number = 10, sizeScale }) => {
   )
 
   return (
-    <Instances>
+    <Instances limit={10}>
       <sphereBufferGeometry args={[r, 32, 32]} />
       <meshBasicMaterial />
       {data.map(({ id, ...props }) => (

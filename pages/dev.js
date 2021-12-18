@@ -1,5 +1,6 @@
 import Canvas from "@/components/canvas"
 import ControlsBtn from "@/components/controls/ControlsBtn"
+import ControlsMenu from "@/components/menu"
 import Scene from "@/components/scene"
 import { randomStrelkaColor } from "@/helpers"
 import AppContext from "@/hooks/AppContext"
@@ -19,7 +20,8 @@ const Home = () => {
 
   return (
     <>
-      <Leva/>
+      <Leva />
+      <ControlsMenu />
       <Canvas color={color}>
         <ContextBridge>
           <ControlsBtn onClick={randomize} position={8}>

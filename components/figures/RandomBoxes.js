@@ -11,7 +11,7 @@ const RandomBoxes = ({ number = 10, sizeScale }) => {
     [number, sizeScale]
   )
   return (
-    <Instances>
+    <Instances limit={10}>
       <meshBasicMaterial />
       <Boxes data={data} />
     </Instances>
