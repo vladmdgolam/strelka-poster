@@ -10,7 +10,7 @@ import ControlsBtn from "./controls/ControlsBtn"
 import RandomFigures from "./figures/RandomFigures"
 import Typography from "./typography"
 
-const Scene = ({ random, initialColor }) => {
+const Scene = ({ random, initialColor, position }) => {
   const [color, setColor] = useState(initialColor)
 
   const gl = useThree(({ gl }) => gl)
@@ -30,7 +30,7 @@ const Scene = ({ random, initialColor }) => {
         📸
       </ControlsBtn>
       <Camera />
-      <ControlledPhysics>
+      <ControlledPhysics position={position}>
         <Borders color={color} random={random} />
         <Suspense fallback={null}>
           <Typography random={random} color={textColor} />

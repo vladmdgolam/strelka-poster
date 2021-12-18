@@ -1,11 +1,10 @@
-import useDeviceOrientation from "@/hooks/useDeviceOrientation"
+import useUpdateEffect from "@/hooks/useUpdateEffect"
 import { Physics } from "@react-three/cannon"
 import { folder, useControls } from "leva"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import ControlsBtn from "./controls/ControlsBtn"
-import IntroScreen from "./html/intro-screen"
 
-const ControlledPhysics = ({ children }) => {
+const ControlledPhysics = ({ children, position }) => {
   const [inverted, setInverted] = useState(false)
   const [off, setOff] = useState(false)
   useControls({
@@ -18,25 +17,14 @@ const ControlledPhysics = ({ children }) => {
     ),
   })
   const [gravity, setGravity] = useState([0, -10, 0])
-  const [init, setInit] = useState(false)
 
-  const { position, requestDeviceOrientation, working } = useDeviceOrientation()
-
-  useEffect(() => {
+  useUpdateEffect(() => {
     let futureGravity = [position[2], -10, position[1]].map(
       (x) => x * (inverted ? -1 : 1) * (!off ? 1 : 0)
     )
 
     setGravity(futureGravity)
   }, [position, inverted, off])
-
-  const start = () => {
-    if (window.DeviceOrientationEvent && "ontouchstart" in window) {
-      requestDeviceOrientation()
-    } else {
-      setInit(true)
-    }
-  }
 
   return (
     <>
@@ -49,7 +37,6 @@ const ControlledPhysics = ({ children }) => {
       {/* <ControlsBtn onClick={() => setOff(!off)} position={2}>
         👨‍🚀
       </ControlsBtn> */}
-      {!(init || working) && <IntroScreen start={start} />}
 
       <Physics gravity={gravity}>{children}</Physics>
     </>

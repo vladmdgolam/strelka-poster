@@ -65,7 +65,6 @@ canvas {
 /* Blocks */
 
 .html {
-  pointer-events: none;
   display: grid;
   align-items: flex-end;
 
@@ -73,9 +72,10 @@ canvas {
     pointer-events: all;
   }
   &_intro {
+    z-index: 1;
+    position: fixed;
     color: black;
     text-align: center;
-    pointer-events: none;
     padding: 50px;
     display: flex;
     align-items: center;

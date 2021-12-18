@@ -1,9 +1,11 @@
 import Canvas from "@/components/canvas"
 import ControlsBtn from "@/components/controls/ControlsBtn"
+import IntroScreen from "@/components/html/intro-screen"
 import ControlsMenu from "@/components/menu"
 import Scene from "@/components/scene"
 import { randomExtendedColor } from "@/helpers"
 import AppContext from "@/hooks/AppContext"
+import useInit from "@/hooks/useInit"
 import useRandom from "@/hooks/useRandom"
 import { useContextBridge } from "@react-three/drei"
 import { Leva } from "leva"
@@ -18,16 +20,23 @@ const Home = () => {
 
   const ContextBridge = useContextBridge(AppContext)
 
+  const { init, working, start, position } = useInit()
+
   return (
     <>
       <Leva hidden />
+      {!(init || working) && <IntroScreen start={start} />}
       <ControlsMenu />
       <Canvas color={initialColor}>
         <ContextBridge>
           <ControlsBtn onClick={randomize} position={8}>
             🔀
           </ControlsBtn>
-          <Scene initialColor={initialColor} random={random} />
+          <Scene
+            position={position}
+            initialColor={initialColor}
+            random={random}
+          />
         </ContextBridge>
       </Canvas>
     </>
