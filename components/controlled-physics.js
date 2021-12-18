@@ -55,11 +55,7 @@ const ControlledPhysics = ({ children }) => {
       </ControlsBtn>
       {!(init || working) && <IntroScreen start={start} />}
 
-      <Physics gravity={gravity}>
-        {/* <Debug> */}
-        {children}
-        {/* </Debug> */}
-      </Physics>
+      <Physics gravity={gravity}>{children}</Physics>
     </>
   )
 }
