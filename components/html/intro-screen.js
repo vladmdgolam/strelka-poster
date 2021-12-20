@@ -17,7 +17,7 @@ const IntroScreen = ({ start }) => (
       <h2>
         let&apos;s create together!
         <br />
-        use your camera, text and voice!
+        use your text!
       </h2>
       <button className="btn btn__intro" onClick={start}>
         start
