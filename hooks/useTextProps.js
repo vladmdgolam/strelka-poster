@@ -61,7 +61,7 @@ const useTextProps = (presetId) => {
     fontSize: fontSize || 1,
     center: center || false,
     text: text || "STRELKA",
-    repeat: repeat || 1,
+    repeat: repeat || 0,
     textAlign: textAlign || "center",
     anchorX: anchorX || "center",
     anchorY: anchorY || "middle",

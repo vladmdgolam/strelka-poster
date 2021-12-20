@@ -9,16 +9,15 @@ export const palettes = [colors, ["#000"], ["#fff"]]
 export const sizeScale = 2
 
 export const presets = [
-  { text: "STRELKA", fontSize: 1, repeat: 1, center: true },
+  { text: "STRELKA", fontSize: 1, center: true },
   {
     text: `STRELKA \nOPEN CODE`,
     fontSize: 0.4,
-    repeat: 1,
     center: true,
   },
   {
     text: `STRELKA OPEN CODE `,
-    fontSize: 0.4,
+    fontSize: 0.34,
     repeat: 100,
     center: false,
     clip: true,
