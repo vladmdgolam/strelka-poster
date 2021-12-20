@@ -10,7 +10,7 @@ import RandomBoxes from "./RandomBoxes"
 import RandomCones from "./RandomCones"
 import RandomCylinders from "./RandomCylinders"
 
-const range = [0, 10]
+const range = [0, 7]
 
 const control = {
   min: 0,
