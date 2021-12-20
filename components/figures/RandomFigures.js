@@ -25,7 +25,7 @@ const RandomFigures = ({ random }) => {
     isMobile ? initSizeScale / 2 : initSizeScale
   )
 
-  useEffect(
+  useUpdateEffect(
     () => setScale(isMobile ? initSizeScale / 2 : initSizeScale),
     [isMobile]
   )

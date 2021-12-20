@@ -14,7 +14,6 @@ const Plane = ({
   }))
 
   useUpdateEffect(() => api.position.set(...position), [position])
-
   useUpdateEffect(() => api.rotation.set(...rotation), [rotation])
 
   return <></>
