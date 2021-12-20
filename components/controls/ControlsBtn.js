@@ -16,7 +16,7 @@ const ControlsBtn = ({
       [position]: { name: children, props },
     }
     requestSetMenuItems(menuItems)
-  }, [])
+  }, [children])
 
   return <></>
 }

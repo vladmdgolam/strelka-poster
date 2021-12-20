@@ -13,7 +13,7 @@ const TextGeneral = forwardRef(
     return (
       <>
         <ControlsBtn position={11} onClick={() => setDT((prev) => !prev)}>
-          🙈
+          {depthTest ? "🐵" : "🙈"}
         </ControlsBtn>
         <Text
           font="/lazurski-cyrillic.woff"
