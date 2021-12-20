@@ -1,22 +1,15 @@
+import useHotkey from "@/hooks/useHotkey"
 import { useKeyPress } from "@/hooks/useKeyPress"
 import useUpdateEffect from "@/hooks/useUpdateEffect"
 import { Physics } from "@react-three/cannon"
-import { folder, useControls } from "leva"
+
 import { useState } from "react"
 import ControlsBtn from "./controls/ControlsBtn"
 
 const ControlledPhysics = ({ children, position }) => {
   const [inverted, setInverted] = useState(false)
   const [off, setOff] = useState(false)
-  useControls({
-    Gravity: folder(
-      {
-        inv: { value: inverted, onChange: (inv) => setInverted(inv) },
-        off: { value: off, onChange: (inv) => setOff(inv) },
-      },
-      { collapsed: true }
-    ),
-  })
+
   const [gravity, setGravity] = useState([0, -10, 0])
 
   useUpdateEffect(() => {
@@ -28,6 +21,7 @@ const ControlledPhysics = ({ children, position }) => {
   }, [position, inverted, off])
 
   useKeyPress("u", (down) => setInverted(down))
+  useHotkey("f", () => setOff((off) => !off))
 
   return (
     <>
