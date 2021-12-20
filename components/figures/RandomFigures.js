@@ -1,8 +1,8 @@
 import { randomNumber } from "@/helpers"
 import { sizeScale as initSizeScale } from "@/helpers/constants"
+import useIsMobile from "@/hooks/useIsMobile"
 import useUpdateEffect from "@/hooks/useUpdateEffect"
 import { folder, useControls } from "leva"
-// import { useControls } from "leva"
 import { useEffect, useState } from "react"
 import ControlsBtn from "../controls/ControlsBtn"
 import RandomSpheres from "../figures/RandomSpheres"
@@ -20,7 +20,15 @@ const control = {
 
 const RandomFigures = ({ random }) => {
   // const [number, setNumber] = useState(randomNumber(...range))
-  const [sizeScale, setScale] = useState(initSizeScale)
+  const isMobile = useIsMobile()
+  const [sizeScale, setScale] = useState(
+    isMobile ? initSizeScale / 2 : initSizeScale
+  )
+
+  useEffect(
+    () => setScale(isMobile ? initSizeScale / 2 : initSizeScale),
+    [isMobile]
+  )
 
   const [{ spheresCount, boxesCount, cylCount, conesCount }, set] = useControls(
     () => ({

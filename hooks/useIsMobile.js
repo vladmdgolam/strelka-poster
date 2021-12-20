@@ -3,8 +3,7 @@ import { useContext } from "react"
 import AppContext from "@/hooks/AppContext"
 
 const useIsMobile = () => {
-  const { isMobile } = useContext(AppContext)
-  return isMobile
+  return useContext(AppContext).isMobile
 }
 
 export default useIsMobile

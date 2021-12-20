@@ -1,6 +1,5 @@
-import HtmlWrapper from "../html/html"
 import AppContext from "@/hooks/AppContext"
-import { useContext, useEffect } from "react"
+import { useContext } from "react"
 
 const ControlsMenu = () => {
   const { menuItems } = useContext(AppContext)
