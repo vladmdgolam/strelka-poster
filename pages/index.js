@@ -5,8 +5,8 @@ import ControlsMenu from "@/components/menu"
 import Scene from "@/components/scene"
 import { randomExtendedColor } from "@/helpers"
 import AppContext from "@/hooks/AppContext"
+import useHotkey from "@/hooks/useHotkey"
 import useInit from "@/hooks/useInit"
-import useRandom from "@/hooks/useRandom"
 import { useContextBridge } from "@react-three/drei"
 import { Leva } from "leva"
 import { useState } from "react"
@@ -17,6 +17,7 @@ const Home = () => {
 
   const [random, setRandom] = useState(0)
   const randomize = () => setRandom(Math.random())
+  useHotkey("r", randomize)
 
   const ContextBridge = useContextBridge(AppContext)
 

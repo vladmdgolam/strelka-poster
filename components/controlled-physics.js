@@ -1,3 +1,4 @@
+import { useKeyPress } from "@/hooks/useKeyPress"
 import useUpdateEffect from "@/hooks/useUpdateEffect"
 import { Physics } from "@react-three/cannon"
 import { folder, useControls } from "leva"
@@ -25,6 +26,8 @@ const ControlledPhysics = ({ children, position }) => {
 
     setGravity(futureGravity)
   }, [position, inverted, off])
+
+  useKeyPress("u", (down) => setInverted(down))
 
   return (
     <>
