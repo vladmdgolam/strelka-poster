@@ -56,7 +56,7 @@ export const presets = [
     text: `STRELKA OPEN CODE`,
     fontSize: 0.35,
     letterSpacing: 0.014,
-    repeat: 111,
+    repeat: 1,
     center: false,
     clip: true,
   },

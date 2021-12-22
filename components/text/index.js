@@ -5,7 +5,7 @@ import ControlsBtn from "../controls/ControlsBtn"
 import useHotkey from "@/hooks/useHotkey"
 // import { colors } from "@/helpers/constants"
 
-const calcFinRepeat = (text, repeat, fontSize) => {
+const calcFinRepeat = (text, fontSize) => {
   // 1 → 40
   // 40/(fontSize) = repeat for 17 characters
   // 40*17/(fontSize) = repeat for 1 character
@@ -35,7 +35,7 @@ const TextGeneral = forwardRef(
     const [depthTest, setDT] = useState(true)
     useHotkey("m", () => setDT((prev) => !prev))
 
-    const finText = repeat ? calcFinRepeat(text, repeat, fontSize) : text
+    const finText = repeat ? calcFinRepeat(text, fontSize) : text
 
     return (
       <>

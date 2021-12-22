@@ -39,29 +39,28 @@ const Typography = ({ color, random }) => {
   const finFontSize =
     (screenHeightMultiplier * fontSize * pixelWidth) / screenWidthDivider
 
-  const finRepeat = repeat ? Math.round((repeat * 1440) / pixelWidth) : 0
-
   let n = Math.floor(height / finFontSize)
   let lineHeight = height / (n * finFontSize)
 
   return (
     <>
-      <ControlsBtn position={10} description="text" onClick={requestTextFromUser}>
+      <ControlsBtn
+        position={10}
+        description="text"
+        onClick={requestTextFromUser}
+      >
         💬
       </ControlsBtn>
       <TextGeneral
         text={userText ? userText : text}
-        repeat={finRepeat}
+        repeat={repeat}
         rotation={[-Math.PI / 2, 0, 0]}
         fontSize={finFontSize}
         position={center ? [0, 0.02, 0] : [-width / 2, 0.02, -height / 2]}
         maxWidth={width}
         clip={clip}
         visible={visible}
-        // lineHeight={Math.floor(height) / height}
-        // lineHeight={(lh * k * finLH) / height}
         lineHeight={lineHeight}
-        // lineHeight={1}
         overflowWrap="break-word"
         {...textProps}
         color={color}
