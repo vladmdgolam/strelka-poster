@@ -39,7 +39,7 @@ const Typography = ({ color, random }) => {
   const finFontSize =
     (screenHeightMultiplier * fontSize * pixelWidth) / screenWidthDivider
 
-  const finRepeat = repeat ? Math.round((repeat * 1440) / pixelWidth) : 1
+  const finRepeat = repeat ? Math.round((repeat * 1440) / pixelWidth) : 0
 
   let n = Math.floor(height / finFontSize)
   let lineHeight = height / (n * finFontSize)

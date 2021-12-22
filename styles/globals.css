@@ -190,6 +190,7 @@ canvas {
     &:hover {
       background: rgba(0, 0, 0, 1);
       background: var(--btn-hover-color);
+      color: var(--btn-color);
     }
   }
   &__intro {
@@ -262,6 +263,7 @@ menu {
     position: absolute;
     font-size: initial;
     color: var(--color);
+    pointer-events:none;
     top: -10px;
     transform: translateY(-100%);
   }
