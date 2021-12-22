@@ -1,4 +1,5 @@
 import { presets } from "@/helpers/constants"
+import useHotkey from "@/hooks/useHotkey"
 import useTextProps from "@/hooks/useTextProps"
 import useUpdateEffect from "@/hooks/useUpdateEffect"
 import { useThree } from "@react-three/fiber"
@@ -28,8 +29,10 @@ const Typography = ({ color, random }) => {
     textProps: { center, repeat, text, clip, visible, fontSize, ...textProps },
   } = useTextProps(textPreset)
 
+  useHotkey(["t"], () => requestTextFromUser())
+
   const requestTextFromUser = () => {
-    const res = prompt("Type your text", "тут был Вёрджил")
+    const res = prompt("Type your text", "Strelka Open Code")
     res && setUserText(res)
   }
 
@@ -47,6 +50,7 @@ const Typography = ({ color, random }) => {
       <ControlsBtn
         position={10}
         description="text"
+        hotkey="t"
         onClick={requestTextFromUser}
       >
         💬

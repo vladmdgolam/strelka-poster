@@ -11,10 +11,8 @@ import useUpdateEffect from "@/hooks/useUpdateEffect"
 import { useContextBridge } from "@react-three/drei"
 import { useState } from "react"
 
-const _initialColor = randomExtendedColor()
-
 const Home = () => {
-  const [initialColor] = useState(_initialColor)
+  const [initialColor] = useState(randomExtendedColor())
 
   const [random, setRandom] = useState(0)
   const randomize = () => setRandom(Math.random())
@@ -30,8 +28,10 @@ const Home = () => {
     setColor(nextColor)
   }, [random])
 
+  
   const textColor = color === "#FFF" || color === "#FFFF06" ? "black" : "white"
 
+  useHotkey("i", showInfo)
   return (
     <>
       <div
@@ -65,6 +65,7 @@ const Home = () => {
       <ControlsBtn
         onClick={showInfo}
         description="info"
+        hotkey="i"
         position={1}
         group="left"
       >
@@ -72,7 +73,12 @@ const Home = () => {
       </ControlsBtn>
       <Canvas color={initialColor}>
         <ContextBridge>
-          <ControlsBtn onClick={randomize} description="random" position={8}>
+          <ControlsBtn
+            hotkey="r"
+            onClick={randomize}
+            description="random"
+            position={8}
+          >
             🔀
           </ControlsBtn>
           <Scene
