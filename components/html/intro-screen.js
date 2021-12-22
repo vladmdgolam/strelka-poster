@@ -1,26 +1,23 @@
 const IntroScreen = ({ start }) => (
   <div className="html_intro">
     <header>
-      <h1>
+      <h2>
         open code
         <br />
         poster generator
-      </h1>
+      </h2>
       <h3 className="credits">
-        by Vlad Md golam
+        made by Vlad Md Golam
         <br />
         and Strelka Institute
+        <br />
+        <a href="https://github.com/">read more</a>
       </h3>
-      <a href="https://github.com/">read more</a>
     </header>
     <div className="launch">
-      <h2>
-        let&apos;s create together!
-        <br />
-        use your text!
-      </h2>
+      <h1>Let’s play!</h1>
       <button className="btn btn__intro" onClick={start}>
-        start
+        START
       </button>
     </div>
     <footer></footer>

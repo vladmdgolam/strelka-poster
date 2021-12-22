@@ -39,7 +39,6 @@ const RandomFigures = ({ random }) => {
   const childProps = { sizeScale }
 
   const { spheresCount, boxesCount, cylCount, conesCount } = figuresCount
-  console.log("figures")
 
   return (
     <>

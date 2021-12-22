@@ -70,6 +70,7 @@ const ControlledPhysics = ({ children, deviceOrientation = false }) => {
       <ControlsBtn
         onPointerDown={() => setInverted(true)}
         onPointerUp={() => setInverted(false)}
+        description="gravity"
       >
         ⬆️
       </ControlsBtn>

@@ -1,9 +1,9 @@
 import { forwardRef, useState } from "react"
-import { Plane, Text } from "@react-three/drei"
+import { Text } from "@react-three/drei"
 import { useThree } from "@react-three/fiber"
 import ControlsBtn from "../controls/ControlsBtn"
 import useHotkey from "@/hooks/useHotkey"
-import { colors } from "@/helpers/constants"
+// import { colors } from "@/helpers/constants"
 
 // eslint-disable-next-line react/display-name
 const TextGeneral = forwardRef(
@@ -30,7 +30,11 @@ const TextGeneral = forwardRef(
 
     return (
       <>
-        <ControlsBtn position={11} onClick={() => setDT((prev) => !prev)}>
+        <ControlsBtn
+          description="fill"
+          position={11}
+          onClick={() => setDT((prev) => !prev)}
+        >
           {depthTest ? "🐵" : "🙈"}
         </ControlsBtn>
 
@@ -57,20 +61,20 @@ const TextGeneral = forwardRef(
   }
 )
 
-const LineHeightHelper = ({ calcLineHeight, height, maxWidth }) =>
-  Array.from({ length: Math.floor(height) }, (v, k) => k).map((el) => (
-    <Plane
-      key={el}
-      args={[maxWidth, calcLineHeight, 10]}
-      rotation={[-Math.PI / 2, 0, 0]}
-      position={[
-        0,
-        0.02,
-        calcLineHeight * el + calcLineHeight / 2 - height / 2,
-      ]}
-    >
-      <meshBasicMaterial color={colors[el % colors.length]} />
-    </Plane>
-  ))
+// const LineHeightHelper = ({ calcLineHeight, height, maxWidth }) =>
+//   Array.from({ length: Math.floor(height) }, (v, k) => k).map((el) => (
+//     <Plane
+//       key={el}
+//       args={[maxWidth, calcLineHeight, 10]}
+//       rotation={[-Math.PI / 2, 0, 0]}
+//       position={[
+//         0,
+//         0.02,
+//         calcLineHeight * el + calcLineHeight / 2 - height / 2,
+//       ]}
+//     >
+//       <meshBasicMaterial color={colors[el % colors.length]} />
+//     </Plane>
+//   ))
 
 export default TextGeneral

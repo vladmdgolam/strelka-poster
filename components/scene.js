@@ -1,8 +1,7 @@
 import useUpdateEffect from "@/hooks/useUpdateEffect"
 import { useThree } from "@react-three/fiber"
-import { Suspense, useLayoutEffect, useState } from "react"
+import { Suspense } from "react"
 
-import { randomExtendedColor } from "@/helpers"
 import useTakeScreenshot from "@/hooks/useTakeScreenshot"
 import Borders from "./borders"
 import Camera from "./camera"
@@ -13,18 +12,14 @@ import Typography from "./typography"
 
 // import WebcamBgWrapper from "./webcam-bg-wrapper"
 
-const Scene = ({ random, initialColor, position, deviceOrientation }) => {
-  const [color, setColor] = useState(initialColor)
-
+const Scene = ({ random, color, position, textColor, deviceOrientation }) => {
   const takeScreenshot = useTakeScreenshot()
 
   const gl = useThree(({ gl }) => gl)
 
   useUpdateEffect(() => {
-    const nextColor = randomExtendedColor()
-    setColor(nextColor)
-    gl.setClearColor(nextColor)
-  }, [random])
+    gl.setClearColor(color)
+  }, [color])
 
   // const [cameraCapable, setCameraCapable] = useState(false)
   // useLayoutEffect(
@@ -32,11 +27,14 @@ const Scene = ({ random, initialColor, position, deviceOrientation }) => {
   //   []
   // )
 
-  const textColor = color === "#FFF" || color === "#FFFF06" ? "black" : "white"
-
   return (
     <>
-      <ControlsBtn position={4} group="right" onClick={takeScreenshot}>
+      <ControlsBtn
+        position={4}
+        description="save"
+        group="right"
+        onClick={takeScreenshot}
+      >
         📸
       </ControlsBtn>
       <Camera />

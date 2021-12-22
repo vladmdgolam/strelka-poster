@@ -11,17 +11,25 @@ body {
   font-family: "Fugue", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
   color: inherit;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 p,
 h1,
 h2,
-h3 {
+h3,
+h4 {
   margin: 0;
+  font-weight: normal;
 }
 
 * {
@@ -55,11 +63,22 @@ canvas {
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: "Fugue";
+  src: url("/Fugue-Regular.woff2") format("woff2"),
+    url("/Fugue-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* Utilities */
 
 .flex {
   display: flex;
+}
+.contents {
+  display: contents;
 }
 
 /* Blocks */
@@ -74,29 +93,51 @@ canvas {
   &_intro {
     z-index: 1;
     position: fixed;
-    color: black;
     text-align: center;
     padding: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(80px);
     width: 100%;
     height: 100%;
+    @media (max-width: 700px) {
+      padding: 15px;
+    }
     & > * {
       flex-basis: 100%;
     }
     h1 {
-      font-size: 40px;
-      margin-bottom: 25px;
-      line-height: 0.825;
+      font-size: 56px;
+      line-height: 64px;
     }
     h2 {
-      font-size: 24px;
+      font-size: 36px;
+      line-height: 41px;
+      margin-bottom: 20px;
+      font-family: Lazurski, serif;
+      text-transform: uppercase;
     }
     h3 {
+      font-size: 24px;
+    }
+    h4 {
       font-size: 18px;
+    }
+    @media (max-width: 700px) {
+      h1 {
+        font-size: 36px;
+        line-height: 41px;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 29px;
+      }
+      h3 {
+        font-size: 18px;
+        line-height: 21px;
+      }
     }
   }
 }
@@ -106,10 +147,6 @@ canvas {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.credits {
-  margin-bottom: 10px;
 }
 
 .controls {
@@ -133,35 +170,42 @@ canvas {
   @media (max-width: 700px) {
     font-size: 14px;
   }
-  &_round {
+  &_control {
     border: none;
     color: white;
     cursor: pointer;
     text-align: center;
     background: rgba(0, 0, 0, 0.5);
+    background: var(--btn-color);
     backdrop-filter: blur(4px);
     user-select: none;
     display: flex;
     align-items: center;
+    padding: 10px;
+    aspect-ratio: 1/1;
+    width: 100%;
+    width: 50px;
     justify-content: center;
     &:active,
     &:hover {
       background: rgba(0, 0, 0, 1);
+      background: var(--btn-hover-color);
     }
   }
   &__intro {
     all: unset;
     cursor: pointer;
-    color: #000;
+    background: var(--btn-color);
+    color: var(--color);
     margin-top: 20px;
-    background: white;
     padding: 10px 20px;
     font-size: 18px;
     transition: all 0.25s ease;
     &:active,
     &:hover {
-      background: #000;
-      color: white;
+      background: var(--btn-hover-color);
+      /* color: var(--color); */
+      color: var(--btn-color);
     }
   }
 }
@@ -171,12 +215,16 @@ menu {
   align-items: flex-end;
   pointer-events: none;
   justify-content: space-between;
-  grid-gap: 10px;
-  padding: 10px;
+  grid-gap: 5px;
+  padding: 0 10px 10px;
   position: fixed;
   bottom: 0;
   width: 100%;
   z-index: 1;
+  @media (max-width: 700px) {
+    pointer-events: all;
+    overflow: scroll;
+  }
 }
 
 /* .menu-items > div {
@@ -185,20 +233,41 @@ menu {
 } */
 
 .descriptions {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 100%;
-    display: flex;
-    gap: 10px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 100%;
+  display: flex;
+  /* gap: 10px; */
 }
 
-.menu-items div {
-  display: flex;
-  align-items: flex-end;
-  pointer-events: all;
-  justify-content: space-between;
-  grid-gap: 10px;
-  padding: 10px;
-  position: relative;
+.menu-items {
+  .left {
+    justify-content: start;
+  }
+  .main {
+    justify-content: center;
+  }
+  .right {
+    justify-content: end;
+  }
+  & > section {
+    display: flex;
+    align-items: flex-end;
+    pointer-events: all;
+    grid-gap: 5px;
+    position: relative;
+  }
+  p {
+    position: absolute;
+    font-size: initial;
+    color: var(--color);
+    top: -10px;
+    transform: translateY(-100%);
+  }
+  .d-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }

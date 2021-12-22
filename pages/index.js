@@ -7,8 +7,8 @@ import { randomExtendedColor } from "@/helpers"
 import AppContext from "@/hooks/AppContext"
 import useHotkey from "@/hooks/useHotkey"
 import useInit from "@/hooks/useInit"
+import useUpdateEffect from "@/hooks/useUpdateEffect"
 import { useContextBridge } from "@react-three/drei"
-import { Leva } from "leva"
 import { useState } from "react"
 
 const _initialColor = randomExtendedColor()
@@ -22,23 +22,60 @@ const Home = () => {
 
   const ContextBridge = useContextBridge(AppContext)
 
-  const { init, working, start } = useInit()
+  const { init, working, start, showInfo } = useInit()
+
+  const [color, setColor] = useState(initialColor)
+  useUpdateEffect(() => {
+    const nextColor = randomExtendedColor()
+    setColor(nextColor)
+  }, [random])
+
+  const textColor = color === "#FFF" || color === "#FFFF06" ? "black" : "white"
 
   return (
     <>
-      <Leva hidden />
-      {!(init || working) && <IntroScreen start={start} />}
-      <ControlsMenu />
+      <div
+        className="contents"
+        style={{
+          color: textColor,
+          "--color": textColor,
+          "--btn-color":
+            textColor == "white" ? "rgb(0 0 0 / 1)" : "rgb(255 255 255 / 1)",
+          "--btn-hover-color":
+            textColor == "white" ? "rgb(256 256 256 / 1)" : "rgb(0 0 0 / 1)",
+        }}
+      >
+        {!(init || working) && <IntroScreen start={start} />}
+      </div>
+      <div
+        className="contents"
+        style={{
+          color: textColor,
+          "--color": textColor,
+          "--btn-color":
+            textColor == "white"
+              ? "rgb(128 128 128 / 50%)"
+              : "rgb(0 0 0 / 50%)",
+          "--btn-hover-color":
+            textColor == "white" ? "rgb(256 256 256 / 1)" : "rgb(0 0 0 / 1)",
+        }}
+      >
+        <ControlsMenu init={init} color={textColor} />
+      </div>
+      <ControlsBtn
+        onClick={showInfo}
+        description="info"
+        position={1}
+        group="left"
+      >
+        I
+      </ControlsBtn>
       <Canvas color={initialColor}>
         <ContextBridge>
-          <ControlsBtn onClick={randomize} position={8}>
+          <ControlsBtn onClick={randomize} description="random" position={8}>
             🔀
           </ControlsBtn>
-          <Scene
-            deviceOrientation={working}
-            initialColor={initialColor}
-            random={random}
-          />
+          <Scene deviceOrientation={working} color={color} random={random} />
         </ContextBridge>
       </Canvas>
     </>

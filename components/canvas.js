@@ -1,7 +1,7 @@
 import { Canvas as ThreeCanvas } from "@react-three/fiber"
 import { useLayoutEffect, useState } from "react"
 
-const Canvas = ({ children, size, color, ...rest }) => {
+const Canvas = ({ children, color, ...rest }) => {
   const [dpr, setDpr] = useState(1)
   useLayoutEffect(() => setDpr(window.devicePixelRatio), [])
   return (

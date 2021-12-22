@@ -46,7 +46,7 @@ const Typography = ({ color, random }) => {
 
   return (
     <>
-      <ControlsBtn position={10} onClick={requestTextFromUser}>
+      <ControlsBtn position={10} description="text" onClick={requestTextFromUser}>
         💬
       </ControlsBtn>
       <TextGeneral
