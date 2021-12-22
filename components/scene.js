@@ -34,7 +34,7 @@ const Scene = ({ random, initialColor, position }) => {
         <Borders color={color} random={random} />
         <Suspense fallback={null}>
           <Typography random={random} color={textColor} />
-          <RandomFigures random={random} />
+          {/* <RandomFigures random={random} /> */}
         </Suspense>
       </ControlledPhysics>
     </>

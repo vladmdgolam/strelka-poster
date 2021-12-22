@@ -9,6 +9,41 @@ export const palettes = [colors, ["#000"], ["#fff"]]
 export const sizeScale = 2
 
 export const presets = [
+  // {
+  //   text: `a`,
+  //   fontSize: 1,
+  //   repeat: 220,
+  //   center: false,
+  //   clip: true,
+  // },
+  // {
+  //   text: `a`,
+  //   fontSize: 2,
+  //   repeat: 220,
+  //   center: false,
+  //   clip: true,
+  // },
+  // {
+  //   text: `a`,
+  //   fontSize: 3,
+  //   repeat: 220,
+  //   center: false,
+  //   clip: true,
+  // },
+  // {
+  //   text: `a`,
+  //   fontSize: 4,
+  //   repeat: 220,
+  //   center: false,
+  //   clip: true,
+  // },
+  // {
+  //   text: `a`,
+  //   fontSize: 6,
+  //   repeat: 220,
+  //   center: false,
+  //   clip: true,
+  // },
   { text: "STRELKA", fontSize: 1, center: true },
   {
     text: `STRELKA \nOPEN CODE`,
@@ -16,9 +51,10 @@ export const presets = [
     center: true,
   },
   {
-    text: `STRELKA OPEN CODE `,
-    fontSize: 0.34,
-    repeat: 100,
+    text: `STRELKA OPEN CODE`,
+    fontSize: 0.35,
+    letterSpacing: 0.014,
+    repeat: 111,
     center: false,
     clip: true,
   },
@@ -36,6 +72,7 @@ export const positionsConstants = {
   topLeft: {
     anchorX: "left",
     anchorY: "top",
+    // textAlign: "left",
     textAlign: "justify",
   },
 }

@@ -5,6 +5,7 @@ const ControlsBtn = ({
   position = 1,
   group = "main",
   name = "click",
+  description = "",
   children,
   ...props
 }) => {

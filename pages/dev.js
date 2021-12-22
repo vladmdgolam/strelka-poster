@@ -13,7 +13,7 @@ import { useState } from "react"
 const Home = () => {
   const [color] = useState(randomStrelkaColor())
   const [random, setRandom] = useState(0)
-  const randomize = () => setRandom(random + 1)
+  const randomize = () => setRandom((random) => random + 1)
 
   const ContextBridge = useContextBridge(AppContext)
 

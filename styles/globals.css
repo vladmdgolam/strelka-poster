@@ -179,6 +179,20 @@ menu {
   z-index: 1;
 }
 
+/* .menu-items > div {
+  display: flex;
+  flex-direction: column;
+} */
+
+.descriptions {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 100%;
+    display: flex;
+    gap: 10px;
+}
+
 .menu-items div {
   display: flex;
   align-items: flex-end;
