@@ -26,27 +26,14 @@ const TextGeneral = forwardRef(
     useHotkey("m", () => setDT((prev) => !prev))
 
     const finText = repeat ? (text + " ").repeat(repeat) : text
-    const calcLineHeight = fontSize * lineHeight
+    // const calcLineHeight = fontSize * lineHeight
 
     return (
       <>
         <ControlsBtn position={11} onClick={() => setDT((prev) => !prev)}>
           {depthTest ? "🐵" : "🙈"}
         </ControlsBtn>
-        {Array.from({ length: Math.floor(height) }, (v, k) => k).map((el) => (
-          <Plane
-            key={el}
-            args={[maxWidth, calcLineHeight, 10]}
-            rotation={[-Math.PI / 2, 0, 0]}
-            position={[
-              0,
-              0.02,
-              calcLineHeight * el + calcLineHeight / 2 - height / 2,
-            ]}
-          >
-            <meshBasicMaterial color={colors[el % colors.length]} />
-          </Plane>
-        ))}
+
         <Text
           font="/lazurski-cyrillic.woff"
           ref={ref}
@@ -68,5 +55,21 @@ const TextGeneral = forwardRef(
     )
   }
 )
+
+const LineHeightHelper = ({ calcLineHeight, height, maxWidth }) =>
+  Array.from({ length: Math.floor(height) }, (v, k) => k).map((el) => (
+    <Plane
+      key={el}
+      args={[maxWidth, calcLineHeight, 10]}
+      rotation={[-Math.PI / 2, 0, 0]}
+      position={[
+        0,
+        0.02,
+        calcLineHeight * el + calcLineHeight / 2 - height / 2,
+      ]}
+    >
+      <meshBasicMaterial color={colors[el % colors.length]} />
+    </Plane>
+  ))
 
 export default TextGeneral
