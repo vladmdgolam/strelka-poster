@@ -11,9 +11,10 @@ import { useContextBridge } from "@react-three/drei"
 import { Leva } from "leva"
 import { useState } from "react"
 
+const _initialColor = randomExtendedColor()
+
 const Home = () => {
-  const [initialColor] = useState(randomExtendedColor())
-  console.log(initialColor, "init color")
+  const [initialColor] = useState(_initialColor)
 
   const [random, setRandom] = useState(0)
   const randomize = () => setRandom(Math.random())
@@ -21,7 +22,7 @@ const Home = () => {
 
   const ContextBridge = useContextBridge(AppContext)
 
-  const { init, working, start, position } = useInit()
+  const { init, working, start } = useInit()
 
   return (
     <>
@@ -34,7 +35,7 @@ const Home = () => {
             🔀
           </ControlsBtn>
           <Scene
-            position={position}
+            deviceOrientation={working}
             initialColor={initialColor}
             random={random}
           />

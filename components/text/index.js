@@ -35,9 +35,7 @@ const TextGeneral = forwardRef(
         </ControlsBtn>
 
         <Text
-          onSync={() => {
-            console.log("hiii biatch")
-          }}
+          onSync={() => {}}
           font="/lazurski-cyrillic.woff"
           ref={ref}
           maxWidth={maxWidth}

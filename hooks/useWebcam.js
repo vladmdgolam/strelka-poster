@@ -1,9 +1,8 @@
 import React, { useMemo, useState, useEffect } from "react"
-import { DoubleSide } from "three"
+import { DoubleSide, sRGBEncoding } from "three"
 
-export function useWebcam({ id }) {
-  const [width, setWidth] = useState(0)
-  const [height, setHeight] = useState(0)
+export function useWebcam({ id, desiredAspect = 1 }) {
+  const [videoAspect, setVideoAspect] = useState(1)
   const [vid] = useState(document.createElement("video"))
   const [videoTexture, setVideoTexture] = useState(null)
 
@@ -19,50 +18,64 @@ export function useWebcam({ id }) {
    *    console.log(devices)
    *  })
    *
-   * This is useful if you have more than one camera and don't want to make a UI to select one,
-   * but maybe I should write a Leva interface for this?
    *
    */
+
+  const aspect = videoAspect / desiredAspect
+
+  const props = {
+    "offset-x": aspect > 1 ? (1 - 1 / aspect) / 2 : 0,
+    "repeat-x": aspect > 1 ? 1 / aspect : 1,
+    "offset-y": aspect > 1 ? 0 : (1 - aspect) / 2,
+    "repeat-y": aspect > 1 ? 1 : aspect,
+  }
 
   useMemo(() => {
     if (navigator.mediaDevices.getUserMedia) {
       const constraints = { video: { deviceId: id } }
 
       if (id === "default") return false
+      console.log(id)
 
       navigator.mediaDevices
         .getUserMedia(constraints)
         .then(function (stream) {
           const video = stream.getVideoTracks()
-          setWidth(video[0].getSettings().width)
-          setHeight(video[0].getSettings().height)
+
+          setVideoAspect(
+            video[0].getSettings().width / video[0].getSettings().height
+          )
           vid.style.position = "absolute"
-          vid.width = 160
-          vid.height = 120
+          vid.width = 100
+          vid.height = 100
           vid.srcObject = stream
-          //   vid.play()
           var playPromise = vid.play()
 
           if (playPromise !== undefined) {
             playPromise
-              .then((_) => {
+              .then(() => {
                 // Automatic playback started!
                 // Show playing UI.
+                console.log("video init")
+                vid &&
+                  setVideoTexture(
+                    <meshBasicMaterial side={DoubleSide}>
+                      <videoTexture
+                        {...props}
+                        onUpdate={(self) => (self.needsUpdate = true)}
+                        encoding={sRGBEncoding}
+                        attach="map"
+                        args={[vid]}
+                      />
+                    </meshBasicMaterial>
+                  )
               })
               .catch((error) => {
+                console.log("video error", error)
                 // Auto-play was prevented
                 // Show paused UI.
-                // console.log("fuck")
               })
           }
-
-          //   console.log("set video tex")
-
-          setVideoTexture(
-            <meshBasicMaterial side={DoubleSide}>
-              <videoTexture attach="map" args={[vid]} />
-            </meshBasicMaterial>
-          )
         })
         .catch(function (error) {
           console.warn(error)
@@ -70,5 +83,5 @@ export function useWebcam({ id }) {
     }
   }, [vid, id])
 
-  return [videoTexture, width, height]
+  return videoTexture
 }

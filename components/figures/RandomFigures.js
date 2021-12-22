@@ -1,8 +1,7 @@
 import { randomNumber } from "@/helpers"
-import { sizeScale as initSizeScale } from "@/helpers/constants"
+import { sizeScale as initSizeScale, range } from "@/helpers/constants"
 import useIsMobile from "@/hooks/useIsMobile"
 import useUpdateEffect from "@/hooks/useUpdateEffect"
-import { folder, useControls } from "leva"
 import { useState } from "react"
 import ControlsBtn from "../controls/ControlsBtn"
 import RandomSpheres from "../figures/RandomSpheres"
@@ -10,16 +9,7 @@ import RandomBoxes from "./RandomBoxes"
 import RandomCones from "./RandomCones"
 import RandomCylinders from "./RandomCylinders"
 
-const range = [0, 7]
-
-const control = {
-  min: 0,
-  step: 1,
-  max: 30,
-}
-
 const RandomFigures = ({ random }) => {
-  // const [number, setNumber] = useState(randomNumber(...range))
   const isMobile = useIsMobile()
   const [sizeScale, setScale] = useState(
     isMobile ? initSizeScale / 2 : initSizeScale
@@ -30,41 +20,13 @@ const RandomFigures = ({ random }) => {
     [isMobile]
   )
 
-  const [{ spheresCount, boxesCount, cylCount, conesCount }, set] = useControls(
-    () => ({
-      Figures: folder({
-        spheresCount: {
-          label: "spheres",
-          value: randomNumber(...range),
-          ...control,
-        },
-        boxesCount: {
-          label: "boxes",
-          value: randomNumber(...range),
-          ...control,
-        },
-        cylCount: {
-          label: "cylinders",
-          value: randomNumber(...range),
-          ...control,
-        },
-        conesCount: {
-          label: "cones",
-          value: randomNumber(...range),
-          ...control,
-        },
-        minSizePercent: { value: 10, min: 1, max: 100 },
-        sizeScale: {
-          value: sizeScale,
-          onChange: (value) => setScale(value),
-          min: 0,
-          max: 10,
-        },
-      }),
-    })
-  )
+  const [figuresCount, set] = useState({
+    spheresCount: randomNumber(...range),
+    boxesCount: randomNumber(...range),
+    cylCount: randomNumber(...range),
+    conesCount: randomNumber(...range),
+  })
 
-  // handle randomize
   useUpdateEffect(() => {
     set({
       spheresCount: randomNumber(...range),
@@ -75,6 +37,9 @@ const RandomFigures = ({ random }) => {
   }, [random])
 
   const childProps = { sizeScale }
+
+  const { spheresCount, boxesCount, cylCount, conesCount } = figuresCount
+  console.log("figures")
 
   return (
     <>

@@ -1,30 +1,35 @@
-import { useState, useEffect } from "react"
-import { useThree } from "@react-three/fiber"
-import { useAspect } from "@react-three/drei"
-import { useControls } from "leva"
+import { useState, useEffect, useMemo } from "react"
 import { useWebcam } from "@/hooks/useWebcam"
 
-export default function useWebCamMaterial() {
-  const { viewport } = useThree()
-  const [vx, vy] = useAspect(100, 100)
-  console.log(vx, vy, viewport.width, viewport.height)
+export default function useWebCamMaterial({ desiredAspect = 1 }) {
   const [devices, setDevices] = useState()
 
   const [deviceOptions, setDeviceOptions] = useState({
-    Default: "default",
+    default: "default",
   })
 
-  const { camera } = useControls(
-    {
-      camera: {
-        value: "default",
-        options: deviceOptions,
-      },
-    },
-    [deviceOptions]
-  )
+  // const { camera } = useControls(
+  //   {
+  //     camera: {
+  //       value: "default",
+  //       options: deviceOptions,
+  //     },
+  //   },
+  //   [deviceOptions]
+  // )
 
-  const [webcamMaterial, width, height] = useWebcam({ id: camera })
+  const camera = useMemo(() => {
+    const cameras = Object.keys(deviceOptions).filter((el) => el != "default")
+    return cameras ? cameras[0] : "default"
+  }, [deviceOptions])
+
+  // const camera = 'default'
+  // console.log({ camera, deviceOptions })
+
+  const webcamMaterial = useWebcam({
+    id: camera,
+    desiredAspect,
+  })
 
   useEffect(() => {
     if (navigator.mediaDevices.getUserMedia) {
@@ -47,5 +52,5 @@ export default function useWebCamMaterial() {
     }
   }, [devices])
 
-  return { webcamMaterial, width, height, vx, vy }
+  return webcamMaterial
 }

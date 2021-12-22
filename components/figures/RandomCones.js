@@ -24,7 +24,7 @@ const Cones = ({ data }) => {
   return (
     <>
       <cylinderGeometry args={[0, r, r * 2, 30]} />
-      <meshBasicMaterial side={DoubleSide} />
+      <meshBasicMaterial />
       {data.map(({ id, ...props }) => (
         <Cone key={id} {...props} />
       ))}

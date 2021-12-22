@@ -8,6 +8,8 @@ export const palettes = [colors, ["#000"], ["#fff"]]
 
 export const sizeScale = 2
 
+export const range = [0, 7]
+
 export const presets = [
   // {
   //   text: `a`,
