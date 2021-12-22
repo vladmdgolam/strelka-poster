@@ -5,6 +5,16 @@ import ControlsBtn from "../controls/ControlsBtn"
 import useHotkey from "@/hooks/useHotkey"
 // import { colors } from "@/helpers/constants"
 
+const calcFinRepeat = (text, repeat, fontSize) => {
+  // 1 → 40
+  // 40/(fontSize) = repeat for 17 characters
+  // 40*17/(fontSize) = repeat for 1 character
+  // finRepeat = 680/(fontSize*length)
+  let _repeat = Math.ceil(680 / (fontSize * text.length))
+
+  return (text + " ").repeat(_repeat)
+}
+
 // eslint-disable-next-line react/display-name
 const TextGeneral = forwardRef(
   (
@@ -25,8 +35,7 @@ const TextGeneral = forwardRef(
     const [depthTest, setDT] = useState(true)
     useHotkey("m", () => setDT((prev) => !prev))
 
-    const finText = repeat ? (text + " ").repeat(repeat) : text
-    // const calcLineHeight = fontSize * lineHeight
+    const finText = repeat ? calcFinRepeat(text, repeat, fontSize) : text
 
     return (
       <>

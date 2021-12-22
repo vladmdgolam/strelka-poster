@@ -11,7 +11,7 @@ const IntroScreen = ({ start }) => (
         <br />
         and Strelka Institute
         <br />
-        <a href="https://github.com/">read more</a>
+        {/* <a href="https://github.com/">read more</a> */}
       </h3>
     </header>
     <div className="launch">

@@ -75,7 +75,12 @@ const Home = () => {
           <ControlsBtn onClick={randomize} description="random" position={8}>
             🔀
           </ControlsBtn>
-          <Scene deviceOrientation={working} color={color} random={random} />
+          <Scene
+            textColor={textColor}
+            deviceOrientation={working}
+            color={color}
+            random={random}
+          />
         </ContextBridge>
       </Canvas>
     </>
