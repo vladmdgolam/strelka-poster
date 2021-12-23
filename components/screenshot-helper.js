@@ -50,7 +50,8 @@ const ScreenshotHelper = ({ overlay }) => {
   })
 
   useUpdateEffect(() => {
-    newImage && render(<ImagePopup url={newImage} />, el)
+    newImage &&
+      render(<ImagePopup close={() => setImage(null)} url={newImage} />, el)
     overlay.current.prepend(el)
   }, [newImage])
 
