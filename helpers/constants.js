@@ -1,8 +1,19 @@
 export const massMultiplier = 0.5
 
-export const colors = ["#FF0000", "#FFFF06", "#FF87CE", "#0DA041", "#0150E6"]
+export const colors = {
+  red: "#FF0000",
+  yellow: "#FFFF06",
+  pink: "#FF87CE",
+  green: "#0DA041",
+  blue: "#0150E6",
+}
 
-export const colorsExtended = [...colors, "#FFF", "#000"]
+// const colorMatch = {
+//   red: ["yellow", "pink", "white"],
+// }
+
+export const colorsExtended = { ...colors, white: "#FFF", black: "#000" }
+export const lightColors = [colorsExtended.white, colorsExtended.yellow]
 
 export const palettes = [colors, ["#000"], ["#fff"]]
 

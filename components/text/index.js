@@ -41,6 +41,7 @@ const TextGeneral = forwardRef(
       <>
         <ControlsBtn
           description="fill"
+          hotkey="m"
           position={11}
           onClick={() => setDT((prev) => !prev)}
         >

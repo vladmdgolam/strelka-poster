@@ -4,11 +4,13 @@ import IntroScreen from "@/components/html/intro-screen"
 import ControlsMenu from "@/components/menu"
 import Scene from "@/components/scene"
 import { randomExtendedColor } from "@/helpers"
+import { colorsExtended, lightColors } from "@/helpers/constants"
 import AppContext from "@/hooks/AppContext"
 import useHotkey from "@/hooks/useHotkey"
 import useInit from "@/hooks/useInit"
 import useUpdateEffect from "@/hooks/useUpdateEffect"
 import { useContextBridge } from "@react-three/drei"
+import cn from "classnames"
 import { useState } from "react"
 
 const Home = () => {
@@ -28,49 +30,11 @@ const Home = () => {
     setColor(nextColor)
   }, [random])
 
-  
-  const textColor = color === "#FFF" || color === "#FFFF06" ? "black" : "white"
+  const colorTheme = lightColors.includes(color) ? "black" : "white"
 
-  useHotkey("i", showInfo)
   return (
     <>
-      <div
-        className="contents"
-        style={{
-          color: textColor,
-          "--color": textColor,
-          "--btn-color":
-            textColor == "white" ? "rgb(0 0 0 / 1)" : "rgb(255 255 255 / 1)",
-          "--btn-hover-color":
-            textColor == "white" ? "rgb(256 256 256 / 1)" : "rgb(0 0 0 / 1)",
-        }}
-      >
-        {!(init || working) && <IntroScreen start={start} />}
-      </div>
-      <div
-        className="contents"
-        style={{
-          color: textColor,
-          "--color": textColor,
-          "--btn-color":
-            textColor == "white"
-              ? "rgb(128 128 128 / 50%)"
-              : "rgb(0 0 0 / 50%)",
-          "--btn-hover-color":
-            textColor == "white" ? "rgb(256 256 256 / 1)" : "rgb(0 0 0 / 1)",
-        }}
-      >
-        <ControlsMenu init={init} color={textColor} />
-      </div>
-      <ControlsBtn
-        onClick={showInfo}
-        description="info"
-        hotkey="i"
-        position={1}
-        group="left"
-      >
-        I
-      </ControlsBtn>
+      <Overlay {...{ init, start, working, showInfo, colorTheme }} />
       <Canvas color={initialColor}>
         <ContextBridge>
           <ControlsBtn
@@ -79,16 +43,41 @@ const Home = () => {
             description="random"
             position={8}
           >
-            🔀
+            💥
           </ControlsBtn>
           <Scene
-            textColor={textColor}
+            textColor={colorTheme}
             deviceOrientation={working}
             color={color}
             random={random}
           />
         </ContextBridge>
       </Canvas>
+    </>
+  )
+}
+
+const Overlay = ({ init, start, working, showInfo, colorTheme }) => {
+  useHotkey("i", showInfo)
+  return (
+    <>
+      <div
+        className={cn("contents", {
+          white: colorTheme === "white",
+        })}
+      >
+        {!(init || working) && <IntroScreen start={start} />}
+        <ControlsMenu init={init} />
+      </div>
+      <ControlsBtn
+        onClick={showInfo}
+        description="info"
+        hotkey="i"
+        position={1}
+        group="left"
+      >
+        ℹ️
+      </ControlsBtn>
     </>
   )
 }

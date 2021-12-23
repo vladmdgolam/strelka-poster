@@ -32,6 +32,7 @@ const Scene = ({ random, color, position, textColor, deviceOrientation }) => {
       <ControlsBtn
         position={4}
         description="save"
+        hotkey="s"
         group="right"
         onClick={takeScreenshot}
       >

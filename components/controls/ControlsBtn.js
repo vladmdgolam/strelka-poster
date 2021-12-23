@@ -4,7 +4,7 @@ import AppContext from "@/hooks/AppContext"
 const ControlsBtn = ({
   position = 1,
   group = "main",
-  description = "description",
+
   children,
   ...props
 }) => {
@@ -13,7 +13,7 @@ const ControlsBtn = ({
   useEffect(() => {
     menuItems[group] = {
       ...menuItems[group],
-      [position]: { name: children, props: { description, ...props } },
+      [position]: { name: children, props },
     }
     requestSetMenuItems(menuItems)
   }, [children])

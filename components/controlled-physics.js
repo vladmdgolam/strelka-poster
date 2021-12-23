@@ -24,9 +24,11 @@ const useOrientation = (use) => {
   }
 
   useEffect(() => {
-    use && window.addEventListener("deviceorientation", handleOrientation, false)
+    use &&
+      window.addEventListener("deviceorientation", handleOrientation, false)
     return () =>
-      use && window.removeEventListener("deviceorientation", handleOrientation, false)
+      use &&
+      window.removeEventListener("deviceorientation", handleOrientation, false)
   }, [use])
   return position
 }
@@ -58,7 +60,6 @@ const ControlledPhysics = ({ children, deviceOrientation = false }) => {
 
   useUpdateEffect(() => {
     const _gravity = computeGravity(position.current, inverted, off)
-    console.log("update effect")
     setGravity(_gravity)
   }, [inverted, off])
 
@@ -71,6 +72,7 @@ const ControlledPhysics = ({ children, deviceOrientation = false }) => {
         onPointerDown={() => setInverted(true)}
         onPointerUp={() => setInverted(false)}
         description="gravity"
+        hotkey="u"
       >
         ⬆️
       </ControlsBtn>

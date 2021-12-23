@@ -9,11 +9,17 @@ export const randomFloat = (min, max) => {
 export const randomNumber = (min, max) =>
   Math.floor(Math.random() * (max - min + 1) + min)
 
-export const randomStrelkaColor = () =>
-  colors[randomNumber(0, colors.length - 1)]
+export const randomStrelkaColor = () => {
+  const names = Object.keys(colors)
+  const name = names[randomNumber(0, names.length - 1)]
+  return colors[name]
+}
 
-export const randomExtendedColor = () =>
-  colorsExtended[randomNumber(0, colorsExtended.length - 1)]
+export const randomExtendedColor = () => {
+  const names = Object.keys(colorsExtended)
+  const name = names[randomNumber(0, names.length - 1)]
+  return colorsExtended[name]
+}
 
 export const randomPalette = () =>
   palettes[randomNumber(0, palettes.length - 1)]
