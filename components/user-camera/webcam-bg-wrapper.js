@@ -1,5 +1,5 @@
 import { useState } from "react"
-import ControlsBtn from "./controls/ControlsBtn"
+import ControlsBtn from "../controls/ControlsBtn"
 import WebcamBg from "./webcam-bg"
 
 const WebcamBgWrapper = () => {

@@ -62,6 +62,7 @@ export const presets = [
     text: `STRELKA \nOPEN CODE`,
     fontSize: 0.4,
     center: true,
+    letterSpacing: 0,
   },
   {
     text: `STRELKA OPEN CODE`,

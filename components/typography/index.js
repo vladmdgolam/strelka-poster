@@ -1,5 +1,4 @@
 import { presets } from "@/helpers/constants"
-import useHotkey from "@/hooks/useHotkey"
 import useTextProps from "@/hooks/useTextProps"
 import useUpdateEffect from "@/hooks/useUpdateEffect"
 import { useThree } from "@react-three/fiber"
@@ -17,6 +16,10 @@ const Typography = ({ color, random }) => {
 
   const [userText, setUserText] = useState()
 
+  useUpdateEffect(() => {
+    userText && presets[textPreset].visible === false && nextPreset()
+  }, [userText])
+
   const nextPreset = () =>
     setTextPreset(
       (prevId) =>
@@ -28,8 +31,6 @@ const Typography = ({ color, random }) => {
   const {
     textProps: { center, repeat, text, clip, visible, fontSize, ...textProps },
   } = useTextProps(textPreset)
-
-  useHotkey(["t"], () => requestTextFromUser())
 
   const requestTextFromUser = () => {
     const res = prompt("Type your text", "Strelka Open Code")

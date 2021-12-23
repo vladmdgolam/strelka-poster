@@ -1,12 +1,7 @@
 import Canvas from "@/components/canvas"
-import Plane from "@/components/plane"
-import WebcamTexture from "@/components/WebcamTexture"
-import useWebCamMaterial from "@/hooks/useWebcamMaterial"
-import { Physics } from "@react-three/cannon"
-import { Box, OrbitControls, Text } from "@react-three/drei"
-import { useControls } from "leva"
-import { useEffect, useRef, useState } from "react"
-import { Box3 } from "three"
+import WebcamTexture from "@/components/user-camera/WebcamTexture"
+import { OrbitControls } from "@react-three/drei"
+import { useEffect, useState } from "react"
 
 const Els = () => {
   // const { vx, vy, webcamMaterial, width, height } = useWebCamMaterial()

@@ -1,8 +1,8 @@
 import { PerspectiveCamera, OrbitControls } from "@react-three/drei"
 import { useThree } from "@react-three/fiber"
-import { useEffect, useMemo, useRef, useState } from "react"
+import { useMemo, useRef, useState } from "react"
 import { MathUtils } from "three"
-import ControlsBtn from "./controls/ControlsBtn"
+// import ControlsBtn from "./controls/ControlsBtn"
 
 const fov = 50
 

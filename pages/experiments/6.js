@@ -1,5 +1,5 @@
 import Canvas from "@/components/canvas"
-import Plane from "@/components/plane"
+import Plane from "@/components/physics/plane"
 import { randomEuler, randomVector } from "@/helpers"
 import { Physics } from "@react-three/cannon"
 import { Instance, Instances, OrbitControls, Sphere } from "@react-three/drei"

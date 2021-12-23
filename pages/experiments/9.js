@@ -7,7 +7,7 @@ import { Perf } from "r3f-perf"
 // import Cone from "@/components/figures/Cone"
 import RandomCones from "@/components/figures/RandomCones"
 import useWebCamMaterial from "@/hooks/useWebcamMaterial"
-import WebcamBg from "@/components/webcam-bg"
+import WebcamBg from "@/components/user-camera/webcam-bg"
 
 const Page = () => {
   return (

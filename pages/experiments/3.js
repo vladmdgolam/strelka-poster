@@ -1,5 +1,5 @@
 import Canvas from "@/components/canvas"
-import Plane from "@/components/plane"
+import Plane from "@/components/physics/plane"
 import { Physics } from "@react-three/cannon"
 import { Box, OrbitControls, Text } from "@react-three/drei"
 import { useEffect, useRef } from "react"

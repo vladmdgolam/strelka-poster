@@ -4,7 +4,7 @@ import useUpdateEffect from "@/hooks/useUpdateEffect"
 import { Physics } from "@react-three/cannon"
 
 import { useEffect, useRef, useState } from "react"
-import ControlsBtn from "./controls/ControlsBtn"
+import ControlsBtn from "../controls/ControlsBtn"
 
 import usefulOrientation from "@/helpers/usefulOrientation"
 import { useFrame } from "@react-three/fiber"
@@ -44,12 +44,9 @@ const ControlledPhysics = ({ children, deviceOrientation = false }) => {
   const [gravity, setGravity] = useState([0, -10, 0])
 
   useFrame(() => {
-    // deviceOrientation && console.log(position.current)
     if (deviceOrientation) {
-      console.log("hi")
       let _gravity = computeGravity(position.current, inverted, off)
       if (_gravity[0] != gravity[0] || _gravity[2] != gravity[2]) {
-        console.log("update gravity")
         setGravity(_gravity)
       }
     }

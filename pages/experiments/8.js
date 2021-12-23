@@ -1,5 +1,5 @@
 import Canvas from "@/components/canvas"
-import Plane from "@/components/plane"
+import Plane from "@/components/physics/plane"
 import { Debug, Physics } from "@react-three/cannon"
 import { OrbitControls } from "@react-three/drei"
 import { Perf } from "r3f-perf"
