@@ -12,7 +12,9 @@ import ScreenshotHelper from "./screenshot-helper"
 
 // import WebcamBgWrapper from "./webcam-bg-wrapper"
 
-const Scene = ({ random, color, position, textColor, deviceOrientation }) => {
+const Scene = (props) => {
+  const { random, color, position, textColor, deviceOrientation, overlay } =
+    props
   const gl = useThree(({ gl }) => gl)
 
   useUpdateEffect(() => {
@@ -27,13 +29,13 @@ const Scene = ({ random, color, position, textColor, deviceOrientation }) => {
 
   return (
     <>
-      <ScreenshotHelper />
+      <ScreenshotHelper overlay={overlay} />
       <Camera />
       <ControlledPhysics
         deviceOrientation={deviceOrientation}
         position={position}
       >
-        <Borders color={color} random={random} />
+        <Borders random={random} />
         <Suspense fallback={null}>
           <Typography random={random} color={textColor} />
           <RandomFigures random={random} />

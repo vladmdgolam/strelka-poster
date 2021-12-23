@@ -8,6 +8,7 @@ import useInit from "@/hooks/useInit"
 import useRandom from "@/hooks/useRandom"
 import useTheme from "@/hooks/useTheme"
 import { useContextBridge } from "@react-three/drei"
+import { useRef } from "react"
 
 const Home = () => {
   const ContextBridge = useContextBridge(AppContext)
@@ -17,9 +18,11 @@ const Home = () => {
 
   const { init, deviceOrientation, start, showInfo } = useInit()
 
+  const overlay = useRef()
+
   return (
     <>
-      <Overlay {...{ init, start, color }} />
+      <Overlay ref={overlay} {...{ init, start, color }} />
       <ControlsBtn
         onClick={showInfo}
         description="info"
@@ -38,6 +41,7 @@ const Home = () => {
       <Canvas color={colorsExtended[initialColor]}>
         <ContextBridge>
           <Scene
+            overlay={overlay}
             textColor={colorTheme}
             deviceOrientation={deviceOrientation}
             color={colorsExtended[color]}

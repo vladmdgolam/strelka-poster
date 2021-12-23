@@ -7,6 +7,7 @@ const ControlsBtn = ({
   group = "main",
   name,
   children,
+  deps,
   ...props
 }) => {
   const { menuItems, requestSetMenuItems } = useContext(AppContext)
@@ -18,7 +19,7 @@ const ControlsBtn = ({
     }
     requestSetMenuItems(menuItems)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [children])
+  }, [children, deps])
 
   return props.hotkey && props.onClick ? (
     <Hotkey targetKeys={props.hotkey} callback={props.onClick} />
