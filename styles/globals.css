@@ -1,12 +1,12 @@
 :root {
   --px: 100vw / 1440;
-  --red: #FF0000;
-  --yellow: #FFFF06;
-  --pink:#FF87CE;
-  --green:#0DA041;
-  --blue:#0150E6;
+  --red: 255, 0, 0;
+  --yellow: 255, 255, 6;
+  --pink: 255, 135, 206;
+  --green: 13, 160, 65;
+  --blue: 1, 80, 230;
   --black: 0, 0, 0;
-  --white:255, 255, 255;
+  --white: 255, 255, 255;
   --text-color: var(--black);
   --bg-color: var(--white);
 }
@@ -14,6 +14,31 @@
 .white {
   --text-color: var(--white);
   --bg-color: var(--black);
+}
+
+.pink {
+  --text-color: var(--pink);
+  --bg-color: var(--white);
+}
+
+.green {
+  --text-color: var(--green);
+  --bg-color: var(--white);
+}
+
+.blue {
+  --text-color: var(--blue);
+  --bg-color: var(--white);
+}
+
+.yellow {
+  --text-color: var(--yellow);
+  --bg-color: var(--black);
+}
+
+.red {
+  --text-color: var(--red);
+  --bg-color: var(--white);
 }
 
 * {
@@ -242,7 +267,7 @@ menu {
   p {
     position: absolute;
     font-size: initial;
-    pointer-events:none;
+    pointer-events: none;
     top: -10px;
     transform: translateY(-100%);
   }

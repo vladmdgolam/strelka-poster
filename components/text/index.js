@@ -4,6 +4,7 @@ import { useThree } from "@react-three/fiber"
 import ControlsBtn from "../controls/ControlsBtn"
 
 const calcFinRepeat = (text, fontSize) => {
+  // empirical data
   // 1 → 40
   // 40/(fontSize) = repeat for 17 characters
   // 40*17/(fontSize) = repeat for 1 character

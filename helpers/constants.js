@@ -8,12 +8,18 @@ export const colors = {
   blue: "#0150E6",
 }
 
-// const colorMatch = {
-//   red: ["yellow", "pink", "white"],
-// }
-
 export const colorsExtended = { ...colors, white: "#FFF", black: "#000" }
 export const lightColors = [colorsExtended.white, colorsExtended.yellow]
+
+export const colorMatch = {
+  red: ["pink", "white"],
+  green: ["white"],
+  blue: ["white", "pink"],
+  pink: ["white", "blue"],
+  yellow: ["white", "green", "red", "pink", "blue", "black"],
+  white: ["black", "green", "red", "pink", "blue"], // not light
+  black: ["white", "yellow"],
+}
 
 export const palettes = [colors, ["#000"], ["#fff"]]
 

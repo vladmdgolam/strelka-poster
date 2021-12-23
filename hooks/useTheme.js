@@ -6,14 +6,14 @@ import { useState } from "react"
 const initialColor = randomExtendedColor()
 
 const useColors = (random) => {
-  const [color, setColor] = useState(initialColor)
+  const [bgColor, setBgColor] = useState(initialColor)
   useUpdateEffect(() => {
     const nextColor = randomExtendedColor()
-    setColor(nextColor)
+    setBgColor(nextColor)
   }, [random])
 
-  const colorTheme = lightColors.includes(color) ? "black" : "white"
-  return { colorTheme, color, initialColor }
+  const colorTheme = lightColors.includes(bgColor) ? "black" : "white"
+  return { colorTheme, color: bgColor, initialColor }
 }
 
 export default useColors

@@ -18,7 +18,7 @@ export const randomStrelkaColor = () => {
 export const randomExtendedColor = () => {
   const names = Object.keys(colorsExtended)
   const name = names[randomNumber(0, names.length - 1)]
-  return colorsExtended[name]
+  return name
 }
 
 export const randomPalette = () =>

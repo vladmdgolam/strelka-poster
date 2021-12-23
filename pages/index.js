@@ -2,6 +2,7 @@ import Canvas from "@/components/canvas"
 import ControlsBtn from "@/components/controls/ControlsBtn"
 import Overlay from "@/components/html/overlay"
 import Scene from "@/components/scene"
+import { colorsExtended } from "@/helpers/constants"
 import AppContext from "@/hooks/AppContext"
 import useInit from "@/hooks/useInit"
 import useRandom from "@/hooks/useRandom"
@@ -18,7 +19,7 @@ const Home = () => {
 
   return (
     <>
-      <Overlay {...{ init, start, colorTheme }} />
+      <Overlay {...{ init, start, color }} />
       <ControlsBtn
         onClick={showInfo}
         description="info"
@@ -34,12 +35,12 @@ const Home = () => {
         position={8}
         name="💥"
       />
-      <Canvas color={initialColor}>
+      <Canvas color={colorsExtended[initialColor]}>
         <ContextBridge>
           <Scene
             textColor={colorTheme}
             deviceOrientation={deviceOrientation}
-            color={color}
+            color={colorsExtended[color]}
             random={random}
           />
         </ContextBridge>
