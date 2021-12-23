@@ -6,14 +6,14 @@ import { colorsExtended } from "@/helpers/constants"
 import AppContext from "@/hooks/AppContext"
 import useInit from "@/hooks/useInit"
 import useRandom from "@/hooks/useRandom"
-import useColors from "@/hooks/useTheme"
+import useTheme from "@/hooks/useTheme"
 import { useContextBridge } from "@react-three/drei"
 
 const Home = () => {
   const ContextBridge = useContextBridge(AppContext)
 
   const { random, randomize } = useRandom()
-  const { colorTheme, color, initialColor } = useColors(random)
+  const { colorTheme, color, initialColor } = useTheme(random)
 
   const { init, deviceOrientation, start, showInfo } = useInit()
 

@@ -1,9 +1,18 @@
 import { Canvas as ThreeCanvas } from "@react-three/fiber"
-import { useLayoutEffect, useState } from "react"
+import { useEffect, useLayoutEffect, useState } from "react"
 
 const Canvas = ({ children, color, ...rest }) => {
   const [dpr, setDpr] = useState(1)
   useLayoutEffect(() => setDpr(window.devicePixelRatio), [])
+
+  const [hasMounted, setHasMounted] = useState(false)
+
+  useEffect(() => {
+    setHasMounted(true)
+  }, [])
+
+  if (!hasMounted) return null
+
   return (
     <ThreeCanvas
       flat

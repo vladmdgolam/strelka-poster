@@ -3,9 +3,8 @@ import { lightColors } from "@/helpers/constants"
 import useUpdateEffect from "@/hooks/useUpdateEffect"
 import { useState } from "react"
 
-const initialColor = randomExtendedColor()
-
 const useColors = (random) => {
+  const [initialColor] = useState(randomExtendedColor())
   const [bgColor, setBgColor] = useState(initialColor)
   useUpdateEffect(() => {
     const nextColor = randomExtendedColor()
@@ -13,6 +12,7 @@ const useColors = (random) => {
   }, [random])
 
   const colorTheme = lightColors.includes(bgColor) ? "black" : "white"
+  console.log(lightColors, bgColor, colorTheme)
   return { colorTheme, color: bgColor, initialColor }
 }
 

@@ -9,14 +9,14 @@ export const colors = {
 }
 
 export const colorsExtended = { ...colors, white: "#FFF", black: "#000" }
-export const lightColors = [colorsExtended.white, colorsExtended.yellow]
+export const lightColors = ["white", "yellow"]
 
 export const colorMatch = {
   red: ["pink", "white"],
   green: ["white"],
   blue: ["white", "pink"],
   pink: ["white", "blue"],
-  yellow: ["white", "green", "red", "pink", "blue", "black"],
+  yellow: ["white", "green", "red", "blue", "black"],
   white: ["black", "green", "red", "pink", "blue"], // not light
   black: ["white", "yellow"],
 }

@@ -2,19 +2,17 @@ import useUpdateEffect from "@/hooks/useUpdateEffect"
 import { useThree } from "@react-three/fiber"
 import { Suspense } from "react"
 
-import useTakeScreenshot from "@/hooks/useTakeScreenshot"
 import Borders from "./physics/borders"
 import Camera from "./camera"
 import ControlledPhysics from "./physics/controlled-physics"
-import ControlsBtn from "./controls/ControlsBtn"
+
 import RandomFigures from "./figures/RandomFigures"
 import Typography from "./typography"
+import ScreenshotHelper from "./screenshot-helper"
 
 // import WebcamBgWrapper from "./webcam-bg-wrapper"
 
 const Scene = ({ random, color, position, textColor, deviceOrientation }) => {
-  const takeScreenshot = useTakeScreenshot()
-
   const gl = useThree(({ gl }) => gl)
 
   useUpdateEffect(() => {
@@ -29,15 +27,7 @@ const Scene = ({ random, color, position, textColor, deviceOrientation }) => {
 
   return (
     <>
-      <ControlsBtn
-        position={4}
-        description="save"
-        hotkey="s"
-        group="right"
-        onClick={takeScreenshot}
-      >
-        📸
-      </ControlsBtn>
+      <ScreenshotHelper />
       <Camera />
       <ControlledPhysics
         deviceOrientation={deviceOrientation}
