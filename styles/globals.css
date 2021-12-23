@@ -290,23 +290,29 @@ menu {
   padding: 15px;
   z-index: 10;
   position: fixed;
+  top: 0;
+  bottom: 0;
   width: 100vw;
-  height: 100vh;
   background: rgba(var(--text-color), 1);
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
   text-align: center;
 
   color: rgba(var(--bg-color), 1);
 
   .image-wrapper {
-    width: 75vw;
+    flex: 1 1 auto;
+    position: relative;
   }
   img {
-    width: 100%;
-    height: auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    max-height: 100%;
   }
   .caption {
-    padding: 0 12.5vw;
+    padding: 20px 12.5vw 0;
   }
 }
