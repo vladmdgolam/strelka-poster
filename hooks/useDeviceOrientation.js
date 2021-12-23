@@ -1,23 +1,24 @@
 import { useState } from "react"
 
-const useDeviceOrientation = () => {
-  const [working, setWorking] = useState(false)
+const useDeviceOrientation = (initialize) => {
+  const [deviceOrientation, setDeviceOrientation] = useState(false)
+  const enableOrientation = () => setDeviceOrientation(true)
 
   const requestDeviceOrientation = () => {
-    if (
-      window.DeviceOrientationEvent !== undefined &&
-      typeof window.DeviceOrientationEvent.requestPermission === "function" &&
-      !working
-    ) {
+    if (typeof window.DeviceOrientationEvent.requestPermission === "function") {
       window.DeviceOrientationEvent.requestPermission().then((response) => {
         if (response === "granted") {
-          setWorking(true)
+          enableOrientation()
+        } else {
+          initialize()
         }
       })
+    } else {
+      enableOrientation()
     }
   }
 
-  return { requestDeviceOrientation, working }
+  return { requestDeviceOrientation, deviceOrientation }
 }
 
 export default useDeviceOrientation

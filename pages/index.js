@@ -22,7 +22,7 @@ const Home = () => {
 
   const ContextBridge = useContextBridge(AppContext)
 
-  const { init, working, start, showInfo } = useInit()
+  const { init, deviceOrientation, start, showInfo } = useInit()
 
   const [color, setColor] = useState(initialColor)
   useUpdateEffect(() => {
@@ -34,7 +34,7 @@ const Home = () => {
 
   return (
     <>
-      <Overlay {...{ init, start, working, showInfo, colorTheme }} />
+      <Overlay {...{ init, start, showInfo, colorTheme }} />
       <Canvas color={initialColor}>
         <ContextBridge>
           <ControlsBtn
@@ -47,7 +47,7 @@ const Home = () => {
           </ControlsBtn>
           <Scene
             textColor={colorTheme}
-            deviceOrientation={working}
+            deviceOrientation={deviceOrientation}
             color={color}
             random={random}
           />
@@ -57,7 +57,7 @@ const Home = () => {
   )
 }
 
-const Overlay = ({ init, start, working, showInfo, colorTheme }) => {
+const Overlay = ({ init, start, showInfo, colorTheme }) => {
   useHotkey("i", showInfo)
   return (
     <>
@@ -66,7 +66,7 @@ const Overlay = ({ init, start, working, showInfo, colorTheme }) => {
           white: colorTheme === "white",
         })}
       >
-        {!(init || working) && <IntroScreen start={start} />}
+        {!init && <IntroScreen start={start} />}
         <ControlsMenu init={init} />
       </div>
       <ControlsBtn

@@ -1,16 +1,33 @@
 import useDeviceOrientation from "@/hooks/useDeviceOrientation"
 import { useState } from "react"
+import useUpdateEffect from "./useUpdateEffect"
 
 export default function useInit() {
   const [init, setInit] = useState(false)
-  const { position, requestDeviceOrientation, working } = useDeviceOrientation()
+  const initialize = () => setInit(true)
+
+  const { requestDeviceOrientation, deviceOrientation } =
+    useDeviceOrientation(initialize)
+
+  useUpdateEffect(
+    () => deviceOrientation && initialize(),
+    [deviceOrientation]
+  )
+
   const start = () => {
-    if (!working && window.DeviceOrientationEvent && "ontouchstart" in window) {
+    if (
+      !deviceOrientation &&
+      window.DeviceOrientationEvent &&
+      "ontouchstart" in window
+    ) {
       requestDeviceOrientation()
     } else {
-      setInit(true)
+      initialize()
     }
   }
-  const showInfo = () => setInit(false)
-  return { position, working, init, start, showInfo }
+  const showInfo = () => {
+    setInit(false)
+  }
+
+  return { deviceOrientation, init, start, showInfo }
 }
