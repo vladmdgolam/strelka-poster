@@ -34,7 +34,8 @@ const ScreenshotHelper = ({ overlay }) => {
   const [iOS, setiOS] = useState(false)
 
   useEffect(() => {
-    const _iOS = detectiOS()
+    const _iOS = true
+    // const _iOS = detectiOS()
     setiOS(_iOS)
   }, [])
 
@@ -50,9 +51,21 @@ const ScreenshotHelper = ({ overlay }) => {
   })
 
   useUpdateEffect(() => {
-    newImage &&
-      render(<ImagePopup close={() => setImage(null)} url={newImage} />, el)
-    overlay.current.prepend(el)
+    if (newImage) {
+      render(
+        <ImagePopup
+          close={() => {
+            console.log("close")
+            setImage(null)
+          }}
+          url={newImage}
+        />,
+        el
+      )
+      overlay.current.prepend(el)
+    } else {
+      el.remove()
+    }
   }, [newImage])
 
   return (
