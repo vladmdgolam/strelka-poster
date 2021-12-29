@@ -67,25 +67,27 @@ export function useWebcam({ id, desiredAspect = 1 }) {
           // vid.width = 100
           // vid.height = 100
           vid.srcObject = stream
-          var playPromise = vid.play()
-
-          if (playPromise !== undefined) {
-            playPromise
-              .then(() => {
-                // Automatic playback started!
-                // Show playing UI.
-                console.log("video init")
-                // vid &&
-                setInit(true)
-              })
-              .catch((error) => {
-                console.log("video error catch", error)
-                // Auto-play was prevented
-                // Show paused UI.
-              })
-          } else {
-            console.log("play promise undefined")
-          }
+          // var playPromise = vid.play()
+          vid.play()
+          setInit(true)
+          // if (playPromise !== undefined) {
+          //   playPromise
+          //     .then(() => {
+          //       // Automatic playback started!
+          //       // Show playing UI.
+          //       console.log("video init")
+          //       // vid &&
+          //       setInit(true)
+          //     })
+          //     .catch((error) => {
+          //       console.log("video error catch", error)
+          //       // Auto-play was prevented
+          //       // Show paused UI.
+          //     })
+          // }
+          // else {
+          //   console.log("play promise undefined")
+          // }
         })
         .catch((error) => console.warn(error, "wtf"))
     }
