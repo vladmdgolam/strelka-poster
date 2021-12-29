@@ -12,7 +12,9 @@ import WebcamBg from "@/components/user-camera/webcam-bg"
 const Page = () => {
   return (
     <Canvas color="pink">
-      <WebcamBg />
+      <group rotation={[Math.PI / 2, 0, 0]}>
+        <WebcamBg />
+      </group>
       <OrbitControls />
       <ambientLight />
     </Canvas>

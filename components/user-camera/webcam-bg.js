@@ -9,7 +9,7 @@ const WebcamBg = () => {
   })
   return webcamMaterial ? (
     <Plane args={[width, height]} rotation={[Math.PI / 2, 0, Math.PI]}>
-      {webcamMaterial}
+      {webcamMaterial ? webcamMaterial : <meshNormalMaterial />}
     </Plane>
   ) : null
 }

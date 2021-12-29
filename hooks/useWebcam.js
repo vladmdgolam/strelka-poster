@@ -5,10 +5,28 @@ export function useWebcam({ id, desiredAspect = 1 }) {
   const [videoAspect, setVideoAspect] = useState(1)
   const [vid] = useState(document.createElement("video"))
   const [videoTexture, setVideoTexture] = useState(null)
+  const [init, setInit] = useState(false)
 
-  useEffect(() => {
-    document.body.appendChild(vid)
-  }, [vid])
+  useEffect(
+    () =>
+      init &&
+      setVideoTexture(
+        <meshBasicMaterial side={DoubleSide}>
+          <videoTexture
+            {...props}
+            onUpdate={(self) => (self.needsUpdate = true)}
+            encoding={sRGBEncoding}
+            attach="map"
+            args={[vid]}
+          />
+        </meshBasicMaterial>
+      ),
+    [init]
+  )
+
+  // useEffect(() => {
+  //   document.body.appendChild(vid)
+  // }, [vid])
 
   /**
    * Device ID can be found using;
@@ -45,9 +63,9 @@ export function useWebcam({ id, desiredAspect = 1 }) {
           setVideoAspect(
             video[0].getSettings().width / video[0].getSettings().height
           )
-          vid.style.position = "absolute"
-          vid.width = 100
-          vid.height = 100
+          // vid.style.position = "absolute"
+          // vid.width = 100
+          // vid.height = 100
           vid.srcObject = stream
           var playPromise = vid.play()
 
@@ -57,29 +75,19 @@ export function useWebcam({ id, desiredAspect = 1 }) {
                 // Automatic playback started!
                 // Show playing UI.
                 console.log("video init")
-                vid &&
-                  setVideoTexture(
-                    <meshBasicMaterial side={DoubleSide}>
-                      <videoTexture
-                        {...props}
-                        onUpdate={(self) => (self.needsUpdate = true)}
-                        encoding={sRGBEncoding}
-                        attach="map"
-                        args={[vid]}
-                      />
-                    </meshBasicMaterial>
-                  )
+                // vid &&
+                setInit(true)
               })
               .catch((error) => {
-                console.log("video error", error)
+                console.log("video error catch", error)
                 // Auto-play was prevented
                 // Show paused UI.
               })
+          } else {
+            console.log("play promise undefined")
           }
         })
-        .catch(function (error) {
-          console.warn(error)
-        })
+        .catch((error) => console.warn(error, "wtf"))
     }
   }, [vid, id])
 
