@@ -89,7 +89,7 @@ export function useWebcam({ id, desiredAspect = 1 }) {
         })
         .catch((error) => console.warn(error, "wtf"))
     }
-  }, [vid, id])
+  }, [id])
 
   return videoTexture
 }
