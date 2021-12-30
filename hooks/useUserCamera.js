@@ -8,15 +8,15 @@ const useUserCamera = () => {
   const facingMode = useRef("user")
   const isMobile = useRef(null)
 
-  const checkAvaliableCameras = () => {
-    const _devices = navigator.mediaDevices.enumerateDevices()
-    _devices.then((_returnedDevices) => {
-      const avaliableCameras = _returnedDevices.filter(
-        (device) => device.kind == "videoinput"
-      )
-      isMobile.current = avaliableCameras.length > 1
-    })
-  }
+  // const checkAvaliableCameras = () => {
+  //   const _devices = navigator.mediaDevices.enumerateDevices()
+  //   _devices.then((_returnedDevices) => {
+  //     const avaliableCameras = _returnedDevices.filter(
+  //       (device) => device.kind == "videoinput"
+  //     )
+  //     isMobile.current = avaliableCameras.length > 1
+  //   })
+  // }
 
   const requestVideo = () => {
     const _video = video ? video : document.createElement("video")
@@ -28,7 +28,7 @@ const useUserCamera = () => {
     }
 
     navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
-      checkAvaliableCameras()
+      // checkAvaliableCameras()
       _video.srcObject = stream
       _video.play()
       const video = stream.getVideoTracks()
