@@ -1,6 +1,6 @@
 import useUpdateEffect from "@/hooks/useUpdateEffect"
 import { useThree } from "@react-three/fiber"
-import { useCallback, useEffect, useMemo, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { render } from "react-dom"
 import ControlsBtn from "./controls/ControlsBtn"
 import ImagePopup from "./html/image-popup"
@@ -34,8 +34,7 @@ const ScreenshotHelper = ({ overlay }) => {
   const [iOS, setiOS] = useState(false)
 
   useEffect(() => {
-    const _iOS = true
-    // const _iOS = detectiOS()
+    const _iOS = detectiOS()
     setiOS(_iOS)
   }, [])
 
@@ -74,7 +73,7 @@ const ScreenshotHelper = ({ overlay }) => {
       description="save"
       hotkey="s"
       group="right"
-      deps={iOS}
+      deps={[iOS]}
       onClick={saveImage}
       name="📸"
     />

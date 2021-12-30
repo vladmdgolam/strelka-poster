@@ -2,10 +2,11 @@ import { Instance, Instances } from "@react-three/drei"
 import { useSphere } from "@react-three/cannon"
 import { useMemo } from "react"
 import { generateFigureData } from "@/helpers"
+import VideoMaterial from "./VideoMaterial"
 
 const r = 0.488 // sqrt(3/π)/2
 
-const RandomSpheres = ({ number = 10, sizeScale }) => {
+const RandomSpheres = ({ number = 10, sizeScale, video }) => {
   const data = useMemo(
     () => generateFigureData({ number, figure: "sphere", sizeScale }),
     [number, sizeScale]
@@ -14,7 +15,7 @@ const RandomSpheres = ({ number = 10, sizeScale }) => {
   return (
     <Instances limit={10}>
       <sphereBufferGeometry args={[r, 32, 32]} />
-      <meshBasicMaterial />
+      <VideoMaterial video={video} />
       {data.map(({ id, ...props }) => (
         <Sphere key={id} {...props} />
       ))}

@@ -1,12 +1,12 @@
 import { Instance, Instances } from "@react-three/drei"
 import { useMemo } from "react"
 import { useCylinder } from "@react-three/cannon"
-import { DoubleSide } from "three"
 import { generateFigureData } from "@/helpers"
+import VideoMaterial from "./VideoMaterial"
 
 const r = 0.6827 // 1/π^(1/3);
 
-const RandomCylinders = ({ number = 100, sizeScale }) => {
+const RandomCylinders = ({ number = 100, sizeScale, video }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const data = useMemo(
     () => generateFigureData({ number, shape: "cylinder", sizeScale }),
@@ -15,7 +15,7 @@ const RandomCylinders = ({ number = 100, sizeScale }) => {
   return (
     <Instances limit={10}>
       <cylinderGeometry args={[r, r, r, 32]} />
-      <meshBasicMaterial side={DoubleSide} />
+      <VideoMaterial video={video} />
       {data.map(({ id, ...props }) => (
         <Cylinder key={id} {...props} />
       ))}

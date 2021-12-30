@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react"
 import AppContext from "./AppContext"
 
-const useHotkey = (targetKeys, callback) => {
+const useHotkey = (targetKeys, callback, deps = []) => {
   const { editingMode } = useContext(AppContext)
 
   const handleKeyDown = ({ key }) => {
@@ -12,7 +12,7 @@ const useHotkey = (targetKeys, callback) => {
     window.addEventListener("keydown", handleKeyDown)
     return () => window.removeEventListener("keydown", handleKeyDown)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [editingMode])
+  }, [editingMode, ...deps])
 }
 
 export default useHotkey

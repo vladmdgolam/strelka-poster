@@ -9,6 +9,9 @@ const AppContext = createContext({
 
   menuItems: null,
   setMenuItems: null,
+
+  video: null,
+  setVideo: null,
 })
 
 export const AppProvider = AppContext.Provider

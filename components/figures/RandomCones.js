@@ -2,11 +2,11 @@ import { Instance, Instances } from "@react-three/drei"
 import { useMemo } from "react"
 import { generateFigureData } from "@/helpers"
 import { useCylinder } from "@react-three/cannon"
-import { DoubleSide } from "three"
+import VideoMaterial from "./VideoMaterial"
 
 const r = 0.98475 // константа чтобы привести все фигуры к одному изначальному объёму
 
-const RandomCones = ({ number = 100, sizeScale }) => {
+const RandomCones = ({ number = 100, sizeScale, video }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const data = useMemo(
     () => generateFigureData({ figure: "cone", number, sizeScale }),
@@ -14,7 +14,7 @@ const RandomCones = ({ number = 100, sizeScale }) => {
   )
   return (
     <Instances limit={10}>
-      <meshBasicMaterial side={DoubleSide} />
+      <VideoMaterial video={video} />
       <Cones data={data} />
     </Instances>
   )
@@ -24,7 +24,6 @@ const Cones = ({ data }) => {
   return (
     <>
       <cylinderGeometry args={[0, r, r * 2, 30]} />
-      <meshBasicMaterial />
       {data.map(({ id, ...props }) => (
         <Cone key={id} {...props} />
       ))}

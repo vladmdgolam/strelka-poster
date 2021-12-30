@@ -1339,6 +1339,13 @@ detect-gpu@^3.1.28:
   dependencies:
     webgl-constants "^1.1.1"
 
+detect-gpu@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/detect-gpu/-/detect-gpu-4.0.2.tgz#5fe6bedf78d354fa3177e1cf19854b7051856e6a"
+  integrity sha512-SrjZZf/g6hrdcjWyAH58/WIIfH9zwtFruQ6kck4pTBh6KVfoRsG9ppgJvaE/GXm4WwzH6Q6axOVIL8OZILxjpg==
+  dependencies:
+    webgl-constants "^1.1.1"
+
 diffie-hellman@^5.0.0:
   version "5.0.3"
   resolved "https://registry.yarnpkg.com/diffie-hellman/-/diffie-hellman-5.0.3.tgz#40e8ee98f55a2149607146921c63e1ae5f3d2875"

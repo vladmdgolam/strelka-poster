@@ -2,7 +2,9 @@ import Canvas from "@/components/canvas"
 import ControlsBtn from "@/components/controls/ControlsBtn"
 import Overlay from "@/components/html/overlay"
 import Scene from "@/components/scene"
+import { randomExtendedColor } from "@/helpers"
 import { colorsExtended } from "@/helpers/constants"
+import getThemeFromColor from "@/helpers/getThemeFromColor"
 import AppContext from "@/hooks/AppContext"
 import useInit from "@/hooks/useInit"
 import useRandom from "@/hooks/useRandom"
@@ -10,11 +12,15 @@ import useTheme from "@/hooks/useTheme"
 import { useContextBridge } from "@react-three/drei"
 import { useRef } from "react"
 
-const Home = () => {
+const Home = ({ initialColor = "white", initialTheme }) => {
   const ContextBridge = useContextBridge(AppContext)
 
   const { random, randomize } = useRandom()
-  const { colorTheme, color, initialColor } = useTheme(random)
+  const { colorTheme, color, theme } = useTheme(
+    random,
+    initialColor,
+    initialTheme
+  )
 
   const { init, deviceOrientation, start, showInfo } = useInit()
 
@@ -22,7 +28,7 @@ const Home = () => {
 
   return (
     <>
-      <Overlay ref={overlay} {...{ init, start, color }} />
+      <Overlay ref={overlay} {...{ init, start, theme }} />
       <ControlsBtn
         onClick={showInfo}
         description="info"
@@ -51,6 +57,14 @@ const Home = () => {
       </Canvas>
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const initialColor = randomExtendedColor()
+  const initialTheme = getThemeFromColor(initialColor)
+  return {
+    props: { initialColor, initialTheme }, // will be passed to the page component as props
+  }
 }
 
 export default Home

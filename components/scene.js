@@ -1,6 +1,6 @@
 import useUpdateEffect from "@/hooks/useUpdateEffect"
 import { useThree } from "@react-three/fiber"
-import { Suspense } from "react"
+import { Suspense, useEffect, useState } from "react"
 
 import Borders from "./physics/borders"
 import Camera from "./camera"
@@ -10,7 +10,7 @@ import RandomFigures from "./figures/RandomFigures"
 import Typography from "./typography"
 import ScreenshotHelper from "./screenshot-helper"
 
-// import WebcamBgWrapper from "./webcam-bg-wrapper"
+import WebcamBgWrapper from "./user-camera/webcam-bg-wrapper"
 
 const Scene = (props) => {
   const { random, color, position, textColor, deviceOrientation, overlay } =
@@ -21,11 +21,11 @@ const Scene = (props) => {
     gl.setClearColor(color)
   }, [color])
 
-  // const [cameraCapable, setCameraCapable] = useState(false)
-  // useLayoutEffect(
-  //   () => setCameraCapable(navigator.mediaDevices.getUserMedia ? true : false),
-  //   []
-  // )
+  const [cameraCapable, setCameraCapable] = useState(false)
+  useEffect(
+    () => setCameraCapable(navigator.mediaDevices.getUserMedia && true),
+    []
+  )
 
   return (
     <>
@@ -41,7 +41,7 @@ const Scene = (props) => {
           <RandomFigures random={random} />
         </Suspense>
       </ControlledPhysics>
-      {/* {cameraCapable && <WebcamBgWrapper />} */}
+      {cameraCapable && <WebcamBgWrapper />}
     </>
   )
 }

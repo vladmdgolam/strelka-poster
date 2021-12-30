@@ -27,7 +27,7 @@ const TextGeneral = forwardRef((props, ref) => {
       <ControlsBtn
         description="fill"
         hotkey="m"
-        position={11}
+        position={12}
         onClick={() => setDT((prev) => !prev)}
       >
         {depthTest ? "🐵" : "🙈"}

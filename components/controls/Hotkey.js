@@ -1,7 +1,7 @@
 import useHotkey from "@/hooks/useHotkey"
 
-const Hotkey = ({ targetKeys, callback }) => {
-  useHotkey(targetKeys, callback)
+const Hotkey = ({ targetKeys, callback, deps = [] }) => {
+  useHotkey(targetKeys, callback, deps)
   return <></>
 }
 

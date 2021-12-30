@@ -7,6 +7,8 @@ function MyApp({ Component, pageProps }) {
   const [isMobile, setIsMobile] = useState(null)
   const [menuItems, setMenuItems] = useState({})
   const [menuIndex, setMenuIndex] = useState(0)
+  const [video, setVideo] = useState(null)
+  const [videoMode, setVideoMode] = useState("bg")
 
   const requestSetMenuItems = (menuItems) => {
     setMenuIndex(Math.random())
@@ -18,6 +20,10 @@ function MyApp({ Component, pageProps }) {
     menuItems,
     requestSetMenuItems,
     menuIndex,
+    video,
+    setVideo,
+    videoMode,
+    setVideoMode,
   }
 
   useEffect(() => {

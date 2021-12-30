@@ -1,13 +1,21 @@
 import { randomNumber } from "@/helpers"
 import { sizeScale as initSizeScale, range } from "@/helpers/constants"
+import AppContext from "@/hooks/AppContext"
 import useIsMobile from "@/hooks/useIsMobile"
 import useUpdateEffect from "@/hooks/useUpdateEffect"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import ControlsBtn from "../controls/ControlsBtn"
 import RandomSpheres from "../figures/RandomSpheres"
 import RandomBoxes from "./RandomBoxes"
 import RandomCones from "./RandomCones"
 import RandomCylinders from "./RandomCylinders"
+
+const getNewStates = () => ({
+  spheresCount: randomNumber(...range),
+  boxesCount: randomNumber(...range),
+  cylCount: randomNumber(...range),
+  conesCount: randomNumber(...range),
+})
 
 const RandomFigures = ({ random }) => {
   const isMobile = useIsMobile()
@@ -20,23 +28,15 @@ const RandomFigures = ({ random }) => {
     [isMobile]
   )
 
-  const [figuresCount, set] = useState({
-    spheresCount: randomNumber(...range),
-    boxesCount: randomNumber(...range),
-    cylCount: randomNumber(...range),
-    conesCount: randomNumber(...range),
-  })
+  const [figuresCount, set] = useState(getNewStates())
 
   useUpdateEffect(() => {
-    set({
-      spheresCount: randomNumber(...range),
-      boxesCount: randomNumber(...range),
-      cylCount: randomNumber(...range),
-      conesCount: randomNumber(...range),
-    })
+    set(getNewStates())
   }, [random])
 
-  const childProps = { sizeScale }
+  const { video, videoMode } = useContext(AppContext)
+
+  const childProps = { sizeScale, video: videoMode == "figures" ? video : null }
 
   const { spheresCount, boxesCount, cylCount, conesCount } = figuresCount
 
