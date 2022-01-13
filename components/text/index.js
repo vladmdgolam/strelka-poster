@@ -14,13 +14,36 @@ const calcFinRepeat = (text, fontSize) => {
   return (text + " ").repeat(_repeat)
 }
 
+const textStates = ["visible", "transparent", "hidden"]
+
 // eslint-disable-next-line react/display-name
-const TextGeneral = forwardRef((props, ref) => {
+const TextGeneral = (props) => {
   const { clip, fontSize, text, repeat, maxWidth, ...rest } = props
   const { width, height } = useThree(({ viewport }) => viewport)
-  const [depthTest, setDT] = useState(true)
+  const [depthTest, setDT] = useState("visible")
 
   const finText = repeat ? calcFinRepeat(text, fontSize) : text
+
+  const toggleTextView = () =>
+    setDT((prev) => {
+      const nextId = (textStates.indexOf(prev) + 1) % textStates.length
+      return textStates[nextId]
+    })
+
+  let btnText
+  switch (depthTest) {
+    case "visible":
+      btnText = "🐵"
+      break
+    case "transparent":
+      btnText = "🙊"
+      break
+    case "hidden":
+      btnText = "🙈"
+      break
+    default:
+      break
+  }
 
   return (
     <>
@@ -28,28 +51,29 @@ const TextGeneral = forwardRef((props, ref) => {
         description="fill"
         hotkey="m"
         position={12}
-        onClick={() => setDT((prev) => !prev)}
+        onClick={toggleTextView}
       >
-        {depthTest ? "🐵" : "🙈"}
+        {btnText}
       </ControlsBtn>
 
-      <Text
-        // onSync={() => {}}
-        font="/lazurski-cyrillic.woff"
-        ref={ref}
-        maxWidth={maxWidth}
-        clipRect={clip ? [0, -height, width, 0] : null}
-        {...rest}
-        fontSize={fontSize}
-      >
-        {finText}
-        <meshBasicMaterial
-          onUpdate={(self) => (self.needsUpdate = true)}
-          depthTest={depthTest}
-        />
-      </Text>
+      {depthTest !== "hidden" && (
+        <Text
+          // onSync={() => {}}
+          font="/lazurski-cyrillic.woff"
+          maxWidth={maxWidth}
+          clipRect={clip ? [0, -height, width, 0] : null}
+          {...rest}
+          fontSize={fontSize}
+        >
+          {finText}
+          <meshBasicMaterial
+            onUpdate={(self) => (self.needsUpdate = true)}
+            depthTest={depthTest !== "transparent"}
+          />
+        </Text>
+      )}
     </>
   )
-})
+}
 
 export default TextGeneral

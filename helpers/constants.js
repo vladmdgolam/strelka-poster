@@ -78,9 +78,6 @@ export const presets = [
     center: false,
     clip: true,
   },
-  {
-    visible: false,
-  },
 ]
 
 export const positionsConstants = {

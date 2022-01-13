@@ -2,7 +2,6 @@ import { Instance, Instances } from "@react-three/drei"
 import { useMemo } from "react"
 import { generateFigureData } from "@/helpers"
 import { useBox } from "@react-three/cannon"
-import { DoubleSide } from "three"
 import VideoMaterial from "./VideoMaterial"
 
 const RandomBoxes = ({ number = 10, sizeScale, video }) => {

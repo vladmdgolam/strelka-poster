@@ -7,11 +7,12 @@ const MenuPad = ({ items, name, init }) => {
             key,
             {
               name,
-              props: { description, ...props },
+              props: { description, hotkey, ...props },
             },
           ]) => (
             <div key={key} className="btn btn_control" {...props}>
               {!init && <p>{description}</p>}
+              {init && hotkey && <p>{hotkey}</p>}
               {name}
             </div>
           )
