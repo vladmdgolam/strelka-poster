@@ -1,5 +1,5 @@
 import Canvas from "@/components/canvas"
-import WebcamTexture from "@/components/user-camera/WebcamTexture"
+// import WebcamTexture from "@/components/user-camera/WebcamTexture"
 import { OrbitControls } from "@react-three/drei"
 import { useEffect, useState } from "react"
 
@@ -50,7 +50,7 @@ const Els = () => {
       <mesh>
         <planeBufferGeometry attach="geometry" />
         <meshBasicMaterial>
-          <WebcamTexture id={camera} />
+          {/* <WebcamTexture id={camera} /> */}
         </meshBasicMaterial>
       </mesh>
     </>

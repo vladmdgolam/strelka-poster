@@ -7,6 +7,7 @@ import { useState } from "react"
 const useColors = (random, initialColor, initialTheme) => {
   const [bgColor, setBgColor] = useState(initialColor)
   const [theme, setTheme] = useState(initialTheme)
+  
   useUpdateEffect(() => {
     const nextColor = randomExtendedColor()
     setBgColor(nextColor)
