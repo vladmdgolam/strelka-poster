@@ -17,15 +17,15 @@ export const colorMatch = {
   blue: ["white", "pink"],
   pink: ["white", "blue"],
   yellow: ["white", "green", "red", "blue", "black"],
-  white: ["black", "green", "red", "pink", "blue"], // not light
+  white: ["black", "green", "red", "pink", "blue"],
   black: ["white", "yellow"],
 }
 
 export const palettes = [colors, ["#000"], ["#fff"]]
 
-export const sizeScale = 2
+export const sizeScale = 1.5
 
-export const range = [0, 7]
+export const range = [0, 14]
 
 export const presets = [
   // {
@@ -92,4 +92,43 @@ export const positionsConstants = {
     // textAlign: "left",
     textAlign: "justify",
   },
+}
+
+export const keyCodes = {
+  0: 48,
+  1: 49,
+  2: 50,
+  3: 51,
+  4: 52,
+  5: 53,
+  6: 54,
+  7: 55,
+  8: 56,
+  9: 57,
+  a: 65,
+  b: 66,
+  c: 67,
+  d: 68,
+  e: 69,
+  f: 70,
+  g: 71,
+  h: 72,
+  i: 73,
+  j: 74,
+  k: 75,
+  l: 76,
+  m: 77,
+  n: 78,
+  o: 79,
+  p: 80,
+  q: 81,
+  r: 82,
+  s: 83,
+  t: 84,
+  u: 85,
+  v: 86,
+  w: 87,
+  x: 88,
+  y: 89,
+  z: 90,
 }

@@ -6,6 +6,24 @@ import { useState } from "react"
 import ControlsBtn from "../controls/ControlsBtn"
 import TextGeneral from "../text"
 
+const textModes = ["visible", "transparent", "hidden"]
+const modesEmojis = { visible: "🐵", transparent: "🙊", hidden: "🙈" }
+
+const calculateSizeProps = (fontSize, pixelWidth, pixelHeight, height) => {
+  // Working in pixel units
+  const screenHeightMultiplier = 800 / pixelHeight
+
+  const screenWidthDivider = pixelWidth < 700 ? 720 : 1440
+
+  const finFontSize =
+    (screenHeightMultiplier * fontSize * pixelWidth) / screenWidthDivider
+
+  // Working in three units
+  let n = Math.floor(height / finFontSize)
+  let lineHeight = height / (n * finFontSize)
+  return { finFontSize, lineHeight }
+}
+
 const Typography = ({ color, random }) => {
   const { width: pixelWidth, height: pixelHeight } = useThree(
     ({ size }) => size
@@ -29,7 +47,7 @@ const Typography = ({ color, random }) => {
   useUpdateEffect(() => nextPreset(), [random])
 
   const {
-    textProps: { center, repeat, text, clip, visible, fontSize, ...textProps },
+    textProps: { center, text, fontSize, ...textProps },
   } = useTextProps(textPreset)
 
   const requestTextFromUser = () => {
@@ -37,17 +55,30 @@ const Typography = ({ color, random }) => {
     res && setUserText(res)
   }
 
-  const screenHeightMultiplier = 800 / pixelHeight
+  const { finFontSize, lineHeight } = calculateSizeProps(
+    fontSize,
+    pixelWidth,
+    pixelHeight,
+    height
+  )
 
-  const screenWidthDivider = pixelWidth < 700 ? 740 : 1440
-  const finFontSize =
-    (screenHeightMultiplier * fontSize * pixelWidth) / screenWidthDivider
-
-  let n = Math.floor(height / finFontSize)
-  let lineHeight = height / (n * finFontSize)
+  const [textMode, setTextMode] = useState("visible")
+  const toggleTextView = () =>
+    setTextMode((prev) => {
+      const nextId = (textModes.indexOf(prev) + 1) % textModes.length
+      return textModes[nextId]
+    })
 
   return (
     <>
+      <ControlsBtn
+        description="fill"
+        hotkey="m"
+        position={12}
+        onClick={toggleTextView}
+      >
+        {modesEmojis[textMode]}
+      </ControlsBtn>
       <ControlsBtn
         position={10}
         description="text"
@@ -58,13 +89,11 @@ const Typography = ({ color, random }) => {
       </ControlsBtn>
       <TextGeneral
         text={userText ? userText : text}
-        repeat={repeat}
+        textMode={textMode}
         rotation={[-Math.PI / 2, 0, 0]}
         fontSize={finFontSize}
         position={center ? [0, 0.02, 0] : [-width / 2, 0.02, -height / 2]}
         maxWidth={width}
-        clip={clip}
-        visible={visible}
         lineHeight={lineHeight}
         overflowWrap="break-word"
         {...textProps}

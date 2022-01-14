@@ -1,13 +1,33 @@
 import { nanoid } from "nanoid"
 import { colors, palettes, colorsExtended } from "./constants"
 
+export const smoothstep = (min, max, value) => {
+  var x = Math.max(0, Math.min(1, (value - min) / (max - min)))
+  return x * x * (3 - 2 * x)
+}
+
+// Random Generators
+
 export const randomFloat = (min, max) => {
   return Math.random() * (max - min + 1) + min
 }
 
-// integer
+// Integer
 export const randomNumber = (min, max) =>
   Math.floor(Math.random() * (max - min + 1) + min)
+
+export const getRandom = (min, max, length, sum) => {
+  return Array.from({ length }, (_, i) => {
+    var smin = (length - i - 1) * min,
+      smax = (length - i - 1) * max,
+      offset = Math.max(sum - smax, min),
+      random = 1 + Math.min(sum - offset, max - offset, sum - smin - min),
+      value = Math.floor(Math.random() * random + offset)
+
+    sum -= value
+    return value
+  })
+}
 
 export const randomStrelkaColor = () => {
   const names = Object.keys(colors)

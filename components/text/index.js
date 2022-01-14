@@ -1,4 +1,4 @@
-import { forwardRef, useState } from "react"
+import { useState } from "react"
 import { Text } from "@react-three/drei"
 import { useThree } from "@react-three/fiber"
 import ControlsBtn from "../controls/ControlsBtn"
@@ -14,49 +14,16 @@ const calcFinRepeat = (text, fontSize) => {
   return (text + " ").repeat(_repeat)
 }
 
-const textStates = ["visible", "transparent", "hidden"]
-
 // eslint-disable-next-line react/display-name
 const TextGeneral = (props) => {
-  const { clip, fontSize, text, repeat, maxWidth, ...rest } = props
+  const { clip, fontSize, text, repeat, maxWidth, textMode, ...rest } = props
   const { width, height } = useThree(({ viewport }) => viewport)
-  const [depthTest, setDT] = useState("visible")
 
   const finText = repeat ? calcFinRepeat(text, fontSize) : text
 
-  const toggleTextView = () =>
-    setDT((prev) => {
-      const nextId = (textStates.indexOf(prev) + 1) % textStates.length
-      return textStates[nextId]
-    })
-
-  let btnText
-  switch (depthTest) {
-    case "visible":
-      btnText = "🐵"
-      break
-    case "transparent":
-      btnText = "🙊"
-      break
-    case "hidden":
-      btnText = "🙈"
-      break
-    default:
-      break
-  }
-
   return (
     <>
-      <ControlsBtn
-        description="fill"
-        hotkey="m"
-        position={12}
-        onClick={toggleTextView}
-      >
-        {btnText}
-      </ControlsBtn>
-
-      {depthTest !== "hidden" && (
+      {textMode !== "hidden" && (
         <Text
           // onSync={() => {}}
           font="/lazurski-cyrillic.woff"
@@ -68,7 +35,7 @@ const TextGeneral = (props) => {
           {finText}
           <meshBasicMaterial
             onUpdate={(self) => (self.needsUpdate = true)}
-            depthTest={depthTest !== "transparent"}
+            depthTest={textMode !== "transparent"}
           />
         </Text>
       )}
