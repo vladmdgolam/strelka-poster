@@ -39,10 +39,7 @@ const Typography = ({ color, random }) => {
   }, [userText])
 
   const nextPreset = () =>
-    setTextPreset(
-      (prevId) =>
-        (prevId + 1) % (userText ? presets.length - 1 : presets.length)
-    )
+    setTextPreset((prevId) => (prevId + 1) % presets.length)
 
   useUpdateEffect(() => nextPreset(), [random])
 
