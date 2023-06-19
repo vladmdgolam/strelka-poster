@@ -2,12 +2,37 @@ import { presets } from "@/helpers/constants"
 import useTextProps from "@/hooks/useTextProps"
 import useUpdateEffect from "@/hooks/useUpdateEffect"
 import { useThree } from "@react-three/fiber"
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import ControlsBtn from "../controls/ControlsBtn"
 import TextGeneral from "../text"
 
 const textModes = ["visible", "transparent", "hidden"]
 const modesEmojis = { visible: "🐵", transparent: "🙊", hidden: "🙈" }
+
+const RequestTextBtn = ({ userText, setUserText, ...rest }) => {
+  const promptValue = useMemo(() => {
+    return userText || "Strelka Open Code"
+  }, [userText])
+
+  const requestTextFromUser = () => {
+    const res = prompt("Type your text", promptValue)
+    res && setUserText(res.toUpperCase())
+  }
+
+  return (
+    <>
+      <ControlsBtn
+        position={10}
+        description="text"
+        hotkey="t"
+        onClick={requestTextFromUser}
+        {...rest}
+      >
+        💬
+      </ControlsBtn>
+    </>
+  )
+}
 
 const calculateSizeProps = (fontSize, pixelWidth, pixelHeight, height) => {
   // Working in pixel units
@@ -47,11 +72,6 @@ const Typography = ({ color, random }) => {
     textProps: { center, text, fontSize, ...textProps },
   } = useTextProps(textPreset)
 
-  const requestTextFromUser = () => {
-    const res = prompt("Type your text", "Strelka Open Code")
-    res && setUserText(res.toUpperCase())
-  }
-
   const { finFontSize, lineHeight } = calculateSizeProps(
     fontSize,
     pixelWidth,
@@ -66,6 +86,15 @@ const Typography = ({ color, random }) => {
       return textModes[nextId]
     })
 
+  const rest =
+    textPreset === 2 && userText
+      ? {
+          textAlign: "justify",
+          whiteSpace: "overflowWrap",
+          overflowWrap: "break-word",
+        }
+      : {}
+
   return (
     <>
       <ControlsBtn
@@ -76,14 +105,15 @@ const Typography = ({ color, random }) => {
       >
         {modesEmojis[textMode]}
       </ControlsBtn>
-      <ControlsBtn
+      <RequestTextBtn
         position={10}
         description="text"
         hotkey="t"
-        onClick={requestTextFromUser}
+        setUserText={setUserText}
+        userText={userText}
       >
         💬
-      </ControlsBtn>
+      </RequestTextBtn>
       <TextGeneral
         text={userText ? userText : text}
         textMode={textMode}
@@ -92,8 +122,8 @@ const Typography = ({ color, random }) => {
         position={center ? [0, 0.02, 0] : [-width / 2, 0.02, -height / 2]}
         maxWidth={width}
         lineHeight={lineHeight}
-        overflowWrap="break-word"
         {...textProps}
+        {...rest}
         color={color}
       />
     </>

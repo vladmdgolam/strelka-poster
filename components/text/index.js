@@ -23,7 +23,6 @@ const TextGeneral = (props) => {
     <>
       {textMode !== "hidden" && (
         <Text
-          // onSync={() => {}}
           font="/lazurski-cyrillic.woff"
           maxWidth={maxWidth}
           clipRect={clip ? [0, -height, width, 0] : null}

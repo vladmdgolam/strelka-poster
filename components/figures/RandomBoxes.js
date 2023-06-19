@@ -20,7 +20,7 @@ const RandomBoxes = ({ number = 10, sizeScale, video }) => {
 
 const Boxes = ({ data }) => (
   <>
-    <boxBufferGeometry />
+    <boxGeometry />
     {data.map(({ id, ...props }) => (
       <Box key={id} {...props} />
     ))}
