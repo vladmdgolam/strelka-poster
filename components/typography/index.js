@@ -49,7 +49,7 @@ const Typography = ({ color, random }) => {
 
   const requestTextFromUser = () => {
     const res = prompt("Type your text", "Strelka Open Code")
-    res && setUserText(res)
+    res && setUserText(res.toUpperCase())
   }
 
   const { finFontSize, lineHeight } = calculateSizeProps(

@@ -1,10 +1,7 @@
 import { Canvas as ThreeCanvas } from "@react-three/fiber"
-import { useEffect, useLayoutEffect, useState } from "react"
+import { useEffect, useState } from "react"
 
 const Canvas = ({ children, color, ...rest }) => {
-  const [dpr, setDpr] = useState(1)
-  useLayoutEffect(() => setDpr(window.devicePixelRatio), [])
-
   const [hasMounted, setHasMounted] = useState(false)
 
   useEffect(() => {
@@ -23,7 +20,6 @@ const Canvas = ({ children, color, ...rest }) => {
         preserveDrawingBuffer: true,
       }}
       onCreated={({ gl }) => gl.setClearColor(color ? color : "white")}
-      dpr={dpr}
       {...rest}
     >
       {children}
